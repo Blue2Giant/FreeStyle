@@ -1,0 +1,99 @@
+# ===== Paper / LaTeX working directory =====
+# The live LaTeX project is kept locally; only the README-referenced
+# materials are published under assets/.
+/paper/
+
+# ===== OS junk =====
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ===== Virtual environments =====
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# ===== Testing / coverage / type checkers =====
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+cython_debug/
+
+# ===== Jupyter / IPython =====
+.ipynb_checkpoints
+profile_default/
+ipython_config.py
+
+# ===== IDE / editors =====
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# ===== Logs & temp =====
+*.log
+*.tmp
+_tmp/
+tmp/
+
+# ===== Project run artifacts =====
+outputs/
+torchvision/
+extra-info/
+kernel_meta/
+artifacts/
+debug_vaults/

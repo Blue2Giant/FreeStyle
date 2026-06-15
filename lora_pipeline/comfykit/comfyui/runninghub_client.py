@@ -1,0 +1,335 @@
+import asyncio
+import json
+import tempfile
+from pathlib import Path
+from typing import Any, Dict, List, Literal, Optional
+
+import ssl
+import certifi
+import aiohttp
+import os
+
+from comfykit.logger import logger
+
+
+class RunningHubClient:
+    """RunningHub API client for workflow and file operations"""
+
+    def __init__(self, api_key: str = None, base_url: str = None, timeout: int = None, retry_count: int = None):
+        """Initialize RunningHub client
+        
+        Args:
+            api_key: RunningHub API key (optional, reads from RUNNINGHUB_API_KEY env var)
+            base_url: RunningHub API base URL (optional, default: https://www.runninghub.ai)
+            timeout: Request timeout in seconds (optional, default: 300 for HTTP requests)
+                    Note: This is the timeout for individual HTTP requests, not task completion
+            retry_count: Number of retries (optional, default: 3)
+        """
+        self.api_key = api_key or os.getenv("RUNNINGHUB_API_KEY")
+        self.base_url = (base_url or os.getenv("RUNNINGHUB_BASE_URL", "https://www.runninghub.ai")).rstrip('/')
+        # HTTP request timeout (not task completion timeout)
+        # Default to 300s for individual API calls, can be overridden by env var
+        self.timeout = timeout if timeout is not None else int(os.getenv("RUNNINGHUB_TIMEOUT", "300"))
+        self.retry_count = retry_count if retry_count is not None else int(os.getenv("RUNNINGHUB_RETRY_COUNT", "3"))
+        self._session: Optional[aiohttp.ClientSession] = None
+
+        if not self.api_key:
+            raise ValueError("RunningHub API key is required")
+
+    async def _get_session(self) -> aiohttp.ClientSession:
+        """Get or create shared session for reuse across requests
+        
+        Returns:
+            Shared aiohttp ClientSession instance
+        """
+        if self._session is None or self._session.closed:
+            # Build SSL context that uses certifi bundle (resolves Windows / missing CA issues)
+            ssl_ctx = ssl.create_default_context(cafile=certifi.where())
+            connector = aiohttp.TCPConnector(ssl=ssl_ctx)
+            timeout_config = aiohttp.ClientTimeout(total=self.timeout)
+            self._session = aiohttp.ClientSession(
+                timeout=timeout_config,
+                connector=connector,
+                trust_env=True
+            )
+            logger.info("Created new aiohttp ClientSession for RunningHub API")
+        return self._session
+
+    async def _make_request(self, method: str, endpoint: str, data: Optional[Dict] = None, files: Optional[Dict] = None,
+                            timeout: Optional[int] = None) -> Dict[str, Any]:
+        """Make HTTP request to RunningHub API with retry logic (SSL fixed with certifi)."""
+        url = f"{self.base_url}{endpoint}"
+        headers = {}
+
+        # Prepare request data
+        if files:
+            # For file upload, don't set Content-Type (let aiohttp handle it)
+            request_data = aiohttp.FormData()
+            if data:
+                for key, value in data.items():
+                    request_data.add_field(key, str(value))
+            for key, file_info in files.items():
+                request_data.add_field(key, file_info['content'], filename=file_info['filename'])
+        else:
+            # For JSON requests
+            headers['Content-Type'] = 'application/json'
+            request_data = json.dumps(data) if data else None
+
+        # Retry logic
+        last_exception = None
+        for attempt in range(self.retry_count + 1):
+            try:
+                # Get or create shared session
+                session = await self._get_session()
+                
+                # Override timeout for this specific request if provided
+                request_timeout = aiohttp.ClientTimeout(total=timeout) if timeout else None
+                
+                async with session.request(method, url, headers=headers, data=request_data, timeout=request_timeout) as response:
+                    if response.status == 200:
+                        result = await response.json()
+                        if result.get('code') == 0:
+                            return result
+                        else:
+                            raise Exception(f"RunningHub API error: {result.get('msg', 'Unknown error')}")
+                    else:
+                        response_text = await response.text()
+                        raise Exception(f"HTTP {response.status}: {response_text}")
+
+            except Exception as e:
+                last_exception = e
+                
+                # If session is closed, recreate it for the next attempt
+                if "Session is closed" in str(e) or "closed" in str(e).lower():
+                    logger.warning("Detected closed session, recreating for next attempt...")
+                    if self._session and not self._session.closed:
+                        await self._session.close()
+                    self._session = None
+                
+                if attempt < self.retry_count:
+                    wait_time = 2 ** attempt  # Exponential backoff
+                    logger.warning(f"Request failed (attempt {attempt + 1}/{self.retry_count + 1}): {e}. Retrying in {wait_time}s...")
+                    await asyncio.sleep(wait_time)
+                else:
+                    logger.error(f"Request failed after {self.retry_count + 1} attempts: {e}")
+
+        raise last_exception
+
+    async def get_workflow_json(self, workflow_id: str) -> Dict[str, Any]:
+        """Get workflow JSON by workflow ID using getJsonApiFormat API
+        
+        Args:
+            workflow_id: RunningHub workflow ID
+            
+        Returns:
+            Workflow JSON data
+        """
+        logger.info(f"Getting workflow JSON for workflow_id: {workflow_id}")
+
+        data = {
+            "apiKey": self.api_key,
+            "workflowId": workflow_id
+        }
+
+        try:
+            result = await self._make_request("POST", "/api/openapi/getJsonApiFormat", data=data)
+            prompt_str = result.get('data', {}).get('prompt', '')
+
+            if not prompt_str:
+                raise Exception("No workflow JSON found in response")
+
+            # Parse the JSON string to get the actual workflow object
+            import json
+            workflow_json = json.loads(prompt_str)
+
+            logger.info(f"Successfully retrieved workflow JSON for {workflow_id}")
+            return workflow_json
+
+        except Exception as e:
+            logger.error(f"Failed to get workflow JSON for {workflow_id}: {e}")
+            raise
+
+    async def save_workflow_to_temp_file(self, workflow_id: str) -> str:
+        """Get workflow JSON and save to temporary file
+        
+        Args:
+            workflow_id: RunningHub workflow ID
+            
+        Returns:
+            Path to temporary workflow file
+        """
+        workflow_json = await self.get_workflow_json(workflow_id)
+
+        # Create temporary file
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.json', delete=False, encoding='utf-8') as f:
+            json.dump(workflow_json, f, ensure_ascii=False, indent=2)
+            temp_file_path = f.name
+
+        logger.info(f"Workflow saved to temporary file: {temp_file_path}")
+        return temp_file_path
+
+    async def upload_file(self, file_path: str) -> str:
+        """Upload file to RunningHub
+        
+        Args:
+            file_path: Local file path to upload
+            
+        Returns:
+            RunningHub fileName (as required by LoadImage nodes)
+        """
+        if not Path(file_path).exists():
+            raise FileNotFoundError(f"File not found: {file_path}")
+
+        logger.info(f"Uploading file to RunningHub: {file_path}")
+
+        # Read file content
+        with open(file_path, 'rb') as f:
+            file_content = f.read()
+
+        filename = Path(file_path).name
+
+        data = {
+            "apiKey": self.api_key
+        }
+
+        files = {
+            "file": {
+                "content": file_content,
+                "filename": filename
+            }
+        }
+
+        try:
+            result = await self._make_request("POST", "/task/openapi/upload", data=data, files=files)
+            upload_data = result.get('data', {})
+
+            # According to RunningHub documentation, the response should contain fileName
+            file_name = upload_data.get('fileName', '')
+
+            if not file_name:
+                # Fallback to URL if fileName is not available
+                file_url = upload_data.get('url', '')
+                if file_url:
+                    logger.warning(f"fileName not found in response, using URL: {file_url}")
+                    return file_url
+                else:
+                    raise Exception("Neither fileName nor URL found in upload response")
+
+            logger.info(f"File uploaded successfully, fileName: {file_name}")
+            return file_name
+
+        except Exception as e:
+            logger.error(f"Failed to upload file {file_path}: {e}")
+            raise
+
+    async def create_task(self, workflow_id: str, node_info_list: List[Dict] = None) -> Dict[str, Any]:
+        """Create workflow execution task
+        
+        Args:
+            workflow_id: RunningHub workflow ID
+            node_info_list: Node parameter modifications
+            
+        Returns:
+            Task creation result
+        """
+        logger.info(f"Creating task for workflow_id: {workflow_id}")
+
+        data = {
+            "apiKey": self.api_key,
+            "workflowId": workflow_id
+        }
+
+        if node_info_list:
+            data["nodeInfoList"] = node_info_list
+
+        try:
+            result = await self._make_request("POST", "/task/openapi/create", data=data)
+            task_data = result.get('data', {})
+
+            logger.info(f"Task created successfully: {task_data.get('taskId')}")
+            return task_data
+
+        except Exception as e:
+            logger.error(f"Failed to create task for {workflow_id}: {e}")
+            raise
+
+    async def query_task_status(self, task_id: str) -> Dict[str, Any]:
+        """Query task execution status with detailed information
+        
+        Args:
+            task_id: Task ID
+            
+        Returns:
+            Dictionary containing:
+                - status: Task status string ("QUEUED", "RUNNING", "FAILED", "SUCCESS")
+                - msg: Message from API (contains error details when FAILED)
+                - code: Response code (0 for success, non-zero for failure)
+        """
+        data = {
+            "apiKey": self.api_key,
+            "taskId": task_id
+        }
+
+        try:
+            result = await self._make_request("POST", "/task/openapi/status", data=data)
+            # According to RunningHub API docs: https://www.runninghub.cn/runninghub-api-doc-cn/api-276613252
+            # Response contains: code, msg, data (where data is the status)
+            return {
+                'status': result.get('data', 'FAILED'),
+                'msg': result.get('msg', ''),
+                'code': result.get('code', -1)
+            }
+
+        except Exception as e:
+            logger.error(f"Failed to query task status for {task_id}: {e}")
+            raise
+
+    async def query_task_result(self, task_id: str) -> List[Dict[str, Any]]:
+        """Query task execution result
+        
+        Args:
+            task_id: Task ID
+            
+        Returns:
+            Task result information
+        """
+        data = {
+            "apiKey": self.api_key,
+            "taskId": task_id
+        }
+
+        try:
+            result = await self._make_request("POST", "/task/openapi/outputs", data=data)
+            return result.get('data', [])
+
+        except Exception as e:
+            logger.error(f"Failed to query task result for {task_id}: {e}")
+            raise
+
+    async def close(self):
+        """Close the shared session and cleanup resources"""
+        if self._session and not self._session.closed:
+            await self._session.close()
+            self._session = None
+            logger.info("Closed aiohttp ClientSession")
+
+    async def __aenter__(self):
+        """Async context manager entry"""
+        return self
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        """Async context manager exit"""
+        await self.close()
+
+
+def get_runninghub_client(api_key: str = None, base_url: str = None) -> RunningHubClient:
+    """Create RunningHub client instance
+    
+    Args:
+        api_key: RunningHub API key (optional)
+        base_url: RunningHub API base URL (optional)
+    
+    Returns:
+        RunningHubClient instance
+    """
+    return RunningHubClient(api_key=api_key, base_url=base_url)

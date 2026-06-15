@@ -1,0 +1,1102 @@
+img_in.weight: torch.Size([3072, 64]),Linear
+img_in.bias: torch.Size([3072]),Linear
+time_in.in_layer.weight: torch.Size([3072, 256]),Linear
+time_in.in_layer.bias: torch.Size([3072]),Linear
+time_in.out_layer.weight: torch.Size([3072, 3072]),Linear
+time_in.out_layer.bias: torch.Size([3072]),Linear
+vector_in.in_layer.weight: torch.Size([3072, 768]),Linear
+vector_in.in_layer.bias: torch.Size([3072]),Linear
+vector_in.out_layer.weight: torch.Size([3072, 3072]),Linear
+vector_in.out_layer.bias: torch.Size([3072]),Linear
+guidance_in.in_layer.weight: torch.Size([3072, 256]),Linear
+guidance_in.in_layer.bias: torch.Size([3072]),Linear
+guidance_in.out_layer.weight: torch.Size([3072, 3072]),Linear
+guidance_in.out_layer.bias: torch.Size([3072]),Linear
+txt_in.weight: torch.Size([3072, 4096]),Linear
+txt_in.bias: torch.Size([3072]),Linear
+double_blocks.0.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.0.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.0.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.0.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.0.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.0.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.0.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.0.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.0.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.0.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.0.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.0.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.0.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.0.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.0.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.0.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.0.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.0.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.0.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.0.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.0.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.0.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.0.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.0.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.0.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.0.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.0.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.0.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.0.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.0.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.0.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.0.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.1.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.1.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.1.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.1.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.1.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.1.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.1.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.1.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.1.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.1.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.1.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.1.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.1.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.1.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.1.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.1.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.1.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.1.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.1.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.1.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.1.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.1.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.1.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.1.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.1.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.1.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.1.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.1.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.1.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.1.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.1.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.1.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.2.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.2.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.2.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.2.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.2.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.2.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.2.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.2.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.2.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.2.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.2.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.2.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.2.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.2.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.2.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.2.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.2.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.2.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.2.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.2.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.2.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.2.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.2.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.2.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.2.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.2.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.2.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.2.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.2.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.2.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.2.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.2.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.3.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.3.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.3.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.3.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.3.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.3.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.3.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.3.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.3.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.3.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.3.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.3.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.3.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.3.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.3.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.3.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.3.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.3.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.3.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.3.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.3.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.3.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.3.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.3.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.3.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.3.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.3.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.3.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.3.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.3.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.3.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.3.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.4.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.4.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.4.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.4.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.4.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.4.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.4.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.4.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.4.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.4.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.4.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.4.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.4.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.4.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.4.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.4.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.4.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.4.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.4.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.4.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.4.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.4.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.4.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.4.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.4.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.4.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.4.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.4.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.4.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.4.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.4.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.4.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.5.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.5.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.5.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.5.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.5.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.5.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.5.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.5.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.5.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.5.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.5.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.5.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.5.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.5.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.5.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.5.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.5.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.5.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.5.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.5.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.5.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.5.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.5.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.5.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.5.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.5.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.5.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.5.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.5.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.5.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.5.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.5.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.6.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.6.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.6.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.6.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.6.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.6.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.6.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.6.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.6.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.6.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.6.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.6.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.6.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.6.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.6.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.6.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.6.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.6.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.6.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.6.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.6.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.6.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.6.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.6.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.6.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.6.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.6.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.6.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.6.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.6.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.6.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.6.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.7.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.7.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.7.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.7.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.7.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.7.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.7.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.7.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.7.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.7.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.7.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.7.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.7.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.7.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.7.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.7.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.7.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.7.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.7.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.7.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.7.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.7.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.7.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.7.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.7.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.7.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.7.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.7.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.7.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.7.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.7.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.7.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.8.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.8.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.8.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.8.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.8.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.8.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.8.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.8.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.8.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.8.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.8.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.8.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.8.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.8.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.8.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.8.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.8.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.8.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.8.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.8.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.8.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.8.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.8.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.8.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.8.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.8.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.8.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.8.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.8.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.8.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.8.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.8.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.9.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.9.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.9.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.9.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.9.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.9.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.9.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.9.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.9.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.9.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.9.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.9.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.9.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.9.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.9.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.9.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.9.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.9.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.9.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.9.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.9.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.9.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.9.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.9.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.9.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.9.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.9.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.9.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.9.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.9.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.9.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.9.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.10.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.10.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.10.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.10.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.10.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.10.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.10.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.10.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.10.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.10.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.10.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.10.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.10.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.10.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.10.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.10.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.10.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.10.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.10.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.10.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.10.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.10.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.10.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.10.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.10.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.10.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.10.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.10.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.10.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.10.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.10.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.10.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.11.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.11.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.11.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.11.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.11.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.11.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.11.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.11.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.11.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.11.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.11.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.11.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.11.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.11.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.11.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.11.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.11.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.11.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.11.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.11.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.11.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.11.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.11.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.11.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.11.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.11.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.11.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.11.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.11.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.11.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.11.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.11.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.12.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.12.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.12.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.12.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.12.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.12.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.12.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.12.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.12.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.12.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.12.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.12.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.12.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.12.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.12.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.12.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.12.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.12.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.12.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.12.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.12.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.12.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.12.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.12.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.12.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.12.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.12.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.12.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.12.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.12.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.12.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.12.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.13.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.13.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.13.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.13.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.13.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.13.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.13.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.13.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.13.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.13.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.13.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.13.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.13.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.13.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.13.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.13.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.13.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.13.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.13.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.13.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.13.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.13.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.13.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.13.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.13.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.13.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.13.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.13.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.13.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.13.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.13.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.13.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.14.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.14.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.14.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.14.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.14.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.14.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.14.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.14.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.14.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.14.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.14.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.14.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.14.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.14.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.14.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.14.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.14.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.14.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.14.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.14.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.14.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.14.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.14.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.14.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.14.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.14.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.14.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.14.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.14.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.14.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.14.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.14.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.15.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.15.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.15.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.15.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.15.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.15.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.15.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.15.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.15.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.15.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.15.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.15.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.15.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.15.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.15.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.15.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.15.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.15.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.15.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.15.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.15.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.15.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.15.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.15.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.15.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.15.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.15.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.15.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.15.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.15.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.15.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.15.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.16.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.16.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.16.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.16.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.16.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.16.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.16.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.16.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.16.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.16.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.16.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.16.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.16.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.16.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.16.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.16.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.16.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.16.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.16.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.16.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.16.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.16.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.16.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.16.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.16.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.16.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.16.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.16.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.16.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.16.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.16.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.16.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.17.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.17.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.17.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.17.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.17.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.17.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.17.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.17.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.17.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.17.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.17.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.17.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.17.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.17.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.17.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.17.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.17.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.17.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.17.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.17.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.17.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.17.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.17.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.17.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.17.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.17.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.17.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.17.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.17.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.17.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.17.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.17.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.18.img_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.18.img_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.18.img_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.18.img_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.18.img_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.18.img_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.18.img_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.18.img_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.18.img_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.18.img_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.18.img_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.18.img_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.18.txt_mod.lin.weight: torch.Size([18432, 3072]),Linear
+double_blocks.18.txt_mod.lin.bias: torch.Size([18432]),Linear
+double_blocks.18.txt_attn.qkv.weight: torch.Size([9216, 3072]),Linear
+double_blocks.18.txt_attn.qkv.bias: torch.Size([9216]),Linear
+double_blocks.18.txt_attn.norm.query_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.18.txt_attn.norm.key_norm.scale: torch.Size([128]),RMSNorm
+double_blocks.18.txt_attn.proj.weight: torch.Size([3072, 3072]),Linear
+double_blocks.18.txt_attn.proj.bias: torch.Size([3072]),Linear
+double_blocks.18.txt_mlp.0.weight: torch.Size([12288, 3072]),Linear
+double_blocks.18.txt_mlp.0.bias: torch.Size([12288]),Linear
+double_blocks.18.txt_mlp.2.weight: torch.Size([3072, 12288]),Linear
+double_blocks.18.txt_mlp.2.bias: torch.Size([3072]),Linear
+double_blocks.18.processor.qkv_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.18.processor.qkv_lora1.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.18.processor.proj_lora1.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.18.processor.proj_lora1.up.weight: torch.Size([3072, 128]),Linear
+double_blocks.18.processor.qkv_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.18.processor.qkv_lora2.up.weight: torch.Size([9216, 128]),Linear
+double_blocks.18.processor.proj_lora2.down.weight: torch.Size([128, 3072]),Linear
+double_blocks.18.processor.proj_lora2.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.0.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.0.linear1.bias: torch.Size([21504]),Linear
+single_blocks.0.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.0.linear2.bias: torch.Size([3072]),Linear
+single_blocks.0.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.0.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.0.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.0.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.0.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.0.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.0.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.0.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.1.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.1.linear1.bias: torch.Size([21504]),Linear
+single_blocks.1.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.1.linear2.bias: torch.Size([3072]),Linear
+single_blocks.1.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.1.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.1.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.1.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.1.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.1.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.1.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.1.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.2.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.2.linear1.bias: torch.Size([21504]),Linear
+single_blocks.2.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.2.linear2.bias: torch.Size([3072]),Linear
+single_blocks.2.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.2.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.2.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.2.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.2.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.2.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.2.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.2.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.3.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.3.linear1.bias: torch.Size([21504]),Linear
+single_blocks.3.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.3.linear2.bias: torch.Size([3072]),Linear
+single_blocks.3.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.3.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.3.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.3.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.3.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.3.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.3.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.3.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.4.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.4.linear1.bias: torch.Size([21504]),Linear
+single_blocks.4.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.4.linear2.bias: torch.Size([3072]),Linear
+single_blocks.4.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.4.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.4.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.4.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.4.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.4.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.4.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.4.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.5.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.5.linear1.bias: torch.Size([21504]),Linear
+single_blocks.5.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.5.linear2.bias: torch.Size([3072]),Linear
+single_blocks.5.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.5.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.5.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.5.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.5.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.5.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.5.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.5.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.6.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.6.linear1.bias: torch.Size([21504]),Linear
+single_blocks.6.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.6.linear2.bias: torch.Size([3072]),Linear
+single_blocks.6.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.6.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.6.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.6.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.6.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.6.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.6.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.6.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.7.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.7.linear1.bias: torch.Size([21504]),Linear
+single_blocks.7.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.7.linear2.bias: torch.Size([3072]),Linear
+single_blocks.7.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.7.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.7.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.7.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.7.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.7.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.7.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.7.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.8.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.8.linear1.bias: torch.Size([21504]),Linear
+single_blocks.8.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.8.linear2.bias: torch.Size([3072]),Linear
+single_blocks.8.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.8.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.8.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.8.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.8.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.8.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.8.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.8.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.9.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.9.linear1.bias: torch.Size([21504]),Linear
+single_blocks.9.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.9.linear2.bias: torch.Size([3072]),Linear
+single_blocks.9.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.9.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.9.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.9.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.9.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.9.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.9.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.9.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.10.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.10.linear1.bias: torch.Size([21504]),Linear
+single_blocks.10.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.10.linear2.bias: torch.Size([3072]),Linear
+single_blocks.10.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.10.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.10.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.10.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.10.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.10.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.10.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.10.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.11.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.11.linear1.bias: torch.Size([21504]),Linear
+single_blocks.11.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.11.linear2.bias: torch.Size([3072]),Linear
+single_blocks.11.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.11.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.11.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.11.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.11.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.11.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.11.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.11.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.12.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.12.linear1.bias: torch.Size([21504]),Linear
+single_blocks.12.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.12.linear2.bias: torch.Size([3072]),Linear
+single_blocks.12.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.12.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.12.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.12.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.12.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.12.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.12.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.12.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.13.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.13.linear1.bias: torch.Size([21504]),Linear
+single_blocks.13.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.13.linear2.bias: torch.Size([3072]),Linear
+single_blocks.13.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.13.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.13.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.13.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.13.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.13.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.13.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.13.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.14.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.14.linear1.bias: torch.Size([21504]),Linear
+single_blocks.14.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.14.linear2.bias: torch.Size([3072]),Linear
+single_blocks.14.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.14.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.14.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.14.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.14.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.14.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.14.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.14.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.15.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.15.linear1.bias: torch.Size([21504]),Linear
+single_blocks.15.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.15.linear2.bias: torch.Size([3072]),Linear
+single_blocks.15.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.15.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.15.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.15.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.15.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.15.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.15.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.15.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.16.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.16.linear1.bias: torch.Size([21504]),Linear
+single_blocks.16.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.16.linear2.bias: torch.Size([3072]),Linear
+single_blocks.16.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.16.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.16.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.16.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.16.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.16.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.16.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.16.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.17.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.17.linear1.bias: torch.Size([21504]),Linear
+single_blocks.17.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.17.linear2.bias: torch.Size([3072]),Linear
+single_blocks.17.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.17.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.17.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.17.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.17.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.17.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.17.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.17.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.18.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.18.linear1.bias: torch.Size([21504]),Linear
+single_blocks.18.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.18.linear2.bias: torch.Size([3072]),Linear
+single_blocks.18.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.18.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.18.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.18.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.18.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.18.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.18.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.18.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.19.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.19.linear1.bias: torch.Size([21504]),Linear
+single_blocks.19.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.19.linear2.bias: torch.Size([3072]),Linear
+single_blocks.19.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.19.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.19.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.19.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.19.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.19.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.19.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.19.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.20.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.20.linear1.bias: torch.Size([21504]),Linear
+single_blocks.20.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.20.linear2.bias: torch.Size([3072]),Linear
+single_blocks.20.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.20.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.20.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.20.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.20.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.20.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.20.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.20.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.21.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.21.linear1.bias: torch.Size([21504]),Linear
+single_blocks.21.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.21.linear2.bias: torch.Size([3072]),Linear
+single_blocks.21.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.21.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.21.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.21.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.21.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.21.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.21.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.21.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.22.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.22.linear1.bias: torch.Size([21504]),Linear
+single_blocks.22.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.22.linear2.bias: torch.Size([3072]),Linear
+single_blocks.22.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.22.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.22.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.22.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.22.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.22.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.22.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.22.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.23.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.23.linear1.bias: torch.Size([21504]),Linear
+single_blocks.23.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.23.linear2.bias: torch.Size([3072]),Linear
+single_blocks.23.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.23.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.23.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.23.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.23.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.23.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.23.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.23.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.24.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.24.linear1.bias: torch.Size([21504]),Linear
+single_blocks.24.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.24.linear2.bias: torch.Size([3072]),Linear
+single_blocks.24.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.24.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.24.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.24.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.24.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.24.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.24.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.24.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.25.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.25.linear1.bias: torch.Size([21504]),Linear
+single_blocks.25.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.25.linear2.bias: torch.Size([3072]),Linear
+single_blocks.25.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.25.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.25.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.25.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.25.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.25.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.25.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.25.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.26.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.26.linear1.bias: torch.Size([21504]),Linear
+single_blocks.26.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.26.linear2.bias: torch.Size([3072]),Linear
+single_blocks.26.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.26.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.26.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.26.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.26.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.26.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.26.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.26.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.27.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.27.linear1.bias: torch.Size([21504]),Linear
+single_blocks.27.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.27.linear2.bias: torch.Size([3072]),Linear
+single_blocks.27.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.27.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.27.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.27.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.27.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.27.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.27.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.27.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.28.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.28.linear1.bias: torch.Size([21504]),Linear
+single_blocks.28.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.28.linear2.bias: torch.Size([3072]),Linear
+single_blocks.28.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.28.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.28.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.28.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.28.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.28.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.28.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.28.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.29.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.29.linear1.bias: torch.Size([21504]),Linear
+single_blocks.29.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.29.linear2.bias: torch.Size([3072]),Linear
+single_blocks.29.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.29.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.29.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.29.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.29.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.29.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.29.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.29.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.30.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.30.linear1.bias: torch.Size([21504]),Linear
+single_blocks.30.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.30.linear2.bias: torch.Size([3072]),Linear
+single_blocks.30.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.30.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.30.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.30.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.30.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.30.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.30.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.30.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.31.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.31.linear1.bias: torch.Size([21504]),Linear
+single_blocks.31.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.31.linear2.bias: torch.Size([3072]),Linear
+single_blocks.31.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.31.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.31.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.31.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.31.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.31.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.31.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.31.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.32.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.32.linear1.bias: torch.Size([21504]),Linear
+single_blocks.32.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.32.linear2.bias: torch.Size([3072]),Linear
+single_blocks.32.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.32.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.32.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.32.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.32.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.32.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.32.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.32.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.33.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.33.linear1.bias: torch.Size([21504]),Linear
+single_blocks.33.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.33.linear2.bias: torch.Size([3072]),Linear
+single_blocks.33.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.33.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.33.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.33.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.33.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.33.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.33.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.33.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.34.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.34.linear1.bias: torch.Size([21504]),Linear
+single_blocks.34.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.34.linear2.bias: torch.Size([3072]),Linear
+single_blocks.34.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.34.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.34.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.34.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.34.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.34.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.34.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.34.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.35.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.35.linear1.bias: torch.Size([21504]),Linear
+single_blocks.35.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.35.linear2.bias: torch.Size([3072]),Linear
+single_blocks.35.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.35.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.35.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.35.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.35.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.35.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.35.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.35.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.36.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.36.linear1.bias: torch.Size([21504]),Linear
+single_blocks.36.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.36.linear2.bias: torch.Size([3072]),Linear
+single_blocks.36.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.36.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.36.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.36.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.36.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.36.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.36.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.36.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+single_blocks.37.linear1.weight: torch.Size([21504, 3072]),Linear
+single_blocks.37.linear1.bias: torch.Size([21504]),Linear
+single_blocks.37.linear2.weight: torch.Size([3072, 15360]),Linear
+single_blocks.37.linear2.bias: torch.Size([3072]),Linear
+single_blocks.37.norm.query_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.37.norm.key_norm.scale: torch.Size([128]),RMSNorm
+single_blocks.37.modulation.lin.weight: torch.Size([9216, 3072]),Linear
+single_blocks.37.modulation.lin.bias: torch.Size([9216]),Linear
+single_blocks.37.processor.qkv_lora.down.weight: torch.Size([128, 3072]),Linear
+single_blocks.37.processor.qkv_lora.up.weight: torch.Size([9216, 128]),Linear
+single_blocks.37.processor.proj_lora.down.weight: torch.Size([128, 15360]),Linear
+single_blocks.37.processor.proj_lora.up.weight: torch.Size([3072, 128]),Linear
+final_layer.linear.weight: torch.Size([64, 3072]),Linear
+final_layer.linear.bias: torch.Size([64]),Linear
+final_layer.adaLN_modulation.1.weight: torch.Size([6144, 3072]),Linear
+final_layer.adaLN_modulation.1.bias: torch.Size([6144]),Linear
+feature_embedder.high_embedding_linear.0.weight: torch.Size([64, 729]),Linear
+feature_embedder.high_embedding_linear.0.bias: torch.Size([64]),Linear
+feature_embedder.high_layer_norm.weight: torch.Size([1152]),LayerNorm
+feature_embedder.high_layer_norm.bias: torch.Size([1152]),LayerNorm
+feature_embedder.high_projection.weight: torch.Size([3072, 1152]),Linear
+feature_embedder.high_projection.bias: torch.Size([3072]),Linear
+feature_embedder.mid_embedding_linear.0.weight: torch.Size([64, 729]),Linear
+feature_embedder.mid_embedding_linear.0.bias: torch.Size([64]),Linear
+feature_embedder.mid_layer_norm.weight: torch.Size([1152]),LayerNorm
+feature_embedder.mid_layer_norm.bias: torch.Size([1152]),LayerNorm
+feature_embedder.mid_projection.weight: torch.Size([3072, 1152]),Linear
+feature_embedder.mid_projection.bias: torch.Size([3072]),Linear
+feature_embedder.low_embedding_linear.0.weight: torch.Size([64, 729]),Linear
+feature_embedder.low_embedding_linear.0.bias: torch.Size([64]),Linear
+feature_embedder.low_layer_norm.weight: torch.Size([1152]),LayerNorm
+feature_embedder.low_layer_norm.bias: torch.Size([1152]),LayerNorm
+feature_embedder.low_projection.weight: torch.Size([3072, 1152]),Linear
+feature_embedder.low_projection.bias: torch.Size([3072]),Linear

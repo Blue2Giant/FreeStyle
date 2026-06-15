@@ -1,0 +1,149 @@
+{
+  "1": {
+    "inputs": {
+      "ckpt_name": "sd_xl_base_1.0.safetensors"
+    },
+    "class_type": "CheckpointLoaderSimple",
+    "_meta": {
+      "title": "Load Checkpoint"
+    }
+  },
+  "5": {
+    "inputs": {
+      "seed": 1035448347007239,
+      "steps": 28,
+      "cfg": 5,
+      "sampler_name": "euler_ancestral",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "17",
+        0
+      ],
+      "positive": [
+        "18",
+        0
+      ],
+      "negative": [
+        "19",
+        0
+      ],
+      "latent_image": [
+        "6",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "6": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptyLatentImage",
+    "_meta": {
+      "title": "Empty Latent Image"
+    }
+  },
+  "15": {
+    "inputs": {
+      "lora_name": "838288_937859.safetensors",
+      "strength_model": 1.0000000000000002,
+      "strength_clip": 1.0000000000000002,
+      "model": [
+        "1",
+        0
+      ],
+      "clip": [
+        "1",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA (Style)"
+    }
+  },
+  "17": {
+    "inputs": {
+      "lora_name": "774819_866650.safetensors",
+      "strength_model": 1.0000000000000002,
+      "strength_clip": 1.0000000000000002,
+      "model": [
+        "15",
+        0
+      ],
+      "clip": [
+        "15",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA (Content)"
+    }
+  },
+  "18": {
+    "inputs": {
+      "text": "cyberpunk architecture monumental architecture architecture city cityscape scenery building skyscraper future scifi science fiction cyberpunk city skyline,iruma wearing her uniform from danganronpa.Miu Iruma stands confidently in her Danganronpa V3 uniform, bathed in neon classroom lighting, with a tilted Dutch angle capturing her smirk as she gestures toward a glowing monitor displaying 'Chapter 3'.",
+      "token_normalization": "mean",
+      "weight_interpretation": "A1111",
+      "clip": [
+        "17",
+        1
+      ]
+    },
+    "class_type": "BNK_CLIPTextEncodeAdvanced",
+    "_meta": {
+      "title": "CLIP Text Encode (Positive)"
+    }
+  },
+  "19": {
+    "inputs": {
+      "text": "(nsfw:1.2),blur,lowres, normal quality, worst quality, low quality, jpeg artifacts, compression artifacts, pixelated, blurry, out of focus, soft focus, bad contrast, color banding, posterization, chromatic aberration, aliasing, moire, overexposed, underexposed, blown highlights, crushed shadows, noise, watermark, logo, text, caption, signature, username, copyright, bad anatomy, malformed, disfigured, deformed, bad proportions, extra limbs, missing limbs, duplicate body parts, extra digits, missing fingers, fused fingers, webbed fingers, bad hands, bad feet, distorted face, asymmetrical eyes, cross-eye, extra face, cloned person, body cut off, cropped, floating objects, disconnected limbs, perspective errors, depth errors, incorrect shadows, inconsistent lighting, repeated patterns, mirror artifacts",
+      "token_normalization": "mean",
+      "weight_interpretation": "A1111",
+      "clip": [
+        "17",
+        1
+      ]
+    },
+    "class_type": "BNK_CLIPTextEncodeAdvanced",
+    "_meta": {
+      "title": "CLIP Text Encode (Negative)"
+    }
+  },
+  "23": {
+    "inputs": {
+      "samples": [
+        "5",
+        0
+      ],
+      "vae": [
+        "1",
+        2
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE解码"
+    }
+  },
+  "25": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "23",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  }
+}

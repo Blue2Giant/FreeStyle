@@ -1,0 +1,171 @@
+{
+  "8": {
+    "inputs": {
+      "samples": [
+        "31",
+        0
+      ],
+      "vae": [
+        "39",
+        0
+      ]
+    },
+    "class_type": "VAEDecode",
+    "_meta": {
+      "title": "VAE Decode"
+    }
+  },
+  "9": {
+    "inputs": {
+      "filename_prefix": "ComfyUI",
+      "images": [
+        "8",
+        0
+      ]
+    },
+    "class_type": "SaveImage",
+    "_meta": {
+      "title": "Save Image"
+    }
+  },
+  "27": {
+    "inputs": {
+      "width": 1024,
+      "height": 1024,
+      "batch_size": 1
+    },
+    "class_type": "EmptySD3LatentImage",
+    "_meta": {
+      "title": "EmptySD3LatentImage"
+    }
+  },
+  "31": {
+    "inputs": {
+      "seed": 87845080104453,
+      "steps": 28,
+      "cfg": 1.5,
+      "sampler_name": "euler",
+      "scheduler": "normal",
+      "denoise": 1,
+      "model": [
+        "46",
+        0
+      ],
+      "positive": [
+        "41",
+        0
+      ],
+      "negative": [
+        "43",
+        0
+      ],
+      "latent_image": [
+        "27",
+        0
+      ]
+    },
+    "class_type": "KSampler",
+    "_meta": {
+      "title": "KSampler"
+    }
+  },
+  "38": {
+    "inputs": {
+      "unet_name": "flux1-dev.safetensors",
+      "weight_dtype": "default"
+    },
+    "class_type": "UNETLoader",
+    "_meta": {
+      "title": "Load Diffusion Model"
+    }
+  },
+  "39": {
+    "inputs": {
+      "vae_name": "ae.safetensors"
+    },
+    "class_type": "VAELoader",
+    "_meta": {
+      "title": "Load VAE"
+    }
+  },
+  "40": {
+    "inputs": {
+      "clip_name1": "clip_l.safetensors",
+      "clip_name2": "t5xxl_fp16.safetensors",
+      "type": "flux",
+      "device": "default"
+    },
+    "class_type": "DualCLIPLoader",
+    "_meta": {
+      "title": "DualCLIPLoader"
+    }
+  },
+  "41": {
+    "inputs": {
+      "clip_l": "Lucy, a woman with multicolor hair, A neighborhood basketball court with hoops, painted lines and players\n\n",
+      "t5xxl": "Lucy, a woman with multicolor hair, A neighborhood basketball court with hoops, painted lines and players\n",
+      "guidance": 3.5,
+      "clip": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIPTextEncodeFlux"
+    }
+  },
+  "43": {
+    "inputs": {
+      "clip_l": "naked,lowres, bad anatomy, blurry, (worst quality:1.8), low quality, hands bad, (normal quality:1.3), bad hands, mutated hands and fingers, extra legs, extra arms, duplicate, cropped, jpeg, artifacts, long body, multiple breasts, mutated, disfigured, bad proportions, bad feet, ugly, text font ui, missing limb, monochrome, face bad, nsfw, waterprint, nsfw, naked, sex, nsfw, not safe for work, too huge breast, huge breast, sexual suggestion, unclear pupil, pussy/vaginal, anus, pussy/vaginal, anus, explicit,VFX，shadow, watermark",
+      "t5xxl": "naked, lowres, bad anatomy, blurry, (worst quality:1.8), low quality, hands bad, (normal quality:1.3), bad hands, mutated hands and fingers, extra legs, extra arms, duplicate, cropped, jpeg, artifacts, long body, multiple breasts, mutated, disfigured, bad proportions, bad feet, ugly, text font ui, missing limb, monochrome, face bad, nsfw, waterprint, nsfw, naked, sex, nsfw, not safe for work, too huge breast, huge breast, sexual suggestion, unclear pupil, pussy/vaginal, anus, pussy/vaginal, anus, explicit,VFX，shadow, watermark",
+      "guidance": 3.5,
+      "clip": [
+        "46",
+        1
+      ]
+    },
+    "class_type": "CLIPTextEncodeFlux",
+    "_meta": {
+      "title": "CLIPTextEncodeFlux (Negative)"
+    }
+  },
+  "45": {
+    "inputs": {
+      "lora_name": "224835_932576.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "38",
+        0
+      ],
+      "clip": [
+        "40",
+        0
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA (Content)"
+    }
+  },
+  "46": {
+    "inputs": {
+      "lora_name": "224835_932576.safetensors",
+      "strength_model": 1,
+      "strength_clip": 1,
+      "model": [
+        "45",
+        0
+      ],
+      "clip": [
+        "45",
+        1
+      ]
+    },
+    "class_type": "LoraLoader",
+    "_meta": {
+      "title": "Load LoRA (Style)"
+    }
+  }
+}

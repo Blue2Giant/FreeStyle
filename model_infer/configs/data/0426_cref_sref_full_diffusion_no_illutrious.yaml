@@ -1,0 +1,36 @@
+train_database: /mnt/chengwei/vault/traindata/04-26
+source_weights:
+  cref_xhssinglecref: 0.0
+  cref_xhs_multicref: 0.0
+  cref_xhsbeyond3: 0.0
+  style_change_gemini_pro: 0.0
+  WeiboCref_aes_edit_smallfacesample_style: 0.0
+  video_pipeline_data_v1_1110_part2: 0.0
+  video_pipeline_data_v1_edit_3dot5: 0.0
+  video_pipeline_data_v0_cref_3dot5+_3dot5: 0.0
+  compose_from_gemini3_pro_part1_singlecref: 0.0
+  compose_from_gemini3_pro_part1: 0.0
+  Gemini3_unsplash_human_filtered: 0.0
+  cref_sref_oneig_filter_part1: 1.0
+  cref_sref_oneig_filter_part2: 1.0
+  cref_sref_oneig_filter_part3: 1.0
+  cref_sref_oneig_filter_part4: 1.0
+  cref_sref_oneig_filter_part5: 1.0
+  cref_sref_lora_part1: 0.0
+  cref_sref_lora_part2: 0.0
+  cref_sref_lora_part3: 0.0
+  cref_sref_lora_part4: 0.0
+  cref_sref_lora_part5: 0.0
+  cref_sref_lora_part6: 0.0
+  cref_sref_illustrious_lora_part1: 0.0
+  cref_sref_flux_lora_part1: 3.0
+  cref_sref_qwen_lora_part1: 3.0
+base_size:
+  - 512
+  - 768
+  - 1024
+base_size_weights:
+  - 1.0
+  - 2.0
+  - 4.0
+enable_random_degrade: true

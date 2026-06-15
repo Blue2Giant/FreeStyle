@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FreeStyle | Community LoRA Mining for Style-Content Generation</title>
+    <meta
+      name="description"
+      content="Project page for FreeStyle, featuring the dataset, SRef transfer examples, and CRef + SRef generation results."
+    />
+    <meta
+      name="keywords"
+      content="FreeStyle, style transfer, dual reference generation, CRef, SRef, LoRA, benchmark"
+    />
+    <meta name="theme-color" content="#d76d2e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Outfit:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-a" aria-hidden="true"></div>
+    <div class="ambient ambient-b" aria-hidden="true"></div>
+
+    <header class="hero" id="top">
+      <nav class="topbar">
+        <a class="brand" href="#top">FreeStyle</a>
+        <div class="nav-links" aria-label="Quick jump tags">
+          <a class="tag-pill" href="#dataset">Dataset</a>
+          <a class="tag-pill" href="#dataset-sref-block">SRef dataset</a>
+          <a class="tag-pill" href="#dataset-dual-block">CRef + SRef dataset</a>
+          <a class="tag-pill" href="#sref">SRef result</a>
+          <a class="tag-pill" href="#dual">CRef + SRef result</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <section class="hero-copy reveal">
+          <p class="eyebrow">Project Page</p>
+          <h1>FreeStyle</h1>
+          <p class="hero-tagline">
+            Community LoRA Mining for style-reference stylization and dual-reference generation.
+          </p>
+          <p class="hero-description">
+            Style- and content-dual-reference generation aims to synthesize an image that preserves
+            the structure and semantics of a content reference while adopting the visual style of a
+            separate style reference. Despite recent progress in reference-based generation, this
+            setting remains challenging because models must balance content fidelity, style
+            alignment, and instruction following without leaking semantic content from the style
+            reference. A key bottleneck is the lack of large-scale triplet data with clean
+            content-style separation and broad long-tail style coverage. Existing data construction
+            pipelines struggle to meet this need, as they either cover only a narrow set of styles,
+            require costly manual curation, or produce triplets with imperfect content-style
+            separation. In this work, we propose FreeStyle, a scalable dual-reference generation
+            framework based on community LoRA mining. We treat community LoRAs as compositional
+            anchors for style and content, and design a rigorous generation and filtering pipeline
+            to construct large-scale Style-Reference (SRef) and Content-Reference (CRef) triplets
+            across multiple base models.
+            We also introduce a benchmark covering style-reference and content-style dual-reference generation, with evaluations on style similarity, content preservation, aesthetics, instruction following, and leakage rejection.
+            To improve content-style disentanglement beyond data construction, FreeStyle further
+            introduces an attention-level constraint that suppresses style-reference leakage while
+            preserving style richness, along with a RoPE weighting method, leading to a better
+            balance among style alignment, content fidelity, and leakage control.
+          </p>
+
+          <div class="hero-actions hero-links">
+            <a class="button button-primary" href="#" aria-label="Paper link placeholder">Paper</a>
+            <a class="button button-secondary" href="#" aria-label="Dataset link placeholder">Dataset</a>
+            <a class="button button-secondary" href="#" aria-label="Model weights link placeholder">Model Weights</a>
+            <a class="button button-secondary" href="#" aria-label="Benchmark link placeholder">Benchmark</a>
+            <a class="button button-secondary" href="#" aria-label="GitHub link placeholder">GitHub</a>
+          </div>
+
+          <div class="stat-grid">
+            <article class="stat-card">
+              <span class="stat-value">1,500+</span>
+              <span class="stat-label">CRef + SRef style types</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-value">800M</span>
+              <span class="stat-label">CRef + SRef pairs</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-value">600+</span>
+              <span class="stat-label">SRef style types</span>
+            </article>
+            <article class="stat-card">
+              <span class="stat-value">150k</span>
+              <span class="stat-label">SRef pairs</span>
+            </article>
+          </div>
+        </section>
+      </div>
+    </header>
+
+    <main>
+      <section class="section" id="dataset">
+        <div class="section-head reveal">
+          <p class="eyebrow">Dataset</p>
+          <h2>A dataset split into SRef and CRef + SRef evaluation</h2>
+          <p>
+            The benchmark covers style-only stylization and the harder dual-reference setting. Both
+            sections below use the same triplet grammar so the relationship between references,
+            prompt, and target remains legible.
+          </p>
+        </div>
+
+        <div class="dataset-block" id="dataset-sref-block">
+          <header class="dataset-block-head">
+            <p class="panel-kicker">SRef dataset</p>
+            <h3>Style Transfer Pair Generated By Style Trigger</h3>
+            <p>
+              In the style transfer dataset pair, we collect effective style trigger words from the community, using Nano Banana model to transfer the style of the collected content image including many different types of objects, like people, animals, and scenes. 
+            </p>
+          </header>
+          <div class="scroll-box scroll-box-list">
+            <div class="scroll-track" id="dataset-sref"></div>
+          </div>
+        </div>
+
+        <div class="dataset-block" id="dataset-dual-block">
+          <header class="dataset-block-head">
+            <p class="panel-kicker">CRef + SRef dataset</p>
+            <h3>Content and Style Reference Pair Generated By Community LoRA</h3>
+            <p>
+              We mine the community LoRAs to find the effective style and content LoRAs, and then combine them to generate the dual-reference dataset. The dual-reference dataset covers a wide range of styles and content, which is more challenging for the model to learn the disentanglement of style and content.
+            </p>
+          </header>
+          <div class="scroll-box scroll-box-list">
+            <div class="scroll-track" id="dataset-dual"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="sref">
+        <div class="section-head reveal">
+          <p class="eyebrow">SRef result</p>
+          <h2>SRef transfer: style strength stays explicit</h2>
+          <p>
+            These samples emphasize the style-transfer behavior itself. The thumbnails show the
+            two references followed by the model output, and clicking any image opens the full
+            preview.
+          </p>
+        </div>
+        <div class="scroll-box scroll-box-grid">
+          <div class="scroll-track" id="results-sref"></div>
+        </div>
+      </section>
+
+      <section class="section" id="dual">
+        <div class="section-head reveal">
+          <p class="eyebrow">CRef + SRef result</p>
+          <h2>CRef + SRef composition: content and style stay disentangled</h2>
+          <p>
+            The dual-reference gallery keeps all three images at equal prominence so the benchmark
+            logic remains transparent. Each card also exposes the original prompt sampled for that
+            pair.
+          </p>
+        </div>
+        <div class="scroll-box scroll-box-grid">
+          <div class="scroll-track" id="results-dual"></div>
+        </div>
+      </section>
+    </main>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <button class="lightbox-close" id="lightbox-close" type="button" aria-label="Close preview">
+        ×
+      </button>
+      <div class="lightbox-stage" id="lightbox-stage">
+        <div class="lightbox-frame" id="lightbox-frame">
+          <img id="lightbox-image" alt="" />
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

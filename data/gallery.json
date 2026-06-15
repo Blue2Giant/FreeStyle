@@ -1,0 +1,1259 @@
+{
+  "site": {
+    "title": "FreeStyle",
+    "tagline": "Community LoRA Mining for Style-Content Generation"
+  },
+  "sections": {
+    "hero": [
+      "resultsDual--00",
+      "resultsDual--01",
+      "resultsDual--02"
+    ],
+    "datasetSref": [
+      "datasetSref--04a6cc5a-d454-adb5-5d90-fc2dd9800432",
+      "datasetSref--0de1382b-34c2-cb05-dc26-e8ae35720019",
+      "datasetSref--11a7834f-0f38-a1e4-01b7-7dab582a2a7f",
+      "datasetSref--1503ff05-987b-eb40-544a-d5473817af25",
+      "datasetSref--16aa8369-953f-5392-135e-28413979cf4d",
+      "datasetSref--1ae7eb42-4e17-0566-9979-0084f30e7a8f",
+      "datasetSref--1e82a006-0f3a-c7e5-e08b-a333b6b1bae9",
+      "datasetSref--20a4ed41-914c-4fee-43dd-933831a068f7",
+      "datasetSref--225173f5-475f-5d80-3ca7-7afa639722ed",
+      "datasetSref--2ecaf62e-19b6-5344-6ee7-e7a4a9ee4f5c",
+      "datasetSref--34b02e51-ea53-c918-f5e7-97ac53bf22ad",
+      "datasetSref--3825d3cd-d7bb-6c60-14a9-af0aaaa97380",
+      "datasetSref--3a0a4880-a9a7-fd21-7a2a-121f9884cc54",
+      "datasetSref--3d5fb404-41b0-24e4-3db2-86f21b68211e",
+      "datasetSref--44a48534-5fb0-cae9-1600-4ef5b58ea622",
+      "datasetSref--4c4fab37-228e-562e-7f87-dbe9c233d0f4",
+      "datasetSref--541827f7-f0fc-e5da-8445-c39a041d9e77",
+      "datasetSref--57ac38ac-2132-809c-8eee-f2deaa2c122c",
+      "datasetSref--60f35767-cfba-7305-815c-46406ec15954",
+      "datasetSref--626689cb-ef8a-1da2-7dd7-95f13cf5afbd",
+      "datasetSref--6b8c174b-20c6-597d-e3cc-5939c1db7d20",
+      "datasetSref--6e99f340-4c53-1e8d-fb5c-57bc264ac698",
+      "datasetSref--8c5f87c2-62e6-8f19-3e54-88eda12b1f15",
+      "datasetSref--a08afb20-6810-f1ff-10cc-8311d22dfb28",
+      "datasetSref--ab1b4faf-1203-56bf-3327-2da07c997cfb",
+      "datasetSref--b4f2210d-7999-ad24-ae14-ae2878cf38b2",
+      "datasetSref--c9aa8114-babe-92bd-2b84-4bdc855a7e2d",
+      "datasetSref--cf73fab6-aa72-ae57-0c83-996878774e3f",
+      "datasetSref--d2f1b515-56c5-ba58-e90a-7b1992379ae9",
+      "datasetSref--d3e5f6c5-3025-ed1b-8f83-510b0c61aedf",
+      "datasetSref--e11cfbf3-4e41-7f1c-102c-05a373aaf236",
+      "datasetSref--e4f067ad-144d-a114-beae-281e9a86b8ed",
+      "datasetSref--ea4da34f-459b-a8fd-a334-dadc901f6a20",
+      "datasetSref--eef3a90c-16dd-c801-09e2-2e76992a6b12",
+      "datasetSref--f2f25f6e-fd76-b49f-60e3-152d47f49d85",
+      "datasetSref--f36cdd08-4527-2a5d-ebf4-e18796313480",
+      "datasetSref--f4c7c5dd-ca34-daaa-a4ec-6657c602bf88"
+    ],
+    "datasetDual": [
+      "datasetDual--08f78b88-b7d5-3583-dced-46b7012a8b96",
+      "datasetDual--168250df-d0b5-90da-b5e9-e6a0bff32bb5",
+      "datasetDual--17f1d155-064d-b02e-c7ca-fd3c14544b18",
+      "datasetDual--18e34df6-b3be-2eb7-6881-3e77e2b55915",
+      "datasetDual--1c6ffa76-8318-a41b-6f00-971126da51e9",
+      "datasetDual--25b0901f-4a4d-d3c7-0841-15ec879a6285",
+      "datasetDual--25f1dd02-06a7-dca3-9730-a0de9cdf9b0e",
+      "datasetDual--27d57aca-e8fe-d581-feec-02c4f2ed423e",
+      "datasetDual--316b0afe-f915-7e63-25b8-a726377d8cd4",
+      "datasetDual--3223c6d7-dc88-f7fa-75ed-3c5a607944ac",
+      "datasetDual--330f1203-1f44-2070-5c48-d72e4482a933",
+      "datasetDual--33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2",
+      "datasetDual--3d5e61fd-cdc5-75cd-2959-e6319ff71fbd",
+      "datasetDual--3d686dbb-8077-024f-d000-d6e7076d1605",
+      "datasetDual--412ff0cb-b3b7-bd96-4356-614cdece3100",
+      "datasetDual--47a56057-9d92-11d7-47a5-9efcfee0dde4",
+      "datasetDual--50a3b567-1556-0f95-afff-b252aef61d5d",
+      "datasetDual--551ad0ef-2034-1405-4ef3-eb7fb4a2b54d",
+      "datasetDual--5ea90782-1400-bf9b-e725-7360053dfee3",
+      "datasetDual--5eebf6ff-47ab-e6ce-2ab6-e13aa5533790",
+      "datasetDual--614b0380-fdbb-40e6-9ec6-033b581de886",
+      "datasetDual--6394e148-fc3a-9f5a-6041-dbd554b965d4",
+      "datasetDual--640de5ee-499d-052f-44f1-76dd9541c4eb",
+      "datasetDual--6759b3b7-022c-a904-0474-523d9cf687ea",
+      "datasetDual--6ad44ee1-8382-c5e9-bdc0-7e77e8bcc1af",
+      "datasetDual--6f641563-3601-596e-cf1a-5fe471416cbf",
+      "datasetDual--70c86427-16c0-eaae-bc0f-30bbf67cb838",
+      "datasetDual--70eff65c-40df-ea98-6fef-cdb8332f2b04",
+      "datasetDual--80b7d715-07a5-6676-3b4a-a105bd783235",
+      "datasetDual--879fbbdd-0de9-15dc-b744-3240b52fac91",
+      "datasetDual--8dabf51b-e59a-f44b-b4e4-5cd8ba69b249",
+      "datasetDual--8f8d81f3-6990-e7a3-68b7-aa9af375fdec",
+      "datasetDual--90dd2c9b-7a90-1814-5a7d-80889270961c",
+      "datasetDual--91750db0-daa2-28df-bf20-31173ff026df",
+      "datasetDual--932c9b6e-190c-10f7-f0d8-d20c8e5bbd29",
+      "datasetDual--94cddd57-86e5-99b8-c12d-7ff3ec1528c2",
+      "datasetDual--99e00738-848e-d097-8b40-77a10b45b2a7",
+      "datasetDual--9d56db32-840c-7eed-62bc-9342ea71eff7",
+      "datasetDual--9dd81128-6209-cb30-63b9-b2a389d2bc0c",
+      "datasetDual--a4cd888b-55bf-84d5-086e-0a76bd0fdbd8",
+      "datasetDual--a4d97cbd-a7d0-0f42-fd10-4e786301912f",
+      "datasetDual--a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22",
+      "datasetDual--a8c5bf31-5e51-95c0-da85-0924f6fe74cf",
+      "datasetDual--b0449aad-7266-f10b-c3ee-5aa5aacb0c95",
+      "datasetDual--b3c78517-68ff-0b04-02ba-0d231679a1c7",
+      "datasetDual--bab9c8da-dd1b-dd0c-2e87-4ec54956b1f4",
+      "datasetDual--bb45e1e2-a60f-c392-88e3-7d8f18e7c666",
+      "datasetDual--c35674a8-5e6b-6159-d917-519290f875c7",
+      "datasetDual--c63673af-1b1a-81b4-cd54-608e308aea92",
+      "datasetDual--c6d8a15b-5f9d-52b2-5af2-12cb0d77b26d",
+      "datasetDual--ce0a2c23-d88d-3b14-3788-094787da7d32",
+      "datasetDual--d85372fd-1bc0-6d9c-8024-9f602454f9f7",
+      "datasetDual--dc209457-d360-154d-b744-9f6d8bc48e9b",
+      "datasetDual--dfac002b-efc1-cb6b-4cc5-81501e5bd51e",
+      "datasetDual--e34f6fd0-b25e-5328-8078-194535db6884",
+      "datasetDual--e6b9d444-bfc5-dad4-8f30-fc9f0aa04bef",
+      "datasetDual--f2e9a365-b3dc-5438-81b9-04f162abb3a8",
+      "datasetDual--f6d2612b-bf6b-7b85-25d4-4a58ddb20076",
+      "datasetDual--f80302c6-bc44-fa70-12a5-66fa0a65b324",
+      "datasetDual--fc81d964-3ae5-6777-2f1f-41a9201b1476",
+      "datasetDual--ff14fd0b-388f-5d60-67c4-020499e1cdeb"
+    ],
+    "resultsSref": [
+      "resultsSref--00",
+      "resultsSref--01",
+      "resultsSref--02",
+      "resultsSref--03",
+      "resultsSref--04",
+      "resultsSref--07",
+      "resultsSref--08",
+      "resultsSref--09",
+      "resultsSref--10",
+      "resultsSref--11",
+      "resultsSref--12",
+      "resultsSref--13",
+      "resultsSref--14",
+      "resultsSref--15",
+      "resultsSref--16",
+      "resultsSref--17",
+      "resultsSref--18"
+    ],
+    "resultsDual": [
+      "resultsDual--00",
+      "resultsDual--01",
+      "resultsDual--02",
+      "resultsDual--03",
+      "resultsDual--04",
+      "resultsDual--05",
+      "resultsDual--06",
+      "resultsDual--07",
+      "resultsDual--08",
+      "resultsDual--09",
+      "resultsDual--10",
+      "resultsDual--11",
+      "resultsDual--12",
+      "resultsDual--13"
+    ]
+  },
+  "samples": [
+    {
+      "id": "datasetSref--04a6cc5a-d454-adb5-5d90-fc2dd9800432",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--0de1382b-34c2-cb05-dc26-e8ae35720019",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--11a7834f-0f38-a1e4-01b7-7dab582a2a7f",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/11a7834f-0f38-a1e4-01b7-7dab582a2a7f-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/11a7834f-0f38-a1e4-01b7-7dab582a2a7f-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/11a7834f-0f38-a1e4-01b7-7dab582a2a7f-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--1503ff05-987b-eb40-544a-d5473817af25",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/1503ff05-987b-eb40-544a-d5473817af25-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/1503ff05-987b-eb40-544a-d5473817af25-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/1503ff05-987b-eb40-544a-d5473817af25-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--16aa8369-953f-5392-135e-28413979cf4d",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/16aa8369-953f-5392-135e-28413979cf4d-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/16aa8369-953f-5392-135e-28413979cf4d-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/16aa8369-953f-5392-135e-28413979cf4d-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--1ae7eb42-4e17-0566-9979-0084f30e7a8f",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/1ae7eb42-4e17-0566-9979-0084f30e7a8f-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/1ae7eb42-4e17-0566-9979-0084f30e7a8f-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/1ae7eb42-4e17-0566-9979-0084f30e7a8f-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--1e82a006-0f3a-c7e5-e08b-a333b6b1bae9",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/1e82a006-0f3a-c7e5-e08b-a333b6b1bae9-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/1e82a006-0f3a-c7e5-e08b-a333b6b1bae9-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/1e82a006-0f3a-c7e5-e08b-a333b6b1bae9-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--20a4ed41-914c-4fee-43dd-933831a068f7",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/20a4ed41-914c-4fee-43dd-933831a068f7-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/20a4ed41-914c-4fee-43dd-933831a068f7-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/20a4ed41-914c-4fee-43dd-933831a068f7-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--225173f5-475f-5d80-3ca7-7afa639722ed",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/225173f5-475f-5d80-3ca7-7afa639722ed-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/225173f5-475f-5d80-3ca7-7afa639722ed-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/225173f5-475f-5d80-3ca7-7afa639722ed-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--2ecaf62e-19b6-5344-6ee7-e7a4a9ee4f5c",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/2ecaf62e-19b6-5344-6ee7-e7a4a9ee4f5c-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/2ecaf62e-19b6-5344-6ee7-e7a4a9ee4f5c-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/2ecaf62e-19b6-5344-6ee7-e7a4a9ee4f5c-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--34b02e51-ea53-c918-f5e7-97ac53bf22ad",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/34b02e51-ea53-c918-f5e7-97ac53bf22ad-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/34b02e51-ea53-c918-f5e7-97ac53bf22ad-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/34b02e51-ea53-c918-f5e7-97ac53bf22ad-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--3825d3cd-d7bb-6c60-14a9-af0aaaa97380",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/3825d3cd-d7bb-6c60-14a9-af0aaaa97380-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/3825d3cd-d7bb-6c60-14a9-af0aaaa97380-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/3825d3cd-d7bb-6c60-14a9-af0aaaa97380-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--3a0a4880-a9a7-fd21-7a2a-121f9884cc54",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/3a0a4880-a9a7-fd21-7a2a-121f9884cc54-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/3a0a4880-a9a7-fd21-7a2a-121f9884cc54-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/3a0a4880-a9a7-fd21-7a2a-121f9884cc54-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--3d5fb404-41b0-24e4-3db2-86f21b68211e",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/3d5fb404-41b0-24e4-3db2-86f21b68211e-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/3d5fb404-41b0-24e4-3db2-86f21b68211e-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/3d5fb404-41b0-24e4-3db2-86f21b68211e-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--44a48534-5fb0-cae9-1600-4ef5b58ea622",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/44a48534-5fb0-cae9-1600-4ef5b58ea622-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/44a48534-5fb0-cae9-1600-4ef5b58ea622-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/44a48534-5fb0-cae9-1600-4ef5b58ea622-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--4c4fab37-228e-562e-7f87-dbe9c233d0f4",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/4c4fab37-228e-562e-7f87-dbe9c233d0f4-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/4c4fab37-228e-562e-7f87-dbe9c233d0f4-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/4c4fab37-228e-562e-7f87-dbe9c233d0f4-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--541827f7-f0fc-e5da-8445-c39a041d9e77",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/541827f7-f0fc-e5da-8445-c39a041d9e77-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/541827f7-f0fc-e5da-8445-c39a041d9e77-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/541827f7-f0fc-e5da-8445-c39a041d9e77-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--57ac38ac-2132-809c-8eee-f2deaa2c122c",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/57ac38ac-2132-809c-8eee-f2deaa2c122c-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/57ac38ac-2132-809c-8eee-f2deaa2c122c-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/57ac38ac-2132-809c-8eee-f2deaa2c122c-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--60f35767-cfba-7305-815c-46406ec15954",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/60f35767-cfba-7305-815c-46406ec15954-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/60f35767-cfba-7305-815c-46406ec15954-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/60f35767-cfba-7305-815c-46406ec15954-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--626689cb-ef8a-1da2-7dd7-95f13cf5afbd",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/626689cb-ef8a-1da2-7dd7-95f13cf5afbd-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/626689cb-ef8a-1da2-7dd7-95f13cf5afbd-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/626689cb-ef8a-1da2-7dd7-95f13cf5afbd-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--6b8c174b-20c6-597d-e3cc-5939c1db7d20",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--6e99f340-4c53-1e8d-fb5c-57bc264ac698",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--8c5f87c2-62e6-8f19-3e54-88eda12b1f15",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/8c5f87c2-62e6-8f19-3e54-88eda12b1f15-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/8c5f87c2-62e6-8f19-3e54-88eda12b1f15-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/8c5f87c2-62e6-8f19-3e54-88eda12b1f15-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--a08afb20-6810-f1ff-10cc-8311d22dfb28",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/a08afb20-6810-f1ff-10cc-8311d22dfb28-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/a08afb20-6810-f1ff-10cc-8311d22dfb28-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/a08afb20-6810-f1ff-10cc-8311d22dfb28-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--ab1b4faf-1203-56bf-3327-2da07c997cfb",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/ab1b4faf-1203-56bf-3327-2da07c997cfb-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/ab1b4faf-1203-56bf-3327-2da07c997cfb-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/ab1b4faf-1203-56bf-3327-2da07c997cfb-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--b4f2210d-7999-ad24-ae14-ae2878cf38b2",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/b4f2210d-7999-ad24-ae14-ae2878cf38b2-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/b4f2210d-7999-ad24-ae14-ae2878cf38b2-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/b4f2210d-7999-ad24-ae14-ae2878cf38b2-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--c9aa8114-babe-92bd-2b84-4bdc855a7e2d",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/c9aa8114-babe-92bd-2b84-4bdc855a7e2d-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/c9aa8114-babe-92bd-2b84-4bdc855a7e2d-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/c9aa8114-babe-92bd-2b84-4bdc855a7e2d-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--cf73fab6-aa72-ae57-0c83-996878774e3f",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/cf73fab6-aa72-ae57-0c83-996878774e3f-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/cf73fab6-aa72-ae57-0c83-996878774e3f-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/cf73fab6-aa72-ae57-0c83-996878774e3f-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--d2f1b515-56c5-ba58-e90a-7b1992379ae9",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/d2f1b515-56c5-ba58-e90a-7b1992379ae9-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/d2f1b515-56c5-ba58-e90a-7b1992379ae9-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/d2f1b515-56c5-ba58-e90a-7b1992379ae9-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--d3e5f6c5-3025-ed1b-8f83-510b0c61aedf",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/d3e5f6c5-3025-ed1b-8f83-510b0c61aedf-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/d3e5f6c5-3025-ed1b-8f83-510b0c61aedf-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/d3e5f6c5-3025-ed1b-8f83-510b0c61aedf-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--e11cfbf3-4e41-7f1c-102c-05a373aaf236",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/e11cfbf3-4e41-7f1c-102c-05a373aaf236-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/e11cfbf3-4e41-7f1c-102c-05a373aaf236-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/e11cfbf3-4e41-7f1c-102c-05a373aaf236-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--e4f067ad-144d-a114-beae-281e9a86b8ed",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/e4f067ad-144d-a114-beae-281e9a86b8ed-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/e4f067ad-144d-a114-beae-281e9a86b8ed-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/e4f067ad-144d-a114-beae-281e9a86b8ed-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--ea4da34f-459b-a8fd-a334-dadc901f6a20",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/ea4da34f-459b-a8fd-a334-dadc901f6a20-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/ea4da34f-459b-a8fd-a334-dadc901f6a20-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/ea4da34f-459b-a8fd-a334-dadc901f6a20-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--eef3a90c-16dd-c801-09e2-2e76992a6b12",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/eef3a90c-16dd-c801-09e2-2e76992a6b12-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/eef3a90c-16dd-c801-09e2-2e76992a6b12-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/eef3a90c-16dd-c801-09e2-2e76992a6b12-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--f2f25f6e-fd76-b49f-60e3-152d47f49d85",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/f2f25f6e-fd76-b49f-60e3-152d47f49d85-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/f2f25f6e-fd76-b49f-60e3-152d47f49d85-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/f2f25f6e-fd76-b49f-60e3-152d47f49d85-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--f36cdd08-4527-2a5d-ebf4-e18796313480",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/f36cdd08-4527-2a5d-ebf4-e18796313480-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/f36cdd08-4527-2a5d-ebf4-e18796313480-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/f36cdd08-4527-2a5d-ebf4-e18796313480-target.jpg"
+      }
+    },
+    {
+      "id": "datasetSref--f4c7c5dd-ca34-daaa-a4ec-6657c602bf88",
+      "images": {
+        "cref": "assets/cref_sref_oneig_filter_part2/f4c7c5dd-ca34-daaa-a4ec-6657c602bf88-cref.jpg",
+        "sref": "assets/cref_sref_oneig_filter_part2/f4c7c5dd-ca34-daaa-a4ec-6657c602bf88-sref.jpg",
+        "ours": "assets/cref_sref_oneig_filter_part2/f4c7c5dd-ca34-daaa-a4ec-6657c602bf88-target.jpg"
+      }
+    },
+    {
+      "id": "datasetDual--08f78b88-b7d5-3583-dced-46b7012a8b96",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/08f78b88-b7d5-3583-dced-46b7012a8b96-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/08f78b88-b7d5-3583-dced-46b7012a8b96-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/08f78b88-b7d5-3583-dced-46b7012a8b96-target.jpg"
+      },
+      "prompt": "The hooded figure stands on a cobblestone street at night, its face hidden under a dark cloak. Streetlights glow warmly above, illuminating quaint houses and trees lining the path as it faces forward, motionless."
+    },
+    {
+      "id": "datasetDual--168250df-d0b5-90da-b5e9-e6a0bff32bb5",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/168250df-d0b5-90da-b5e9-e6a0bff32bb5-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/168250df-d0b5-90da-b5e9-e6a0bff32bb5-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/168250df-d0b5-90da-b5e9-e6a0bff32bb5-target.jpg"
+      },
+      "prompt": "The alien stands with its head slightly tilted, large eyes gazing forward, and antennae curving outward. Its textured skin and elongated form are visible against a plain background, with no visible motion or gesture."
+    },
+    {
+      "id": "datasetDual--17f1d155-064d-b02e-c7ca-fd3c14544b18",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/17f1d155-064d-b02e-c7ca-fd3c14544b18-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/17f1d155-064d-b02e-c7ca-fd3c14544b18-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/17f1d155-064d-b02e-c7ca-fd3c14544b18-target.jpg"
+      },
+      "prompt": "The alien stands upright, wearing a layered garment with a high collar and textured vest. Its large eyes gaze forward, antennae raised, and skin detailed with bumps and ridges, set against a plain background."
+    },
+    {
+      "id": "datasetDual--18e34df6-b3be-2eb7-6881-3e77e2b55915",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/18e34df6-b3be-2eb7-6881-3e77e2b55915-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/18e34df6-b3be-2eb7-6881-3e77e2b55915-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/18e34df6-b3be-2eb7-6881-3e77e2b55915-target.jpg"
+      },
+      "prompt": "The blue fox stands confidently against a starry space backdrop with Earth visible, gazing forward with a slight smirk, its ears perked and body poised in a relaxed yet alert stance."
+    },
+    {
+      "id": "datasetDual--1c6ffa76-8318-a41b-6f00-971126da51e9",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/1c6ffa76-8318-a41b-6f00-971126da51e9-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/1c6ffa76-8318-a41b-6f00-971126da51e9-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/1c6ffa76-8318-a41b-6f00-971126da51e9-target.jpg"
+      },
+      "prompt": "The reptilian creature stands beside tall sunflowers, its hands clasped before it. Behind, mountains rise under a warm sky. The creature wears dark armor and a scarf, gazing calmly at the flowers."
+    },
+    {
+      "id": "datasetDual--25b0901f-4a4d-d3c7-0841-15ec879a6285",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/25b0901f-4a4d-d3c7-0841-15ec879a6285-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/25b0901f-4a4d-d3c7-0841-15ec879a6285-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/25b0901f-4a4d-d3c7-0841-15ec879a6285-target.jpg"
+      },
+      "prompt": "The masked figure stands in a forest, holding a pipe over its shoulder. It wears a dark suit and hood, with a white screaming mask. Bare trees surround it, and a red sun glows behind."
+    },
+    {
+      "id": "datasetDual--25f1dd02-06a7-dca3-9730-a0de9cdf9b0e",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/25f1dd02-06a7-dca3-9730-a0de9cdf9b0e-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/25f1dd02-06a7-dca3-9730-a0de9cdf9b0e-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/25f1dd02-06a7-dca3-9730-a0de9cdf9b0e-target.jpg"
+      },
+      "prompt": "The unicorn stands calmly in a lush jungle at sunset, wearing a necklace with a moon pendant. Vibrant flora surrounds her, with distant mountains and flying birds visible behind."
+    },
+    {
+      "id": "datasetDual--27d57aca-e8fe-d581-feec-02c4f2ed423e",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/27d57aca-e8fe-d581-feec-02c4f2ed423e-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/27d57aca-e8fe-d581-feec-02c4f2ed423e-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/27d57aca-e8fe-d581-feec-02c4f2ed423e-target.jpg"
+      },
+      "prompt": "The girl holds a golden bowl filled with coins, smiling brightly. She stands amid floating gold coins and clovers under a sky with soft clouds, wearing a green hat adorned with a shamrock."
+    },
+    {
+      "id": "datasetDual--316b0afe-f915-7e63-25b8-a726377d8cd4",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/316b0afe-f915-7e63-25b8-a726377d8cd4-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/316b0afe-f915-7e63-25b8-a726377d8cd4-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/316b0afe-f915-7e63-25b8-a726377d8cd4-target.jpg"
+      },
+      "prompt": "The dog stands alert on a plain background, wearing a red harness. Its ears are perked, eyes focused forward, and tail slightly curved upward, conveying readiness and attentiveness in a simple, uncluttered setting."
+    },
+    {
+      "id": "datasetDual--3223c6d7-dc88-f7fa-75ed-3c5a607944ac",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/3223c6d7-dc88-f7fa-75ed-3c5a607944ac-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/3223c6d7-dc88-f7fa-75ed-3c5a607944ac-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/3223c6d7-dc88-f7fa-75ed-3c5a607944ac-target.jpg"
+      },
+      "prompt": "The Ferrari 250 GTO is positioned at a three-quarter front angle, showcasing its sleek body, round headlights, and iconic grille. It rests on a plain surface with soft shadows beneath, highlighting its curves and racing decals."
+    },
+    {
+      "id": "datasetDual--330f1203-1f44-2070-5c48-d72e4482a933",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/330f1203-1f44-2070-5c48-d72e4482a933-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/330f1203-1f44-2070-5c48-d72e4482a933-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/330f1203-1f44-2070-5c48-d72e4482a933-target.jpg"
+      },
+      "prompt": "The blue-skinned figure with antennae kneels in shallow water, gazing sideways as a large shark swims behind it and a smaller fish glides near its chest, with smooth stones visible nearby."
+    },
+    {
+      "id": "datasetDual--33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-target.jpg"
+      },
+      "prompt": "The robot stands upright with glowing red eyes and a chest panel displaying lights and a red heart. A woman in a red beret sits beside it near colorful flowers, against a plain yellow background."
+    },
+    {
+      "id": "datasetDual--3d5e61fd-cdc5-75cd-2959-e6319ff71fbd",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/3d5e61fd-cdc5-75cd-2959-e6319ff71fbd-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/3d5e61fd-cdc5-75cd-2959-e6319ff71fbd-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/3d5e61fd-cdc5-75cd-2959-e6319ff71fbd-target.jpg"
+      },
+      "prompt": "The Pikachu stands with paws clasped near its chin, facing forward. Behind it, red and blue backgrounds feature lightning bolts and starbursts. Decorative swirls frame the lower corners, adding ornamental detail to the scene."
+    },
+    {
+      "id": "datasetDual--3d686dbb-8077-024f-d000-d6e7076d1605",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/3d686dbb-8077-024f-d000-d6e7076d1605-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/3d686dbb-8077-024f-d000-d6e7076d1605-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/3d686dbb-8077-024f-d000-d6e7076d1605-target.jpg"
+      },
+      "prompt": "The man gazes slightly off-camera, his head turned in profile. He wears a brown off-shoulder garment, revealing his shoulders and collarbone against a textured, muted backdrop."
+    },
+    {
+      "id": "datasetDual--412ff0cb-b3b7-bd96-4356-614cdece3100",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/412ff0cb-b3b7-bd96-4356-614cdece3100-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/412ff0cb-b3b7-bd96-4356-614cdece3100-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/412ff0cb-b3b7-bd96-4356-614cdece3100-target.jpg"
+      },
+      "prompt": "The Gardevoir stands gracefully in a festive scene, adorned in an elegant gown. Behind her, a decorated Christmas tree glows under a starry night sky, surrounded by wrapped gifts and holiday ornaments."
+    },
+    {
+      "id": "datasetDual--47a56057-9d92-11d7-47a5-9efcfee0dde4",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/47a56057-9d92-11d7-47a5-9efcfee0dde4-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/47a56057-9d92-11d7-47a5-9efcfee0dde4-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/47a56057-9d92-11d7-47a5-9efcfee0dde4-target.jpg"
+      },
+      "prompt": "The alien creature faces forward with large blue eyes, its green textured head featuring two stalk-like appendages and small spikes on top, set against a plain white background."
+    },
+    {
+      "id": "datasetDual--50a3b567-1556-0f95-afff-b252aef61d5d",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/50a3b567-1556-0f95-afff-b252aef61d5d-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/50a3b567-1556-0f95-afff-b252aef61d5d-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/50a3b567-1556-0f95-afff-b252aef61d5d-target.jpg"
+      },
+      "prompt": "The Mercedes-Benz is enclosed within a Christmas ornament, surrounded by pine branches and colorful baubles, with festive snowflakes and rainbow patterns visible in the background behind it."
+    },
+    {
+      "id": "datasetDual--551ad0ef-2034-1405-4ef3-eb7fb4a2b54d",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/551ad0ef-2034-1405-4ef3-eb7fb4a2b54d-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/551ad0ef-2034-1405-4ef3-eb7fb4a2b54d-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/551ad0ef-2034-1405-4ef3-eb7fb4a2b54d-target.jpg"
+      },
+      "prompt": "The blue fox holds a red poinsettia flower close to its chest, its arms crossed gently over the bloom. Its ears stand upright, and it gazes forward with calm, focused eyes."
+    },
+    {
+      "id": "datasetDual--5ea90782-1400-bf9b-e725-7360053dfee3",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/5ea90782-1400-bf9b-e725-7360053dfee3-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/5ea90782-1400-bf9b-e725-7360053dfee3-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/5ea90782-1400-bf9b-e725-7360053dfee3-target.jpg"
+      },
+      "prompt": "The girl stands with one hand on her hip, wearing a brown jacket with white sleeves and red pants. Her long blonde hair is tied with red ribbons, and she has a black eyepatch over one eye."
+    },
+    {
+      "id": "datasetDual--5eebf6ff-47ab-e6ce-2ab6-e13aa5533790",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/5eebf6ff-47ab-e6ce-2ab6-e13aa5533790-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/5eebf6ff-47ab-e6ce-2ab6-e13aa5533790-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/5eebf6ff-47ab-e6ce-2ab6-e13aa5533790-target.jpg"
+      },
+      "prompt": "The clown stands with wild red hair bursting outward, a wide grin showing sharp teeth, and dramatic blue and white face paint. Its yellow and blue ruffled collar frames a menacing expression against a plain background."
+    },
+    {
+      "id": "datasetDual--614b0380-fdbb-40e6-9ec6-033b581de886",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/614b0380-fdbb-40e6-9ec6-033b581de886-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/614b0380-fdbb-40e6-9ec6-033b581de886-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/614b0380-fdbb-40e6-9ec6-033b581de886-target.jpg"
+      },
+      "prompt": "The man with long wavy hair and a light beard looks slightly to his left, wearing a necklace with floral pendants. His expression is calm, and his shoulders are bare against a plain background."
+    },
+    {
+      "id": "datasetDual--6394e148-fc3a-9f5a-6041-dbd554b965d4",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/6394e148-fc3a-9f5a-6041-dbd554b965d4-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/6394e148-fc3a-9f5a-6041-dbd554b965d4-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/6394e148-fc3a-9f5a-6041-dbd554b965d4-target.jpg"
+      },
+      "prompt": "The car is parked indoors on a reflective floor, facing slightly left. Its headlights are on, and the interior is visible through the windows. Natural light streams in from large windows behind it."
+    },
+    {
+      "id": "datasetDual--640de5ee-499d-052f-44f1-76dd9541c4eb",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/640de5ee-499d-052f-44f1-76dd9541c4eb-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/640de5ee-499d-052f-44f1-76dd9541c4eb-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/640de5ee-499d-052f-44f1-76dd9541c4eb-target.jpg"
+      },
+      "prompt": "The red Ferrari 250 GTO is parked inside a factory with industrial equipment around. A worker in blue overalls and a yellow helmet stands beside it, holding tools, while another similar car is visible in the background."
+    },
+    {
+      "id": "datasetDual--6759b3b7-022c-a904-0474-523d9cf687ea",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/6759b3b7-022c-a904-0474-523d9cf687ea-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/6759b3b7-022c-a904-0474-523d9cf687ea-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/6759b3b7-022c-a904-0474-523d9cf687ea-target.jpg"
+      },
+      "prompt": "The soldier stands on grass, holding a rifle upright with both hands. He wears a blue uniform and helmet, with a belt and boots. His posture is alert, facing slightly sideways, as if ready for action or inspection."
+    },
+    {
+      "id": "datasetDual--6ad44ee1-8382-c5e9-bdc0-7e77e8bcc1af",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/6ad44ee1-8382-c5e9-bdc0-7e77e8bcc1af-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/6ad44ee1-8382-c5e9-bdc0-7e77e8bcc1af-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/6ad44ee1-8382-c5e9-bdc0-7e77e8bcc1af-target.jpg"
+      },
+      "prompt": "The Spider-Man crouches low with knees bent and hands near the ground, poised for action against a plain, textured backdrop that offers no specific location details."
+    },
+    {
+      "id": "datasetDual--6f641563-3601-596e-cf1a-5fe471416cbf",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/6f641563-3601-596e-cf1a-5fe471416cbf-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/6f641563-3601-596e-cf1a-5fe471416cbf-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/6f641563-3601-596e-cf1a-5fe471416cbf-target.jpg"
+      },
+      "prompt": "The woman with red hair stands beside white flowers, wearing a green off-shoulder dress. She gazes softly forward, surrounded by lush greenery and glowing specks in the background."
+    },
+    {
+      "id": "datasetDual--70c86427-16c0-eaae-bc0f-30bbf67cb838",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/70c86427-16c0-eaae-bc0f-30bbf67cb838-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/70c86427-16c0-eaae-bc0f-30bbf67cb838-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/70c86427-16c0-eaae-bc0f-30bbf67cb838-target.jpg"
+      },
+      "prompt": "The woman stands with her face obscured, her long, wavy red hair sculpted in layered curves around her head and shoulders, creating a flowing, three-dimensional silhouette against a plain background."
+    },
+    {
+      "id": "datasetDual--70eff65c-40df-ea98-6fef-cdb8332f2b04",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/70eff65c-40df-ea98-6fef-cdb8332f2b04-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/70eff65c-40df-ea98-6fef-cdb8332f2b04-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/70eff65c-40df-ea98-6fef-cdb8332f2b04-target.jpg"
+      },
+      "prompt": "The woman gazes sideways, her braided hair adorned with flowers. A lit candle stands before her, with a river, trees, and distant city visible behind. She wears a draped garment, framed by a cracked stone border."
+    },
+    {
+      "id": "datasetDual--80b7d715-07a5-6676-3b4a-a105bd783235",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/80b7d715-07a5-6676-3b4a-a105bd783235-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/80b7d715-07a5-6676-3b4a-a105bd783235-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/80b7d715-07a5-6676-3b4a-a105bd783235-target.jpg"
+      },
+      "prompt": "The woman with short white hair and bangs gazes forward, wearing a black high-neck top. Her expression is calm and composed, with soft lighting highlighting her features against a plain background."
+    },
+    {
+      "id": "datasetDual--879fbbdd-0de9-15dc-b744-3240b52fac91",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/879fbbdd-0de9-15dc-b744-3240b52fac91-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/879fbbdd-0de9-15dc-b744-3240b52fac91-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/879fbbdd-0de9-15dc-b744-3240b52fac91-target.jpg"
+      },
+      "prompt": "The unicorn sits at a table, smiling with delight as it prepares to eat a slice of red velvet cake with white frosting, surrounded by other desserts on tiered stands."
+    },
+    {
+      "id": "datasetDual--8dabf51b-e59a-f44b-b4e4-5cd8ba69b249",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/8dabf51b-e59a-f44b-b4e4-5cd8ba69b249-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/8dabf51b-e59a-f44b-b4e4-5cd8ba69b249-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/8dabf51b-e59a-f44b-b4e4-5cd8ba69b249-target.jpg"
+      },
+      "prompt": "The Porsche race car speeds along a waterfront track, its number 1 prominently displayed. Behind it, a large ship sails on calm waters near architectural structures under a bright sky."
+    },
+    {
+      "id": "datasetDual--8f8d81f3-6990-e7a3-68b7-aa9af375fdec",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/8f8d81f3-6990-e7a3-68b7-aa9af375fdec-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/8f8d81f3-6990-e7a3-68b7-aa9af375fdec-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/8f8d81f3-6990-e7a3-68b7-aa9af375fdec-target.jpg"
+      },
+      "prompt": "The woman stands facing forward, her long red hair flowing over her shoulders. She wears a light green dress with puffed sleeves and lace trim, set against a backdrop of painted flowers and foliage."
+    },
+    {
+      "id": "datasetDual--90dd2c9b-7a90-1814-5a7d-80889270961c",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/90dd2c9b-7a90-1814-5a7d-80889270961c-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/90dd2c9b-7a90-1814-5a7d-80889270961c-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/90dd2c9b-7a90-1814-5a7d-80889270961c-target.jpg"
+      },
+      "prompt": "The Porsche race car faces forward, displaying its front aerodynamic body, headlights, and sponsor logos. It stands stationary against a solid yellow background, showcasing its white and blue livery with Rothmans and Shell branding."
+    },
+    {
+      "id": "datasetDual--91750db0-daa2-28df-bf20-31173ff026df",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/91750db0-daa2-28df-bf20-31173ff026df-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/91750db0-daa2-28df-bf20-31173ff026df-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/91750db0-daa2-28df-bf20-31173ff026df-target.jpg"
+      },
+      "prompt": "The dog stands centered on a small, round patch of earth, surrounded by trees and power lines, looking directly forward with its tongue slightly out, under a bright, circular sky."
+    },
+    {
+      "id": "datasetDual--932c9b6e-190c-10f7-f0d8-d20c8e5bbd29",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/932c9b6e-190c-10f7-f0d8-d20c8e5bbd29-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/932c9b6e-190c-10f7-f0d8-d20c8e5bbd29-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/932c9b6e-190c-10f7-f0d8-d20c8e5bbd29-target.jpg"
+      },
+      "prompt": "The Spider-Man crouches on a rooftop at night, facing forward with hands clasped. A teapot and cookies sit nearby. City buildings glow behind him under a starry sky, with decorative plants and a butterfly floating beside."
+    },
+    {
+      "id": "datasetDual--94cddd57-86e5-99b8-c12d-7ff3ec1528c2",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/94cddd57-86e5-99b8-c12d-7ff3ec1528c2-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/94cddd57-86e5-99b8-c12d-7ff3ec1528c2-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/94cddd57-86e5-99b8-c12d-7ff3ec1528c2-target.jpg"
+      },
+      "prompt": "The girl stands barefoot, her long wavy hair cascading down to the floor around her. She wears a simple dress and looks gently to the side with a soft smile, her hands resting naturally at her sides."
+    },
+    {
+      "id": "datasetDual--99e00738-848e-d097-8b40-77a10b45b2a7",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/99e00738-848e-d097-8b40-77a10b45b2a7-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/99e00738-848e-d097-8b40-77a10b45b2a7-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/99e00738-848e-d097-8b40-77a10b45b2a7-target.jpg"
+      },
+      "prompt": "The robot stands in a vibrant forest at night, surrounded by colorful flowers and trees under a starry sky. Its chest screen displays glowing patterns, and its red eyes shine brightly as it faces forward."
+    },
+    {
+      "id": "datasetDual--9d56db32-840c-7eed-62bc-9342ea71eff7",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-target.jpg"
+      },
+      "prompt": "The person lies with feet raised, soles facing forward, wearing sheer dark hosiery. The background features a dark, textured surface with colorful paint splatters and graffiti marks."
+    },
+    {
+      "id": "datasetDual--9dd81128-6209-cb30-63b9-b2a389d2bc0c",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/9dd81128-6209-cb30-63b9-b2a389d2bc0c-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/9dd81128-6209-cb30-63b9-b2a389d2bc0c-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/9dd81128-6209-cb30-63b9-b2a389d2bc0c-target.jpg"
+      },
+      "prompt": "The dragon hatchling sits upright, its head tilted slightly upward with wide, curious eyes. Bright flames erupt from its horns and tail tip, illuminating its smiling face and small fangs against the dark background."
+    },
+    {
+      "id": "datasetDual--a4cd888b-55bf-84d5-086e-0a76bd0fdbd8",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/a4cd888b-55bf-84d5-086e-0a76bd0fdbd8-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/a4cd888b-55bf-84d5-086e-0a76bd0fdbd8-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/a4cd888b-55bf-84d5-086e-0a76bd0fdbd8-target.jpg"
+      },
+      "prompt": "The woman stands with one hand on her hip, wearing a ribbed turtleneck dress and high heels. Her hair is styled up, and she gazes forward with a poised expression against a plain background."
+    },
+    {
+      "id": "datasetDual--a4d97cbd-a7d0-0f42-fd10-4e786301912f",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/a4d97cbd-a7d0-0f42-fd10-4e786301912f-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/a4d97cbd-a7d0-0f42-fd10-4e786301912f-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/a4d97cbd-a7d0-0f42-fd10-4e786301912f-target.jpg"
+      },
+      "prompt": "The figure stands upright in a barren landscape, wearing a purple hooded outfit with a red cape and rope bindings around neck and waist. Its eyes are visible through the hood, gazing forward."
+    },
+    {
+      "id": "datasetDual--a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-target.jpg"
+      },
+      "prompt": "The reptilian creature stands beside a candlelit ice cream temple under a full moon, holding a knife, with scoops and a cherry-topped sundae nearby, surrounded by scattered sweets on rocky ground."
+    },
+    {
+      "id": "datasetDual--a8c5bf31-5e51-95c0-da85-0924f6fe74cf",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/a8c5bf31-5e51-95c0-da85-0924f6fe74cf-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/a8c5bf31-5e51-95c0-da85-0924f6fe74cf-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/a8c5bf31-5e51-95c0-da85-0924f6fe74cf-target.jpg"
+      },
+      "prompt": "The character stands facing forward with a slight smile, wearing a white dress under a purple open coat with gold and black details. Her pink hair is styled with a feather accessory, and she wears a blue pendant necklace."
+    },
+    {
+      "id": "datasetDual--b0449aad-7266-f10b-c3ee-5aa5aacb0c95",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/b0449aad-7266-f10b-c3ee-5aa5aacb0c95-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/b0449aad-7266-f10b-c3ee-5aa5aacb0c95-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/b0449aad-7266-f10b-c3ee-5aa5aacb0c95-target.jpg"
+      },
+      "prompt": "The woman stands with one foot forward, wearing a transparent high-heeled platform sandal with multiple straps and buckles. Her toes are visible, and the shoe reflects light against a dark background."
+    },
+    {
+      "id": "datasetDual--b3c78517-68ff-0b04-02ba-0d231679a1c7",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/b3c78517-68ff-0b04-02ba-0d231679a1c7-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/b3c78517-68ff-0b04-02ba-0d231679a1c7-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/b3c78517-68ff-0b04-02ba-0d231679a1c7-target.jpg"
+      },
+      "prompt": "The Gardevoir stands poised in a field of flowers, its arms slightly outstretched. Behind it, a large soft pink circle glows against a dusky sky dotted with floating orbs, creating a serene and magical atmosphere."
+    },
+    {
+      "id": "datasetDual--bab9c8da-dd1b-dd0c-2e87-4ec54956b1f4",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/bab9c8da-dd1b-dd0c-2e87-4ec54956b1f4-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/bab9c8da-dd1b-dd0c-2e87-4ec54956b1f4-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/bab9c8da-dd1b-dd0c-2e87-4ec54956b1f4-target.jpg"
+      },
+      "prompt": "The woman with orange hair gazes forward, wearing a red zip-up sweater against a plain blue background. Her expression is calm, with subtle shadows under her eyes, and her hair frames her face naturally."
+    },
+    {
+      "id": "datasetDual--bb45e1e2-a60f-c392-88e3-7d8f18e7c666",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/bb45e1e2-a60f-c392-88e3-7d8f18e7c666-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/bb45e1e2-a60f-c392-88e3-7d8f18e7c666-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/bb45e1e2-a60f-c392-88e3-7d8f18e7c666-target.jpg"
+      },
+      "prompt": "The woman stands facing forward with a gentle smile, her red hair styled in soft waves. Behind her, a hot dog machine displays a picture of a hot dog and text, suggesting a casual food setting."
+    },
+    {
+      "id": "datasetDual--c35674a8-5e6b-6159-d917-519290f875c7",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/c35674a8-5e6b-6159-d917-519290f875c7-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/c35674a8-5e6b-6159-d917-519290f875c7-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/c35674a8-5e6b-6159-d917-519290f875c7-target.jpg"
+      },
+      "prompt": "The dragon hatchling stands proudly, gripping a large hammer with both hands. Flames erupt from its head against a fiery sky backdrop. Its wide eyes and toothy grin convey excitement and readiness for action."
+    },
+    {
+      "id": "datasetDual--c63673af-1b1a-81b4-cd54-608e308aea92",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/c63673af-1b1a-81b4-cd54-608e308aea92-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/c63673af-1b1a-81b4-cd54-608e308aea92-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/c63673af-1b1a-81b4-cd54-608e308aea92-target.jpg"
+      },
+      "prompt": "The woman stands facing forward, her blonde hair styled in soft waves, wearing a light top with thin red stripes. Behind her, a serene lake reflects distant mountains, trees, and blooming flowers under a soft sky."
+    },
+    {
+      "id": "datasetDual--c6d8a15b-5f9d-52b2-5af2-12cb0d77b26d",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/c6d8a15b-5f9d-52b2-5af2-12cb0d77b26d-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/c6d8a15b-5f9d-52b2-5af2-12cb0d77b26d-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/c6d8a15b-5f9d-52b2-5af2-12cb0d77b26d-target.jpg"
+      },
+      "prompt": "The reptilian creature stands underwater, its textured green skin and horned head visible. It wears a dark vest, smiling with teeth showing, eyes focused forward, surrounded by blue water and faint aquatic shapes."
+    },
+    {
+      "id": "datasetDual--ce0a2c23-d88d-3b14-3788-094787da7d32",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/ce0a2c23-d88d-3b14-3788-094787da7d32-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/ce0a2c23-d88d-3b14-3788-094787da7d32-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/ce0a2c23-d88d-3b14-3788-094787da7d32-target.jpg"
+      },
+      "prompt": "The figure stands upright under falling rain, wearing a purple hooded suit with a red cape, bound by ropes at the neck, waist, and wrists, with red boots, against a blue sky with white clouds."
+    },
+    {
+      "id": "datasetDual--d85372fd-1bc0-6d9c-8024-9f602454f9f7",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/d85372fd-1bc0-6d9c-8024-9f602454f9f7-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/d85372fd-1bc0-6d9c-8024-9f602454f9f7-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/d85372fd-1bc0-6d9c-8024-9f602454f9f7-target.jpg"
+      },
+      "prompt": "The goldfinch perches on a branch, facing right with its head slightly turned. Its vibrant red face, black-and-white head markings, and yellow wing bars are clearly visible against a soft green background."
+    },
+    {
+      "id": "datasetDual--dc209457-d360-154d-b744-9f6d8bc48e9b",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/dc209457-d360-154d-b744-9f6d8bc48e9b-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/dc209457-d360-154d-b744-9f6d8bc48e9b-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/dc209457-d360-154d-b744-9f6d8bc48e9b-target.jpg"
+      },
+      "prompt": "The clown stands with a menacing grin, red hair spiked wildly against a yellow circle backdrop. Green buds rise beside its blue ruffled collar, while its painted face stares forward with intense, narrowed eyes."
+    },
+    {
+      "id": "datasetDual--dfac002b-efc1-cb6b-4cc5-81501e5bd51e",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/dfac002b-efc1-cb6b-4cc5-81501e5bd51e-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/dfac002b-efc1-cb6b-4cc5-81501e5bd51e-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/dfac002b-efc1-cb6b-4cc5-81501e5bd51e-target.jpg"
+      },
+      "prompt": "The Batgirl stands with hands clasped before her, wearing a black cowl and a yellow-collared jacket. Behind her, a large red circle serves as the backdrop, highlighting her poised and focused expression."
+    },
+    {
+      "id": "datasetDual--e34f6fd0-b25e-5328-8078-194535db6884",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/e34f6fd0-b25e-5328-8078-194535db6884-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/e34f6fd0-b25e-5328-8078-194535db6884-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/e34f6fd0-b25e-5328-8078-194535db6884-target.jpg"
+      },
+      "prompt": "The black bear stands upright in a field of glowing pink flowers, wearing a shimmering jacket with pockets. Its paws rest gently at its sides, surrounded by soft, floating lights in the background."
+    },
+    {
+      "id": "datasetDual--e6b9d444-bfc5-dad4-8f30-fc9f0aa04bef",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/e6b9d444-bfc5-dad4-8f30-fc9f0aa04bef-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/e6b9d444-bfc5-dad4-8f30-fc9f0aa04bef-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/e6b9d444-bfc5-dad4-8f30-fc9f0aa04bef-target.jpg"
+      },
+      "prompt": "The clown stands confidently on a circular platform, surrounded by intricate mechanical devices and pipes. Its bright orange hair spikes upward, and it wears a yellow jumpsuit with colorful buttons, smiling directly ahead."
+    },
+    {
+      "id": "datasetDual--f2e9a365-b3dc-5438-81b9-04f162abb3a8",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/f2e9a365-b3dc-5438-81b9-04f162abb3a8-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/f2e9a365-b3dc-5438-81b9-04f162abb3a8-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/f2e9a365-b3dc-5438-81b9-04f162abb3a8-target.jpg"
+      },
+      "prompt": "The dog stands alert, facing slightly left, with ears perked and tail curled upward. Its fur appears textured and dense, covering its body evenly. The dog’s posture suggests attentiveness, as if observing something off-frame."
+    },
+    {
+      "id": "datasetDual--f6d2612b-bf6b-7b85-25d4-4a58ddb20076",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/f6d2612b-bf6b-7b85-25d4-4a58ddb20076-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/f6d2612b-bf6b-7b85-25d4-4a58ddb20076-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/f6d2612b-bf6b-7b85-25d4-4a58ddb20076-target.jpg"
+      },
+      "prompt": "The woman stands facing forward, wearing a dark tank top. Her blonde hair is styled in soft waves, and she gazes directly ahead with a neutral expression against a plain background."
+    },
+    {
+      "id": "datasetDual--f80302c6-bc44-fa70-12a5-66fa0a65b324",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/f80302c6-bc44-fa70-12a5-66fa0a65b324-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/f80302c6-bc44-fa70-12a5-66fa0a65b324-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/f80302c6-bc44-fa70-12a5-66fa0a65b324-target.jpg"
+      },
+      "prompt": "The Terminator stands imposingly, holding dual firearms, surrounded by skulls with glowing red eyes. Flames rage behind, and aircraft streak across the sky, firing missiles in a chaotic urban battlefield."
+    },
+    {
+      "id": "datasetDual--fc81d964-3ae5-6777-2f1f-41a9201b1476",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/fc81d964-3ae5-6777-2f1f-41a9201b1476-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/fc81d964-3ae5-6777-2f1f-41a9201b1476-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/fc81d964-3ae5-6777-2f1f-41a9201b1476-target.jpg"
+      },
+      "prompt": "The alien creature faces forward with large dark eyes, its head adorned with protrusions and small horns. The figure is partially visible against a stark, high-contrast background, emphasizing its distinct facial features and textured skin."
+    },
+    {
+      "id": "datasetDual--ff14fd0b-388f-5d60-67c4-020499e1cdeb",
+      "images": {
+        "cref": "assets/cref_sref_flux_lora_part1/ff14fd0b-388f-5d60-67c4-020499e1cdeb-cref.jpg",
+        "sref": "assets/cref_sref_flux_lora_part1/ff14fd0b-388f-5d60-67c4-020499e1cdeb-sref.jpg",
+        "ours": "assets/cref_sref_flux_lora_part1/ff14fd0b-388f-5d60-67c4-020499e1cdeb-target.jpg"
+      },
+      "prompt": "The husky lies relaxed in the snow, tongue out, with bare trees and a pale sky behind. Its blue eyes gaze sideways, paws stretched forward, surrounded by scattered paw prints and patches of exposed earth."
+    },
+    {
+      "id": "resultsSref--00",
+      "images": {
+        "cref": "assets/sref_result/00-cref.jpg",
+        "sref": "assets/sref_result/00-sref.jpg",
+        "ours": "assets/sref_result/00-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--01",
+      "images": {
+        "cref": "assets/sref_result/01-cref.jpg",
+        "sref": "assets/sref_result/01-sref.png",
+        "ours": "assets/sref_result/01-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--02",
+      "images": {
+        "cref": "assets/sref_result/02-cref.png",
+        "sref": "assets/sref_result/02-sref.png",
+        "ours": "assets/sref_result/02-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--03",
+      "images": {
+        "cref": "assets/sref_result/03-cref.png",
+        "sref": "assets/sref_result/03-sref.png",
+        "ours": "assets/sref_result/03-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--04",
+      "images": {
+        "cref": "assets/sref_result/04-cref.png",
+        "sref": "assets/sref_result/04-sref.png",
+        "ours": "assets/sref_result/04-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--07",
+      "images": {
+        "cref": "assets/sref_result/07-cref.png",
+        "sref": "assets/sref_result/07-sref.png",
+        "ours": "assets/sref_result/07-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--08",
+      "images": {
+        "cref": "assets/sref_result/08-cref.png",
+        "sref": "assets/sref_result/08-sref.png",
+        "ours": "assets/sref_result/08-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--09",
+      "images": {
+        "cref": "assets/sref_result/09-cref.png",
+        "sref": "assets/sref_result/09-sref.png",
+        "ours": "assets/sref_result/09-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--10",
+      "images": {
+        "cref": "assets/sref_result/10-cref.png",
+        "sref": "assets/sref_result/10-sref.png",
+        "ours": "assets/sref_result/10-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--11",
+      "images": {
+        "cref": "assets/sref_result/11-cref.png",
+        "sref": "assets/sref_result/11-sref.png",
+        "ours": "assets/sref_result/11-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--12",
+      "images": {
+        "cref": "assets/sref_result/12-cref.png",
+        "sref": "assets/sref_result/12-sref.png",
+        "ours": "assets/sref_result/12-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--13",
+      "images": {
+        "cref": "assets/sref_result/13-cref.png",
+        "sref": "assets/sref_result/13-sref.png",
+        "ours": "assets/sref_result/13-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--14",
+      "images": {
+        "cref": "assets/sref_result/14-cref.png",
+        "sref": "assets/sref_result/14-sref.png",
+        "ours": "assets/sref_result/14-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--15",
+      "images": {
+        "cref": "assets/sref_result/15-cref.png",
+        "sref": "assets/sref_result/15-sref.png",
+        "ours": "assets/sref_result/15-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--16",
+      "images": {
+        "cref": "assets/sref_result/16-cref.png",
+        "sref": "assets/sref_result/16-sref.png",
+        "ours": "assets/sref_result/16-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--17",
+      "images": {
+        "cref": "assets/sref_result/17-cref.png",
+        "sref": "assets/sref_result/17-sref.png",
+        "ours": "assets/sref_result/17-target.png"
+      }
+    },
+    {
+      "id": "resultsSref--18",
+      "images": {
+        "cref": "assets/sref_result/18-cref.png",
+        "sref": "assets/sref_result/18-sref.png",
+        "ours": "assets/sref_result/18-target.png"
+      }
+    },
+    {
+      "id": "resultsDual--00",
+      "images": {
+        "cref": "assets/cref_sref_result/00-cref.png",
+        "sref": "assets/cref_sref_result/00-sref.png",
+        "ours": "assets/cref_sref_result/00-target.png"
+      },
+      "prompt": "A young child is selling ice cream next to the motorcycle, smiling at passersby. Render the image in the style of the reference."
+    },
+    {
+      "id": "resultsDual--01",
+      "images": {
+        "cref": "assets/cref_sref_result/01-cref.png",
+        "sref": "assets/cref_sref_result/01-sref.png",
+        "ours": "assets/cref_sref_result/01-target.png"
+      },
+      "prompt": "A herd of horses drinking water by a forest pond, apply the sculpture style for style transfer"
+    },
+    {
+      "id": "resultsDual--02",
+      "images": {
+        "cref": "assets/cref_sref_result/02-cref.png",
+        "sref": "assets/cref_sref_result/02-sref.png",
+        "ours": "assets/cref_sref_result/02-target.png"
+      },
+      "prompt": "The cat yawns in front of a cozy fireplace, surrounded by toy mice. Use the reference image to define the visual style."
+    },
+    {
+      "id": "resultsDual--03",
+      "images": {
+        "cref": "assets/cref_sref_result/03-cref.png",
+        "sref": "assets/cref_sref_result/03-sref.png",
+        "ours": "assets/cref_sref_result/03-target.png"
+      },
+      "prompt": "A young woman learning to draw a camera in an art class. Style transfer: use the reference image's style."
+    },
+    {
+      "id": "resultsDual--04",
+      "images": {
+        "cref": "assets/cref_sref_result/04-cref.png",
+        "sref": "assets/cref_sref_result/04-sref.png",
+        "ours": "assets/cref_sref_result/04-target.png"
+      },
+      "prompt": "A child about to blow out candles on the cake. Synthesize the image using the reference style."
+    },
+    {
+      "id": "resultsDual--05",
+      "images": {
+        "cref": "assets/cref_sref_result/05-cref.png",
+        "sref": "assets/cref_sref_result/05-sref.png",
+        "ours": "assets/cref_sref_result/05-target.png"
+      },
+      "prompt": "A camping event next to the wind turbine, with warm light emanating from the tents. Create an image in the style of the reference."
+    },
+    {
+      "id": "resultsDual--06",
+      "images": {
+        "cref": "assets/cref_sref_result/06-cref.png",
+        "sref": "assets/cref_sref_result/06-sref.png",
+        "ours": "assets/cref_sref_result/06-target.png"
+      },
+      "prompt": "A bird standing on top of the cactus flower, ready to take flight. Apply the aesthetic of the style reference image."
+    },
+    {
+      "id": "resultsDual--07",
+      "images": {
+        "cref": "assets/cref_sref_result/07-cref.png",
+        "sref": "assets/cref_sref_result/07-sref.png",
+        "ours": "assets/cref_sref_result/07-target.png"
+      },
+      "prompt": "Cherries are placed on an artist's studio easel, surrounded by brushes and paints. Use the reference image's style for generation."
+    },
+    {
+      "id": "resultsDual--08",
+      "images": {
+        "cref": "assets/cref_sref_result/08-cref.png",
+        "sref": "assets/cref_sref_result/08-sref.png",
+        "ours": "assets/cref_sref_result/08-target.png"
+      },
+      "prompt": "The building is set against a dusk scene. Perform style transfer using the reference image."
+    },
+    {
+      "id": "resultsDual--09",
+      "images": {
+        "cref": "assets/cref_sref_result/09-cref.png",
+        "sref": "assets/cref_sref_result/09-sref.png",
+        "ours": "assets/cref_sref_result/09-target.png"
+      },
+      "prompt": "A scene from a theatrical performance with actors preparing costumes in the courtyard and audience members entering through the door. Make it look like the reference style."
+    },
+    {
+      "id": "resultsDual--10",
+      "images": {
+        "cref": "assets/cref_sref_result/10-cref.png",
+        "sref": "assets/cref_sref_result/10-sref.png",
+        "ours": "assets/cref_sref_result/10-target.png"
+      },
+      "prompt": "The child in the red jacket participating in a science experiment in a lab, wearing safety goggles. Use the provided style reference image as a style guide."
+    },
+    {
+      "id": "resultsDual--11",
+      "images": {
+        "cref": "assets/cref_sref_result/11-cref.png",
+        "sref": "assets/cref_sref_result/11-sref.png",
+        "ours": "assets/cref_sref_result/11-target.png"
+      },
+      "prompt": "Place the cake in an artist's studio surrounded by paints and canvases. Apply the aesthetic of the style reference image."
+    },
+    {
+      "id": "resultsDual--12",
+      "images": {
+        "cref": "assets/cref_sref_result/12-cref.png",
+        "sref": "assets/cref_sref_result/12-sref.png",
+        "ours": "assets/cref_sref_result/12-target.png"
+      },
+      "prompt": "In a library, the passion fruit drink is placed next to a cozy reading nook. Apply the style from the reference."
+    },
+    {
+      "id": "resultsDual--13",
+      "images": {
+        "cref": "assets/cref_sref_result/13-cref.png",
+        "sref": "assets/cref_sref_result/13-sref.png",
+        "ours": "assets/cref_sref_result/13-target.png"
+      },
+      "prompt": "A traditional tea ceremony is held by the lake, where people enjoy tranquility while appreciating and tasting tea. Create an image in the style of the reference."
+    }
+  ]
+}

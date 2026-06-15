@@ -17,18 +17,28 @@ const lightboxFrame = document.getElementById("lightbox-frame");
 const lightboxImage = document.getElementById("lightbox-image");
 const lightboxClose = document.getElementById("lightbox-close");
 
+// Originals live at assets/<dir>/<name>.<ext>; thumbnails mirror under
+// assets/thumbs/<dir>/<name>.webp (built by scripts/build_thumbs.py).
+function thumbUrlFor(src) {
+  return src
+    .replace(/^assets\//, "assets/thumbs/")
+    .replace(/\.(png|jpe?g)$/i, ".webp");
+}
+
 function createMediaButton({ src, alt, kind }) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "media-button";
   button.dataset.src = src;
+  button.dataset.thumb = thumbUrlFor(src);
   button.dataset.alt = alt;
   if (kind) {
     button.dataset.kind = kind;
   }
 
   const image = document.createElement("img");
-  image.src = src;
+  // src is attached only when the card scrolls near the viewport — see
+  // observeCardForLazyMount. Keep loading="lazy" as a second-line defense.
   image.alt = alt;
   image.loading = "lazy";
   image.decoding = "async";
@@ -101,6 +111,39 @@ function renderTripletCard(sample) {
   }
 
   return card;
+}
+
+// Card-level lazy mount: keep <img> stripped of src until the card scrolls
+// near the viewport. Reduces network/decode pressure on initial load when
+// hundreds of cards are in the DOM.
+const lazyMountObserver =
+  "IntersectionObserver" in window
+    ? new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            mountCardImages(entry.target);
+            lazyMountObserver.unobserve(entry.target);
+          });
+        },
+        { rootMargin: "600px 0px", threshold: 0.01 }
+      )
+    : null;
+
+function mountCardImages(card) {
+  card.querySelectorAll(".media-button").forEach((button) => {
+    const img = button.querySelector("img");
+    if (!img || img.src) return;
+    img.src = button.dataset.thumb || button.dataset.src;
+  });
+}
+
+function observeCardForLazyMount(card) {
+  if (lazyMountObserver) {
+    lazyMountObserver.observe(card);
+  } else {
+    mountCardImages(card);
+  }
 }
 
 // --- Lightbox: image-only with zoom & pan ---
@@ -386,7 +429,10 @@ async function main() {
   const renderInto = (container, ids, renderer) => {
     ids.forEach((id) => {
       const sample = sampleMap.get(id);
-      if (sample) container.appendChild(renderer(sample));
+      if (!sample) return;
+      const card = renderer(sample);
+      container.appendChild(card);
+      observeCardForLazyMount(card);
     });
   };
 

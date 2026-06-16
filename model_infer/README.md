@@ -1,15 +1,15 @@
 # CRef / SRef Core Inference Minimal Demo
 
-这个目录是一个最小推理 demo：输入两张图片和一个 prompt，输出最终生成图以及中间 recaption 结果。
+This directory is a minimal inference demo: feed in two images and one prompt, and get back the final generated image plus the intermediate recaption result.
 
-## 1. 最小调用格式
+## 1. Minimal invocation
 
 ```bash
 
 python3 cref_sref_core_infer.py \
   assets/00-cref.jpg \
   assets/00-sref.jpg \
-  '迁移图2的风格到图1上' \
+  'Transfer the style of image 2 onto image 1' \
   --weight_preset sref_12000 \
   --out_dir outputs/sref_12000_style_transfer_demo \
   --recaption_task_type style_transfer \
@@ -19,23 +19,23 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-输入顺序固定为：
+The input order is fixed:
 
-1. `cref_image`：内容 / 主体 / 布局参考图；
-2. `sref_image`：风格参考图；
-3. `prompt`：用户指令。
+1. `cref_image`: content / subject / layout reference image;
+2. `sref_image`: style reference image;
+3. `prompt`: the user instruction.
 
-输出文件默认在 `--out_dir` 下：
+Output files default to `--out_dir`:
 
 ```text
-result.png              # 最终生成图
-final_prompt.json       # 真正送入生成模型的 recaption prompt，JSON 格式
-final_prompt.txt        # 真正送入生成模型的 recaption prompt，纯文本
-recaption_result.json   # Qwen3-VL recaption 中间结果，包含 raw_response / parsed
-demo_summary.json       # 本次推理配置汇总
+result.png              # final generated image
+final_prompt.json       # the recaption prompt actually fed to the generator, JSON
+final_prompt.txt        # the recaption prompt actually fed to the generator, plain text
+recaption_result.json   # Qwen3-VL recaption intermediate result, incl. raw_response / parsed
+demo_summary.json       # summary of this run's configuration
 ```
 
-也可以直接跑当前示例脚本：
+You can also just run the bundled example script:
 
 ```bash
 bash run_sref_infer.sh
@@ -43,16 +43,16 @@ bash run_sref_infer.sh
 
 ---
 
-## 2. 下载权重并放好（HuggingFace）
+## 2. Download the weights and put them in place (HuggingFace)
 
-所有权重发布在 **[Blue2Giant/FreeStyle_Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint)**。一条命令下载到本地 `checkpoints/` 目录：
+All weights are released at **[Blue2Giant/FreeStyle_Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint)**. Download them to a local `checkpoints/` directory with a single command:
 
 ```bash
 cd model_infer
 huggingface-cli download Blue2Giant/FreeStyle_Checkpoint --local-dir ./checkpoints
 ```
 
-下载后目录结构如下，**每个 preset 对应一个子目录，里面是单个 `model.safetensors`**：
+After downloading, the directory layout is as follows — **each preset maps to one subdirectory containing a single `model.safetensors`**:
 
 ```text
 checkpoints/
@@ -63,15 +63,15 @@ checkpoints/
   freestyle-cref-sref-36000-no-rope/model.safetensors      # preset: cref_sref_36000_no_rope
 ```
 
-脚本默认从 `./checkpoints` 读取（即 `cref_sref_core_infer.py` 旁边的 `checkpoints/`）。如果你把权重放在别的位置，设置环境变量即可：
+The script reads from `./checkpoints` by default (i.e. the `checkpoints/` directory next to `cref_sref_core_infer.py`). If you keep the weights somewhere else, just set the environment variable:
 
 ```bash
 export FREESTYLE_CKPT_ROOT=/path/to/your/checkpoints
 ```
 
-然后推理时只要传 `--weight_preset`，脚本会自动拼出 `$FREESTYLE_CKPT_ROOT/<子目录>/model.safetensors`，并同时设置 `--task`（sref / cref_sref）和是否启用 RoPE（`--use_rope` / `--no_rope`）。
+Then at inference time you only pass `--weight_preset`; the script automatically builds `$FREESTYLE_CKPT_ROOT/<subdir>/model.safetensors` and at the same time sets `--task` (sref / cref_sref) and whether RoPE is enabled (`--use_rope` / `--no_rope`).
 
-| Preset | 任务类型 | RoPE? | 子目录（在 `$FREESTYLE_CKPT_ROOT/` 下） |
+| Preset | Task | RoPE? | Subdirectory (under `$FREESTYLE_CKPT_ROOT/`) |
 |---|---|---:|---|
 | `sref_14000` | SRef | No | `freestyle-sref-14000-no-rope/model.safetensors` |
 | `sref_12000` | SRef | No | `freestyle-sref-12000-no-rope/model.safetensors` |
@@ -79,30 +79,30 @@ export FREESTYLE_CKPT_ROOT=/path/to/your/checkpoints
 | `cref_sref_40000` | CRef+SRef | No | `freestyle-cref-sref-40000-no-rope/model.safetensors` |
 | `cref_sref_36000_no_rope` | CRef+SRef | No | `freestyle-cref-sref-36000-no-rope/model.safetensors` |
 
-说明：
+Notes:
 
-- 推理用的模型 config 已经**硬编码在 `cref_sref_core_infer.py` 里**，仓库不再附带训练 YAML。是否使用 RoPE 由 `--use_rope` / `--no_rope` 控制（preset 已自动设置）。
-- `cref_sref_rope_50000` 会自动启用 RoPE，并走 `ImageGeneratorRopeFA`；其余 preset 走普通 `ImageGenerator`。
-- 用自己的权重（不带 preset）时，可手动指定 `--dit_path`、`--task` 和 `--use_rope` / `--no_rope`。
+- Whether RoPE is used is controlled by `--use_rope` / `--no_rope` (the preset sets this automatically).
+- `cref_sref_rope_50000` enables RoPE automatically and runs `ImageGeneratorRopeFA`; the other presets run the plain `ImageGenerator`.
+- To use your own weight (without a preset), specify `--dit_path`, `--task`, and `--use_rope` / `--no_rope` manually.
 
 ---
 
-## 3. Recaption task type 该怎么传
+## 3. How to pass the recaption task type
 
-| 参数 | 使用场景 | Recaption prompt 来源 | 输出尺寸规则 |
+| Argument | Use case | Recaption prompt source | Output size rule |
 |---|---|---|---|
-| `--recaption_task_type sref` | SRef 推理（仅 SRef 权重） | 本地 `SREF_RECAPTION_TEMPLATE_MINIMAL` | 使用 `--width/--height`，默认 `1024x1024` |
-| `--recaption_task_type identity_style` | CRef+SRef 普通推理（仅 CRef+SRef 权重） | 本地 `QWEN3_CREF_SREF_USER_PROMPT` | 使用 `--width/--height`，默认 `1024x1024` |
-| `--recaption_task_type style_transfer` | 风格迁移（两类权重都可用） | 本地 `SREF_RECAPTION_TEMPLATE_MINIMAL` | 自动保持输出图和 CRef 图同分辨率 |
+| `--recaption_task_type sref` | SRef inference (SRef weights only) | local `SREF_RECAPTION_TEMPLATE_MINIMAL` | uses `--width/--height`, default `1024x1024` |
+| `--recaption_task_type identity_style` | normal CRef+SRef inference (CRef+SRef weights only) | local `QWEN3_CREF_SREF_USER_PROMPT` | uses `--width/--height`, default `1024x1024` |
+| `--recaption_task_type style_transfer` | style transfer (works with both weight families) | local `SREF_RECAPTION_TEMPLATE_MINIMAL` | automatically keeps the output at the CRef image resolution |
 
-权重与 recaption prompt 的对应关系是**硬性校验**的，写错会直接报错，避免不同权重推理弄混：
+The pairing between weight and recaption prompt is **strictly validated**: a mismatch raises an error immediately, preventing different weights from getting their inference mixed up:
 
-- SRef 权重（`sref_14000` / `sref_12000`）只接受 `sref` 或 `style_transfer`；传 `identity_style` / `cref_sref` 会报错。
-- CRef+SRef 权重（`cref_sref_*`）只接受 `identity_style` / `cref_sref` 或 `style_transfer`；传 `sref` 会报错。
+- SRef weights (`sref_14000` / `sref_12000`) only accept `sref` or `style_transfer`; passing `identity_style` / `cref_sref` raises an error.
+- CRef+SRef weights (`cref_sref_*`) only accept `identity_style` / `cref_sref` or `style_transfer`; passing `sref` raises an error.
 
-两个 recaption prompt 模板都**硬编码在 `cref_sref_core_infer.py` 里**（`SREF_RECAPTION_TEMPLATE_MINIMAL` 与 `QWEN3_CREF_SREF_USER_PROMPT`），不再从 `recaption.py` 读取常量。运行时日志会打印 `recaption_prompt: <模板名>`，方便确认本次用的是哪个。
+Both recaption prompt templates are **hard-coded in `cref_sref_core_infer.py`** (`SREF_RECAPTION_TEMPLATE_MINIMAL` and `QWEN3_CREF_SREF_USER_PROMPT`); they are no longer read as constants from `recaption.py`. The runtime log prints `recaption_prompt: <template name>` so you can confirm which one this run used.
 
-最终送给生成模型的 prompt 来自 Qwen3-VL 返回 JSON 中的：
+The final prompt sent to the generator is built from the JSON returned by Qwen3-VL as:
 
 ```text
 independent_captions.scene_3 + training_output.sample_instruction_cn_123
@@ -110,20 +110,20 @@ independent_captions.scene_3 + training_output.sample_instruction_cn_123
 
 ---
 
-## 4. 五个权重的完整调用脚本
+## 4. Full invocation scripts for the five weights
 
-下面每个 preset 都给出一条**可直接复制运行的完整命令**，已经带上推荐的环境变量前缀。运行前先：
+Below, each preset comes with a **complete, copy-paste-runnable command**, already prefixed with the recommended environment variables. Before running:
 
 ```bash
 conda activate Sref
 cd /data/FreeStyle/model_infer
 ```
 
-所有命令的最小 demo 输入顺序固定为：`cref_image`（内容/布局参考图）、`sref_image`（风格参考图）、`prompt`（用户指令）。
+The minimal-demo input order for all commands is fixed: `cref_image` (content/layout reference), `sref_image` (style reference), `prompt` (user instruction).
 
-### 4.1 SRef 14000（无 RoPE）
+### 4.1 SRef 14000 (no RoPE)
 
-纯 SRef 推理时用 `--recaption_task_type sref`：
+For pure SRef inference, use `--recaption_task_type sref`:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -137,7 +137,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/00-cref.jpg \
   assets/00-sref.jpg \
-  '迁移图2的风格到图1上，保持图1的整体布局不变。' \
+  'Transfer the style of image 2 onto image 1, keeping image 1 overall layout unchanged.' \
   --weight_preset sref_14000 \
   --out_dir outputs/sref_14000_demo \
   --recaption_task_type sref \
@@ -149,11 +149,11 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-如果要用这个 SRef 权重做 style transfer demo，把 `--recaption_task_type sref` 换成 `--recaption_task_type style_transfer`。
+To run a style-transfer demo with this SRef weight, replace `--recaption_task_type sref` with `--recaption_task_type style_transfer`.
 
-### 4.2 SRef 12000（无 RoPE）
+### 4.2 SRef 12000 (no RoPE)
 
-当前 `run_sref_infer.sh` 使用的就是这个权重，并设置为 style transfer demo：
+This is the weight `run_sref_infer.sh` currently uses, configured as a style-transfer demo:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -167,7 +167,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/00-cref.jpg \
   assets/00-sref.jpg \
-  '迁移图2的风格到图1上，保持图1的整体布局不变。' \
+  'Transfer the style of image 2 onto image 1, keeping image 1 overall layout unchanged.' \
   --weight_preset sref_12000 \
   --out_dir outputs/sref_12000_style_transfer_demo \
   --recaption_task_type style_transfer \
@@ -179,11 +179,11 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-注意：这里虽然写了 `--width 1024 --height 1024`，但因为 `recaption_task_type=style_transfer`，最终保存的 `result.png` 会自动 resize 回 CRef 图分辨率。
+Note: even though `--width 1024 --height 1024` is set here, because `recaption_task_type=style_transfer` the saved `result.png` is automatically resized back to the CRef image resolution.
 
-### 4.3 CRef+SRef RoPE 50000（启用 RoPE）
+### 4.3 CRef+SRef RoPE 50000 (RoPE enabled)
 
-这个权重使用 RoPE 调制，preset 会自动启用 `--use_rope` 并走 `ImageGeneratorRopeFA`：
+This weight uses RoPE modulation; the preset automatically enables `--use_rope` and runs `ImageGeneratorRopeFA`:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -197,7 +197,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  '猫咪在一个壁炉前面趴着，迁移图2的风格到图1上' \
+  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
   --weight_preset cref_sref_rope_50000 \
   --out_dir outputs/cref_sref_rope_50000_demo \
   --recaption_task_type identity_style \
@@ -209,11 +209,11 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-如果这个 RoPE 权重用于 style transfer，把 `--recaption_task_type identity_style` 换成 `--recaption_task_type style_transfer`。
+To use this RoPE weight for style transfer, replace `--recaption_task_type identity_style` with `--recaption_task_type style_transfer`.
 
-### 4.4 CRef+SRef 40000（无 RoPE）
+### 4.4 CRef+SRef 40000 (no RoPE)
 
-普通 no-RoPE 的 40000 CRef+SRef 权重，preset 会自动设置 `--no_rope`：
+The normal no-RoPE 40000 CRef+SRef weight; the preset automatically sets `--no_rope`:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -227,7 +227,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  '猫咪在一个壁炉前面趴着，迁移图2的风格到图1上' \
+  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
   --weight_preset cref_sref_40000 \
   --out_dir outputs/cref_sref_40000_demo \
   --recaption_task_type identity_style \
@@ -239,11 +239,11 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-如果这个 no-RoPE 权重用于 style transfer，把 `--recaption_task_type identity_style` 换成 `--recaption_task_type style_transfer`。
+To use this no-RoPE weight for style transfer, replace `--recaption_task_type identity_style` with `--recaption_task_type style_transfer`.
 
-### 4.5 CRef+SRef 36000 no-RoPE（无 RoPE）
+### 4.5 CRef+SRef 36000 no-RoPE (no RoPE)
 
-这个权重没有 RoPE 调制，preset 会自动设置 `--no_rope`：
+This weight has no RoPE modulation; the preset automatically sets `--no_rope`:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -257,7 +257,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  '猫咪在一个壁炉前面趴着，迁移图2的风格到图1上' \
+  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
   --weight_preset cref_sref_36000_no_rope \
   --out_dir outputs/cref_sref_36000_no_rope_demo \
   --recaption_task_type identity_style \
@@ -269,13 +269,13 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-如果这个 no-RoPE 权重用于 style transfer，把 `--recaption_task_type identity_style` 换成 `--recaption_task_type style_transfer`。该权重对应 `$FREESTYLE_CKPT_ROOT/freestyle-cref-sref-36000-no-rope/model.safetensors`（见上面第 2 节的下载与放置说明）。
+To use this no-RoPE weight for style transfer, replace `--recaption_task_type identity_style` with `--recaption_task_type style_transfer`. This weight corresponds to `$FREESTYLE_CKPT_ROOT/freestyle-cref-sref-36000-no-rope/model.safetensors` (see the download/placement instructions in Section 2 above).
 
 ---
 
-## 5. 大 safetensors 权重加载设置
+## 5. Loading large safetensors weights
 
-12000 / 36000 等权重较大，demo 脚本默认支持 streaming load，避免一次性把 70G+ 权重全部加载到 CPU 内存：
+Weights like 12000 / 36000 are large, so the demo scripts support streaming load by default to avoid loading the full 70G+ weight into CPU memory at once:
 
 ```bash
 VGO_STREAM_LOAD_SAFETENSORS=1
@@ -283,19 +283,19 @@ VGO_STREAM_LOAD_DTYPE=bfloat16
 VGO_STREAM_LOAD_DEVICE=cuda:0
 ```
 
-`run_sref_infer.sh` 里已经写好了这些环境变量。
+These environment variables are already set in `run_sref_infer.sh`.
 
 ---
 
-## 6. 老的 prompts.json + keys 批量模式
+## 6. Legacy prompts.json + keys batch mode
 
-默认入口现在是“两张图 + 一个 prompt”的最小 demo。旧的 benchmark 批量模式仍保留，需要显式加：
+The default entrypoint is now the "two images + one prompt" minimal demo. The old benchmark batch mode is still available, but you need to explicitly add:
 
 ```bash
 --batch_mode
 ```
 
-批量模式才会读取：
+Only batch mode reads:
 
 ```text
 --data_root

@@ -83,7 +83,7 @@ This repo is organized into four self-contained components. **Each subfolder has
 | Component | Folder | What it provides | Docs |
 |---|---|---|---|
 | 🏭 **LoRA Data Pipeline** | [`lora_pipeline/`](lora_pipeline/) | Batch data production: mine community LoRAs and generate dual-reference triplets via a ComfyUI SDK across Flux / Qwen / Illustrious / SDXL, plus all mining metadata (model IDs, trigger words, prompt pools, workflows). | [📖 README](lora_pipeline/README.md) |
-| 📊 **Benchmark Inference & Metrics** | [`benchmark_infer/`](benchmark_infer/) | End-to-end benchmark toolkit: run inference for many baselines (FLUX, Qwen, TeleStyle, Seedream, CSGO, USO, OmniStyle), caption reference images, and compute all evaluation metrics. | [📖 EN](benchmark_infer/README.en.md) · [中文](benchmark_infer/README.md) |
+| 📊 **Benchmark Inference & Metrics** | [`benchmark_infer/`](benchmark_infer/) | End-to-end benchmark toolkit: run inference for many baselines (FLUX, Qwen, TeleStyle, Seedream, CSGO, USO, OmniStyle), caption reference images, and compute all evaluation metrics. | [📖 README](benchmark_infer/README.md) |
 | 🎨 **Model Inference** | [`model_infer/`](model_infer/) | Minimal inference demo for the FreeStyle model: two images + a prompt → generated image. Ships weight presets for SRef and CRef+SRef (with/without RoPE) and a Qwen3-VL recaption stage. | [📖 README](model_infer/README.md) |
 
 ---

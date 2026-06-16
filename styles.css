@@ -275,8 +275,12 @@ a {
 }
 
 .hl {
+  font-family: "Fraunces", serif;
   font-weight: 700;
+  font-size: 1.28em;
+  letter-spacing: 0.01em;
   color: var(--accent-deep);
+  white-space: nowrap;
 }
 
 .hl-alt {

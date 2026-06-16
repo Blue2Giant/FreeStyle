@@ -4,8 +4,16 @@
 #
 # Usage:
 #   conda activate Sref
-#   cd /data/vgo/opensource_cref_sref_core_infer_0615
+#   cd model_infer
 #   bash run_sref_infer.sh
+#
+# Weights: download the checkpoint repo once and point FREESTYLE_CKPT_ROOT at it.
+#   huggingface-cli download Blue2Giant/FreeStyle_Checkpoint --local-dir ./checkpoints
+# Layout (one model.safetensors per preset):
+#   checkpoints/freestyle-sref-12000-no-rope/model.safetensors   <- sref_12000
+#   checkpoints/freestyle-sref-14000-no-rope/model.safetensors   <- sref_14000
+# FREESTYLE_CKPT_ROOT defaults to ./checkpoints, so if you downloaded there you
+# can leave the export below commented out.
 #
 # Input order is important:
 #   1) assets/00-cref.jpg  : content/layout reference image
@@ -16,11 +24,11 @@
 # For normal CRef+SRef/SRef tasks, edit --width/--height; default is 1024x1024.
 #
 # To try another SRef weight, change --weight_preset to sref_14000.
-# Current setting uses the 12000 SRef checkpoint:
-#   /mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors
 
 set -e
 cd "$(dirname "$0")"
+
+# export FREESTYLE_CKPT_ROOT=./checkpoints   # uncomment/edit if weights live elsewhere
 
 VGO_DISABLE_TORCH_COMPILE=1 \
 VGO_DISABLE_VARLEN_OPS_COMPILE=1 \

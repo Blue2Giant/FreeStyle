@@ -43,24 +43,47 @@ bash run_sref_infer.sh
 
 ---
 
-## 2. 五个常用权重位置和对应 preset
+## 2. 下载权重并放好（HuggingFace）
 
-推理时推荐直接使用 `--weight_preset`，脚本会自动设置 `--dit_path`、`--task`（sref / cref_sref）以及是否启用 RoPE（`--use_rope` / `--no_rope`）。
+所有权重发布在 **[Blue2Giant/FreeStyle_Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint)**。一条命令下载到本地 `checkpoints/` 目录：
 
-| Preset | 任务类型 | RoPE? | 权重位置 |
+```bash
+cd model_infer
+huggingface-cli download Blue2Giant/FreeStyle_Checkpoint --local-dir ./checkpoints
+```
+
+下载后目录结构如下，**每个 preset 对应一个子目录，里面是单个 `model.safetensors`**：
+
+```text
+checkpoints/
+  freestyle-sref-14000-no-rope/model.safetensors          # preset: sref_14000
+  freestyle-sref-12000-no-rope/model.safetensors          # preset: sref_12000
+  freestyle-cref-sref-50000-rope/model.safetensors         # preset: cref_sref_rope_50000
+  freestyle-cref-sref-40000-no-rope/model.safetensors      # preset: cref_sref_40000
+  freestyle-cref-sref-36000-no-rope/model.safetensors      # preset: cref_sref_36000_no_rope
+```
+
+脚本默认从 `./checkpoints` 读取（即 `cref_sref_core_infer.py` 旁边的 `checkpoints/`）。如果你把权重放在别的位置，设置环境变量即可：
+
+```bash
+export FREESTYLE_CKPT_ROOT=/path/to/your/checkpoints
+```
+
+然后推理时只要传 `--weight_preset`，脚本会自动拼出 `$FREESTYLE_CKPT_ROOT/<子目录>/model.safetensors`，并同时设置 `--task`（sref / cref_sref）和是否启用 RoPE（`--use_rope` / `--no_rope`）。
+
+| Preset | 任务类型 | RoPE? | 子目录（在 `$FREESTYLE_CKPT_ROOT/` 下） |
 |---|---|---:|---|
-| `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` |
-| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` |
-| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` |
-| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` |
-| `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` |
+| `sref_14000` | SRef | No | `freestyle-sref-14000-no-rope/model.safetensors` |
+| `sref_12000` | SRef | No | `freestyle-sref-12000-no-rope/model.safetensors` |
+| `cref_sref_rope_50000` | CRef+SRef | Yes | `freestyle-cref-sref-50000-rope/model.safetensors` |
+| `cref_sref_40000` | CRef+SRef | No | `freestyle-cref-sref-40000-no-rope/model.safetensors` |
+| `cref_sref_36000_no_rope` | CRef+SRef | No | `freestyle-cref-sref-36000-no-rope/model.safetensors` |
 
 说明：
 
 - 推理用的模型 config 已经**硬编码在 `cref_sref_core_infer.py` 里**，仓库不再附带训练 YAML。是否使用 RoPE 由 `--use_rope` / `--no_rope` 控制（preset 已自动设置）。
 - `cref_sref_rope_50000` 会自动启用 RoPE，并走 `ImageGeneratorRopeFA`；其余 preset 走普通 `ImageGenerator`。
 - 用自己的权重（不带 preset）时，可手动指定 `--dit_path`、`--task` 和 `--use_rope` / `--no_rope`。
-- `cref_sref_36000_no_rope` 如果主路径不可见，代码会尝试 fallback 到 `/mnt/jfs/model_zoo/checkpoint-36000.safetensors`。
 
 ---
 
@@ -246,7 +269,7 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-如果这个 no-RoPE 权重用于 style transfer，把 `--recaption_task_type identity_style` 换成 `--recaption_task_type style_transfer`。如果主路径 `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` 在某个 worker 上不可见，代码会自动 fallback 到 `/mnt/jfs/model_zoo/checkpoint-36000.safetensors`。
+如果这个 no-RoPE 权重用于 style transfer，把 `--recaption_task_type identity_style` 换成 `--recaption_task_type style_transfer`。该权重对应 `$FREESTYLE_CKPT_ROOT/freestyle-cref-sref-36000-no-rope/model.safetensors`（见上面第 2 节的下载与放置说明）。
 
 ---
 

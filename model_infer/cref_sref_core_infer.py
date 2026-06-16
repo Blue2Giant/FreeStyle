@@ -65,21 +65,86 @@ DEFAULT_SREF_DATA_ROOT = "/mnt/jfs/bench-bucket/sref_bench/sample_800_sref_200_c
 DEFAULT_AE_PATH = "/mnt/jfs/model_zoo/qwen/Qwen-Image-Edit-2511/vae"
 DEFAULT_QWENVL_PATH = "/tmp/qwenvl_combined"
 DEFAULT_QWEN3_MODEL_PATH = "/mnt/jfs/model_zoo/Qwen3-VL-8B-Instruct"
-CHECKPOINT_CREF_SREF_40K = (
-    "/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious"
-    "/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors"
+# ---------------------------------------------------------------------------
+# Checkpoint layout — matches the public release on HuggingFace:
+#   https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint
+#
+# Download once, for example:
+#   huggingface-cli download Blue2Giant/FreeStyle_Checkpoint \
+#       --local-dir ./checkpoints
+#
+# which yields one `model.safetensors` per preset:
+#   <CKPT_ROOT>/
+#     freestyle-sref-14000-no-rope/model.safetensors
+#     freestyle-sref-12000-no-rope/model.safetensors
+#     freestyle-cref-sref-50000-rope/model.safetensors
+#     freestyle-cref-sref-40000-no-rope/model.safetensors
+#     freestyle-cref-sref-36000-no-rope/model.safetensors
+#
+# Set FREESTYLE_CKPT_ROOT to wherever you downloaded the repo. The default is
+# `./checkpoints` next to this script.
+# ---------------------------------------------------------------------------
+FREESTYLE_CKPT_ROOT = Path(
+    os.environ.get("FREESTYLE_CKPT_ROOT", str(WORKDIR / "checkpoints"))
 )
-CHECKPOINT_CREF_SREF_36000_NO_ROPE = "/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors"
-CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK = "/mnt/jfs/model_zoo/checkpoint-36000.safetensors"
-CHECKPOINT_CREF_SREF_ROPE_50000 = (
-    "/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base"
-    "/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors"
-)
-CHECKPOINT_SREF_14000 = (
-    "/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new"
-    "/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors"
-)
-CHECKPOINT_SREF_12000 = "/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors"
+
+# Preset name -> HuggingFace subdirectory (each holds a single model.safetensors).
+PRESET_CKPT_SUBDIR: dict[str, str] = {
+    "sref_14000": "freestyle-sref-14000-no-rope",
+    "sref_12000": "freestyle-sref-12000-no-rope",
+    "cref_sref_rope_50000": "freestyle-cref-sref-50000-rope",
+    "cref_sref_40000": "freestyle-cref-sref-40000-no-rope",
+    "cref_sref_36000_no_rope": "freestyle-cref-sref-36000-no-rope",
+}
+
+# Legacy internal checkpoint paths, kept only as a fallback for the original
+# development environment. Public users can ignore these: resolution always
+# prefers FREESTYLE_CKPT_ROOT (the HuggingFace layout above) and only falls back
+# to a legacy path when it actually exists on disk.
+LEGACY_CKPT_PATHS: dict[str, list[str]] = {
+    "sref_14000": [
+        "/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new"
+        "/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors",
+    ],
+    "sref_12000": [
+        "/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors",
+    ],
+    "cref_sref_rope_50000": [
+        "/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base"
+        "/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors",
+    ],
+    "cref_sref_40000": [
+        "/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious"
+        "/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors",
+    ],
+    "cref_sref_36000_no_rope": [
+        "/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors",
+        "/mnt/jfs/model_zoo/checkpoint-36000.safetensors",
+    ],
+}
+
+
+def preset_public_ckpt_path(preset_name: str) -> Path:
+    """Documented public-layout path for a preset (may not exist yet)."""
+    return FREESTYLE_CKPT_ROOT / PRESET_CKPT_SUBDIR[preset_name] / "model.safetensors"
+
+
+def resolve_preset_dit_path(preset_name: str) -> str:
+    """Resolve a preset to a concrete checkpoint path.
+
+    Order:
+      1. <FREESTYLE_CKPT_ROOT>/<hf_subdir>/model.safetensors  (public layout)
+      2. the first existing legacy internal path (dev environment only)
+    If nothing exists on disk, return the public-layout path so the resulting
+    "file not found" error points at the documented download location.
+    """
+    public = preset_public_ckpt_path(preset_name)
+    if public.exists():
+        return str(public)
+    for legacy in LEGACY_CKPT_PATHS.get(preset_name, []):
+        if Path(legacy).exists():
+            return str(legacy)
+    return str(public)
 
 # ---------------------------------------------------------------------------
 # Inference-only model config (hard-coded; training configs are not shipped)
@@ -153,35 +218,30 @@ def build_inference_config(use_rope: bool):
 
 WEIGHT_PRESETS = {
     "sref_14000": {
-        "dit_path": CHECKPOINT_SREF_14000,
         "use_rope": False,
         "task": TASK_SREF,
         "data_root": DEFAULT_SREF_DATA_ROOT,
         "recaption_task_type": "sref",
     },
     "sref_12000": {
-        "dit_path": CHECKPOINT_SREF_12000,
         "use_rope": False,
         "task": TASK_SREF,
         "data_root": DEFAULT_SREF_DATA_ROOT,
         "recaption_task_type": "sref",
     },
     "cref_sref_40000": {
-        "dit_path": CHECKPOINT_CREF_SREF_40K,
         "use_rope": False,
         "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",
     },
     "cref_sref_36000_no_rope": {
-        "dit_path": CHECKPOINT_CREF_SREF_36000_NO_ROPE,
         "use_rope": False,
         "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",
     },
     "cref_sref_rope_50000": {
-        "dit_path": CHECKPOINT_CREF_SREF_ROPE_50000,
         "use_rope": True,
         "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
@@ -1376,7 +1436,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--recaption_json", default="", help="defaults to {out_dir}/recaption_prompts.json")
     parser.add_argument("--structured_json", default="", help="defaults to {out_dir}/recaption_structured.json")
 
-    parser.add_argument("--dit_path", default=CHECKPOINT_CREF_SREF_40K, help="DiT checkpoint (.safetensors); usually set by --weight_preset")
+    parser.add_argument("--dit_path", default="", help="DiT checkpoint (.safetensors). Normally set by --weight_preset (resolved under FREESTYLE_CKPT_ROOT); pass this only for a custom weight without a preset")
     parser.add_argument("--task", default=None, choices=[TASK_SREF, TASK_CREF_SREF], help="sref or cref_sref; usually set by --weight_preset. Controls the default recaption prompt/data root")
     parser.add_argument("--use_rope", dest="use_rope", action="store_true", default=None, help="enable frequency-aware RoPE modulation (for RoPE-trained weights); usually set by --weight_preset")
     parser.add_argument("--no_rope", "--no-rope", dest="use_rope", action="store_false", help="disable frequency-aware RoPE modulation")
@@ -1397,15 +1457,7 @@ def apply_weight_preset(args: argparse.Namespace) -> None:
     preset_name = str(getattr(args, "weight_preset", "") or "").strip()
     if preset_name:
         preset = WEIGHT_PRESETS[preset_name]
-        args.dit_path = preset["dit_path"]
-        if preset_name == "cref_sref_36000_no_rope" and not Path(args.dit_path).exists():
-            if Path(CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK).exists():
-                print(
-                    f"[weight_preset] primary 36000 ckpt not found: {args.dit_path}; "
-                    f"using fallback: {CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK}",
-                    flush=True,
-                )
-                args.dit_path = CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK
+        args.dit_path = resolve_preset_dit_path(preset_name)
         # Only fall back to preset values when the caller did not set them on the CLI.
         if getattr(args, "use_rope", None) is None:
             args.use_rope = preset["use_rope"]

@@ -3,7 +3,7 @@
 # materials are published under assets/.
 /paper/
 cref_checkpoints/
-sref_upload/
+# sref_upload/
 # ===== OS junk =====
 .DS_Store
 .DS_Store?

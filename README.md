@@ -167,9 +167,9 @@ If you find FreeStyle useful for your research, please consider citing:
 @inproceedings{lan2026freestyle,
   title     = {FreeStyle: Free Control of Style Content Generation from Community LoRA Mining},
   author    = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and
-               Fang, Yixiao and Yang, Yufeng and Zhang, Xuanyang and Wang, Rui and Zeng, Xianfang and
+               Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang and
                Yu, Gang and Zhang, Chi},
-  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  booktitle = {arXiv Pre-print},
   year      = {2026}
 }
 ```

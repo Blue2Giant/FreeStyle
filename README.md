@@ -36,16 +36,14 @@
 <p>
 <a href="https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset"><img alt="Dataset" src="https://img.shields.io/badge/Dataset-FreeStyle-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
 <a href="https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench"><img alt="Benchmark" src="https://img.shields.io/badge/Benchmark-FreeStyle__Bench-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
-<a href="#"><img alt="Weights" src="https://img.shields.io/badge/Weights-Checkpoints-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
-<a href="#"><img alt="LoRA Metadata" src="https://img.shields.io/badge/LoRA%20Metadata-Meta-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
+<a href="https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint"><img alt="Weights" src="https://img.shields.io/badge/Weights-Checkpoints-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
+<a href="https://huggingface.co/datasets/Blue2Giant/free_style_lora_meta"><img alt="LoRA Metadata" src="https://img.shields.io/badge/LoRA%20Metadata-Meta-FFD21E?style=flat-square&logo=huggingface&logoColor=black"></a>
 </p>
 
 <!--
   TODO before public release — still need URLs for:
   • Paper         : arXiv / CVPR link
   • Demo          : HuggingFace Space
-  • Weights       : HuggingFace model repo (SRef / CRef+SRef checkpoints)
-  • LoRA Metadata : HuggingFace dataset (mined LoRA IDs, trigger words, ComfyUI workflows)
 -->
 
 <br>
@@ -66,11 +64,10 @@ On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+
 
 ## Highlights
 
-- **📦 Two Datasets, Two Tasks.** We open-source a large-scale dataset covering **both** reference settings: **CRef+SRef** triplets `(content reference, style reference, text, target)` for content-and-style **dual-reference generation**, and a **traditional SRef** dataset for **pure style-reference generation**. Both are built by composing community LoRAs across **Flux, Qwen, Illustrious, and SDXL**, spanning hundreds of styles and a broad range of subjects with clean content–style disentanglement.
-- **🧬 Community LoRA Mining.** Treats community LoRAs (Civitai / TensorArt / Liblib) as clustering centers for style and content, turning a fragmented ecosystem into structured dual-reference supervision.
-- **🧪 A Robust Generation Pipeline.** Stability screening (3×3 grid expert/VLM check), aesthetic-weighted sub-sampling, reference-image generation with **Qwen3-VL** consistency verification and rejection sampling — all orchestrated through a ComfyUI-based, multi-machine/multi-GPU workflow.
+- **📦 Two Datasets, Two Tasks.** We open-source a large-scale dataset covering **both** reference settings. The **CRef+SRef** dataset provides `(content reference, style reference, text, target)` triplets for content-and-style **dual-reference generation** — **~480K** sequences (Flux `273,682` + Illustrious `172,589` + Qwen `33,582`) spanning **1,704 styles** — while the **traditional SRef** dataset targets **pure style-reference generation** with **619,302** sequences across **622 styles**. 
+- **🧬 Community LoRA Mining Pipeline.** Treats community LoRAs (Civitai / TensorArt / Liblib) as clustering centers for style and content, turning a fragmented ecosystem into structured dual-reference supervision. Generate Cref+Sref triplet by comfyui workflow and validated lora, all lora meta information and workflow included in this repo. This pipeline generate the content-and-style dual-reference generation dataset.
 - **📊 A Dedicated Benchmark.** Evaluates **style similarity, content preservation, aesthetics, instruction following, and leakage rejection**, combining encoder metrics (CSD, OneIG, DINOv2, CAS, CLIP-T, aesthetic predictors) with VLM-as-judge protocols.
-- **🎯 Attention-Level Leakage Control.** An **enrichment + entropy** constraint on the DiT's reference attention (plus RoPE-spectrum modulation) reduces semantic copying from the style image while keeping style transfer rich — improving the balance among style alignment, content fidelity, and leakage control.
+
 
 <div align="center">
 <img src="assets/pipeline.png" width="92%" alt="FreeStyle data construction pipeline">
@@ -88,7 +85,6 @@ This repo is organized into four self-contained components. **Each subfolder has
 | 🏭 **LoRA Data Pipeline** | [`lora_pipeline/`](lora_pipeline/) | Batch data production: mine community LoRAs and generate dual-reference triplets via a ComfyUI SDK across Flux / Qwen / Illustrious / SDXL, plus all mining metadata (model IDs, trigger words, prompt pools, workflows). | [📖 README](lora_pipeline/README.md) |
 | 📊 **Benchmark Inference & Metrics** | [`benchmark_infer/`](benchmark_infer/) | End-to-end benchmark toolkit: run inference for many baselines (FLUX, Qwen, TeleStyle, Seedream, CSGO, USO, OmniStyle), caption reference images, and compute all evaluation metrics. | [📖 EN](benchmark_infer/README.en.md) · [中文](benchmark_infer/README.md) |
 | 🎨 **Model Inference** | [`model_infer/`](model_infer/) | Minimal inference demo for the FreeStyle model: two images + a prompt → generated image. Ships weight presets for SRef and CRef+SRef (with/without RoPE) and a Qwen3-VL recaption stage. | [📖 README](model_infer/README.md) |
-| 📝 **Loss Design** | [`assets/loss_design.md`](assets/loss_design.md) | Detailed write-up of the attention-level enrichment + entropy constraints: definitions, hyper-parameters, and data flow. | [📖 Loss design](assets/loss_design.md) |
 
 ---
 
@@ -100,8 +96,8 @@ We release the full stack behind FreeStyle:
 |---|---|---|
 | 🤗 **Dataset** | Large-scale style–content dual-reference triplets across multiple base models. | [FreeStyle_Dataset](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset) |
 | 🤗 **Benchmark** | SRef & CRef+SRef evaluation sets (`sref` / `cref_sref` tasks). | [FreeStyle_Bench](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench) |
-| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). | _coming soon_ |
-| 🤗 **LoRA Mining Metadata** | Curated community LoRA IDs, verified trigger words, prompt pools, and ComfyUI workflows. | _coming soon_ |
+| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). | [FreeStyle_Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint) |
+| 🤗 **LoRA Mining Metadata** | Curated community LoRA IDs, verified trigger words, prompt pools, and ComfyUI workflows. | [free_style_lora_meta](https://huggingface.co/datasets/Blue2Giant/free_style_lora_meta) |
 | 🌐 **Project Page** | Interactive results, comparisons, and qualitative galleries. | [blue2giant.github.io/FreeStyle](https://blue2giant.github.io/FreeStyle/) |
 
 > The benchmark inference scripts already reference a HuggingFace benchmark layout (`cref/`, `sref/`, `prompts.json`, per-model outputs); see [`benchmark_infer/README.en.md`](benchmark_infer/README.en.md) for the exact structure.

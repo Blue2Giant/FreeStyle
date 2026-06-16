@@ -19,6 +19,7 @@ while the helper functions below keep the original recaption/generation logic.
 from __future__ import annotations
 
 import argparse
+import ast
 import gc
 import json
 import os
@@ -201,53 +202,6 @@ PREFERRED_KONTEXT_RESOLUTIONS = [
     (1504, 688), (1568, 672),
 ]
 
-
-SREF_RECAPTION_TEMPLATE_MINIMAL = """
-[Inputs]
-- Original user prompt (highest-priority target content):
-{{prompt}}
-- Image 1 / scene_1: content or identity reference. Use only compatible visual details.
-- Image 2 / scene_2: style reference. Use style only; concrete content is forbidden.
-
-[Recaption task]
-Write a clean generation prompt for the final target image.
-The final image must depict the Original user prompt. It should have the abstract
-visual style of Image 2, but it must not contain Image 2's concrete subjects,
-objects, scene layout, props, actions, or story.
-
-[Style extraction rules]
-Allowed style words: art medium, brushwork/line quality, edge treatment, color
-palette, contrast, lighting, material/texture, geometric simplification,
-rendering technique, decorative pattern density, camera/illustration finish,
-overall mood.
-Forbidden style-image content: any concrete noun or identity observed only in
-Image 2, including characters, animals, products, furniture, buildings, foods,
-vehicles, landscapes, props, clothing details, pose, exact composition, readable
-text, logos, or narrative events.
-If the visual style resembles a famous character/franchise/object name, convert
-it into neutral visual traits instead of naming or inserting that content.
-
-[Output requirements]
-- JSON only, exactly one object.
-- Chinese text values.
-- "scene_3" is the main text that will be fed to the image generator, so make it
-  concrete, visual, and standalone.
-- In "scene_3", first describe the target content from the user prompt, then add
-  abstract style attributes. Do not mention references or scene numbers.
-- Keep "scene_3" concise: 1-3 sentences, about 60-160 Chinese characters.
-
-{
-  "style_only": {
-    "abstract_style_cn": "只描述抽象画风特征，不包含任何具体主体、物体、地点、动作或构图复刻"
-  },
-  "training_output": {
-    "sample_instruction_cn_123": "一句自然中文生成指令：目标内容 + 抽象画风，不出现参考图/场景编号/风格图内容"
-  },
-  "independent_captions": {
-    "scene_3": "最终图像的独立中文描述：严格遵循用户提示词的内容，并带有抽象画风；不得包含风格图里的具体内容"
-  }
-}
-"""
 
 # ---------------------------------------------------------------------------
 # Optimized Qwen3 recaption prompts
@@ -634,11 +588,12 @@ RECAPTION_TASK_TYPE_IDENTITY_STYLE = "identity_style"
 RECAPTION_TASK_TYPE_CREF_SREF = "cref_sref"
 RECAPTION_TASK_TYPE_SREF = "sref"
 
-# Recaption prompts live locally so each weight family has one explicit source of
-# truth (no hidden dependency on recaption.py constants):
-#   - style transfer / pure SRef  -> SREF_RECAPTION_TEMPLATE_MINIMAL
-#   - CRef+SRef (identity_style)   -> QWEN3_CREF_SREF_USER_PROMPT
-RECAPTION_PROMPT_NAME_STYLE = "SREF_RECAPTION_TEMPLATE_MINIMAL"
+# Recaption prompts by weight family, with one explicit source of truth each:
+#   - SRef / style transfer -> recaption.py:PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER
+#     (read verbatim so the full canonical style-transfer template is used)
+#   - CRef+SRef (identity_style) -> local QWEN3_CREF_SREF_USER_PROMPT
+REC_STYLE_TRANSFER_CONST = "PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER"
+RECAPTION_PROMPT_NAME_STYLE = REC_STYLE_TRANSFER_CONST
 RECAPTION_PROMPT_NAME_CREF_SREF = "QWEN3_CREF_SREF_USER_PROMPT"
 
 
@@ -655,8 +610,40 @@ def normalize_recaption_task_type(task_type: str) -> str:
     )
 
 
+def read_recaption_prompt_constant(const_name: str) -> str:
+    """Read a string constant from recaption.py without importing it.
+
+    recaption.py imports optional API-client packages we do not need for offline
+    inference, so AST parsing avoids that dependency while still using the exact,
+    complete template defined there.
+    """
+    recaption_py = WORKDIR / "recaption.py"
+    if not recaption_py.exists():
+        raise FileNotFoundError(f"missing recaption.py next to core infer script: {recaption_py}")
+    tree = ast.parse(recaption_py.read_text(encoding="utf-8"), filename=str(recaption_py))
+    for node in tree.body:
+        if not isinstance(node, ast.Assign):
+            continue
+        for target in node.targets:
+            if isinstance(target, ast.Name) and target.id == const_name:
+                value = ast.literal_eval(node.value)
+                if not isinstance(value, str):
+                    raise TypeError(f"{const_name} in {recaption_py} is not a string")
+                return value
+    raise KeyError(f"{const_name} not found in {recaption_py}")
+
+
+_STYLE_TRANSFER_PROMPT_CACHE: dict[str, str] = {}
+
+
+def get_style_transfer_recaption_prompt() -> str:
+    if "p" not in _STYLE_TRANSFER_PROMPT_CACHE:
+        _STYLE_TRANSFER_PROMPT_CACHE["p"] = read_recaption_prompt_constant(REC_STYLE_TRANSFER_CONST)
+    return _STYLE_TRANSFER_PROMPT_CACHE["p"]
+
+
 def recaption_uses_style_template(recaption_task_type: str) -> bool:
-    """SRef and style-transfer both use the style-only minimal template."""
+    """SRef and style-transfer both use the full style-transfer template."""
     return normalize_recaption_task_type(recaption_task_type) in (
         RECAPTION_TASK_TYPE_SREF,
         RECAPTION_TASK_TYPE_STYLE_TRANSFER,
@@ -671,7 +658,7 @@ def get_recaption_prompt_template_name(recaption_task_type: str) -> str:
 
 def get_recaption_prompt_template(recaption_task_type: str) -> str:
     if recaption_uses_style_template(recaption_task_type):
-        return SREF_RECAPTION_TEMPLATE_MINIMAL
+        return get_style_transfer_recaption_prompt()
     return QWEN3_CREF_SREF_USER_PROMPT
 
 
@@ -1381,7 +1368,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--recaption_max_new_tokens", type=int, default=1024)
     parser.add_argument("--recaption_image_long_edge", type=int, default=512)
     parser.add_argument("--recaption_image_tokens", type=int, default=188)
-    parser.add_argument("--recaption_task_type", default=RECAPTION_TASK_TYPE_IDENTITY_STYLE, help="Recaption prompt family. sref/style_transfer -> SREF_RECAPTION_TEMPLATE_MINIMAL (style transfer); identity_style/cref_sref -> QWEN3_CREF_SREF_USER_PROMPT (CRef+SRef). SRef weights accept sref/style_transfer; CRef+SRef weights accept identity_style/cref_sref/style_transfer.")
+    parser.add_argument("--recaption_task_type", default=RECAPTION_TASK_TYPE_IDENTITY_STYLE, help="Recaption prompt family. sref/style_transfer -> recaption.py:PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER (full style-transfer template); identity_style/cref_sref -> QWEN3_CREF_SREF_USER_PROMPT (CRef+SRef). SRef weights accept sref/style_transfer; CRef+SRef weights accept identity_style/cref_sref/style_transfer.")
     parser.add_argument("--skip_recaption", action="store_true", help="use existing --recaption_json/prompts directly")
     parser.add_argument("--recaption_only", action="store_true")
     parser.add_argument("--recaption_subprocess", dest="recaption_subprocess", action="store_true", default=True, help="run Qwen3 recaption in a short-lived child process before VGO generation (default)")

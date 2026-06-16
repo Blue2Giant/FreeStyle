@@ -2,7 +2,7 @@
 # The live LaTeX project is kept locally; only the README-referenced
 # materials are published under assets/.
 /paper/
-
+cref_checkpoints/
 # ===== OS junk =====
 .DS_Store
 .DS_Store?

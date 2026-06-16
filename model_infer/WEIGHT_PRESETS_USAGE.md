@@ -19,23 +19,19 @@ The easiest way to switch weights is to change `--weight_preset`.
 
 ## 1. Available weight presets
 
-| Preset | Task | RoPE? | Weight path | Config path |
-|---|---|---:|---|---|
-| `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` | `configs/train/0415_qwen_image_sref_noise_query.yaml` |
-| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` | `configs/train/0415_qwen_image_sref_noise_query.yaml` |
-| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` | `configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml` |
-| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` | `configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml` |
-| `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` | `configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml` |
+| Preset | Task | RoPE? | Weight path |
+|---|---|---:|---|
+| `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` |
+| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` |
+| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` |
+| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` |
+| `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` |
+
+Each preset sets three things for you: the weight path (`--dit_path`), the task (`--task sref` or `--task cref_sref`), and whether frequency-aware RoPE is enabled (`--use_rope` / `--no_rope`).
 
 ### Note for `cref_sref_36000_no_rope`
 
-This is the CRef+SRef **no-RoPE** 36000 checkpoint. It should use the normal CRef+SRef config, not the RoPE config:
-
-```bash
-configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml
-```
-
-The primary checkpoint path is the converted copy:
+This is the CRef+SRef **no-RoPE** 36000 checkpoint. The primary checkpoint path is the converted copy:
 
 ```bash
 /mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors
@@ -49,61 +45,35 @@ This file was visible in the `gpu_temp_1` / `Sref` environment on 2026-06-15 as 
 
 ---
 
-## 2. RoPE config behavior
+## 2. Task and RoPE control (no training config needed)
 
-RoPE is **not hard-coded** in Python. It is controlled by the YAML config.
+The inference model config is **hard-coded in `cref_sref_core_infer.py`** — the
+original training YAMLs are not shipped. Two flags control behavior:
 
-For RoPE inference, use:
+| Flag | Values | Meaning |
+|---|---|---|
+| `--task` | `sref`, `cref_sref` | selects the task (default recaption prompt + benchmark data root) |
+| `--use_rope` / `--no_rope` | — | enables / disables frequency-aware RoPE modulation |
 
-```bash
---weight_preset cref_sref_rope_50000
-```
-
-This preset uses:
-
-```bash
-configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml
-```
-
-That config contains RoPE settings under:
-
-```yaml
-engine_config:
-  pipe:
-    dit:
-      rope_fa:
-        enabled: true
-        shf_min: ...
-        slf_min: ...
-        shf_max: ...
-        slf_max: ...
-        beta: ...
-        spatial_axes_only: ...
-```
-
-When `rope_fa.enabled: true`, `cref_sref_core_infer.py` automatically uses:
-
-```python
-ImageGeneratorRopeFA
-```
-
-For no-RoPE weights, use a no-RoPE preset such as:
+`--weight_preset` already sets both flags for each released checkpoint, so you
+normally don't pass them. They matter when you run **your own** weight without a
+preset, e.g.:
 
 ```bash
---weight_preset cref_sref_36000_no_rope
+python3 cref_sref_core_infer.py \
+  assets/00-cref.jpg assets/00-sref.jpg "your prompt" \
+  --weight_preset "" \
+  --dit_path /path/to/your/checkpoint.safetensors \
+  --task cref_sref \
+  --use_rope \
+  --recaption_task_type identity_style \
+  --out_dir outputs/custom
 ```
 
-which uses the normal config:
-
-```bash
-configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml
-```
-
-and automatically uses:
-
-```python
-ImageGenerator
-```
+When `--use_rope` is set, the script builds the DiT with the RoPE-FA modulation
+parameters baked into `ROPE_FA_INFERENCE_PARAMS` and runs `ImageGeneratorRopeFA`.
+Otherwise it runs the plain `ImageGenerator`. A preset's explicit `--use_rope` /
+`--no_rope` / `--task` on the command line always overrides the preset value.
 
 ---
 

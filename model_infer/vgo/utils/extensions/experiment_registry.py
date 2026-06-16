@@ -91,9 +91,7 @@ class RegistryConfig:
     def __post_init__(self):
         # 从环境变量读取默认值
         if self.repo_url is None:
-            self.repo_url = os.environ.get(
-                "EXPERIMENT_REGISTRY_URL", "https://gitlab.basemind.com/step_aigc/exp_zoo.git"
-            )
+            self.repo_url = os.environ.get("EXPERIMENT_REGISTRY_URL")
         if self._access_token is None:
             self._access_token = os.environ.get("EXPERIMENT_REGISTRY_TOKEN")
         if self.local_path is None:

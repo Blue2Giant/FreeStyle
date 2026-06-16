@@ -19,7 +19,6 @@ while the helper functions below keep the original recaption/generation logic.
 from __future__ import annotations
 
 import argparse
-import ast
 import gc
 import json
 import os
@@ -62,8 +61,6 @@ DEFAULT_DEMO_OUT_DIR = str(WORKDIR / "outputs/sref_12000_demo")
 
 DEFAULT_DATA_ROOT = "/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content"
 DEFAULT_SREF_DATA_ROOT = "/mnt/jfs/bench-bucket/sref_bench/sample_800_sref_200_content"
-DEFAULT_CONFIG_PATH = str(WORKDIR / "configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml")
-DEFAULT_SREF_CONFIG_PATH = str(WORKDIR / "configs/train/0415_qwen_image_sref_noise_query.yaml")
 DEFAULT_AE_PATH = "/mnt/jfs/model_zoo/qwen/Qwen-Image-Edit-2511/vae"
 DEFAULT_QWENVL_PATH = "/tmp/qwenvl_combined"
 DEFAULT_QWEN3_MODEL_PATH = "/mnt/jfs/model_zoo/Qwen3-VL-8B-Instruct"
@@ -77,41 +74,115 @@ CHECKPOINT_CREF_SREF_ROPE_50000 = (
     "/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base"
     "/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors"
 )
-DEFAULT_CREF_SREF_ROPE_CONFIG_PATH = str(WORKDIR / "configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml")
 CHECKPOINT_SREF_14000 = (
     "/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new"
     "/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors"
 )
 CHECKPOINT_SREF_12000 = "/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors"
 
+# ---------------------------------------------------------------------------
+# Inference-only model config (hard-coded; training configs are not shipped)
+# ---------------------------------------------------------------------------
+# All released FreeStyle checkpoints share the same DiT architecture and the
+# same Qwen2.5-VL text-encoder settings. Only frequency-aware RoPE differs, and
+# it is toggled by --use_rope / --no_rope (or the weight preset). These values
+# are the inference-relevant subset of the original training configs; the rest
+# of the training config (data, optimizer, loss policy, internal paths) is not
+# needed to run inference and is intentionally omitted.
+DIT_INFERENCE_PARAMS: dict[str, Any] = {
+    "in_channels": 64,
+    "out_channels": 64,
+    "enable_txt_norm": True,
+    "vec_in_dim": None,
+    "context_in_dim": 3584,
+    "hidden_size": 3072,
+    "mlp_ratio": 4.0,
+    "num_heads": 24,
+    "depth": 60,
+    "depth_single_blocks": 0,
+    "axes_dim": [16, 56, 56],
+    "theta": 10000,
+    "qkv_bias": True,
+    "guidance_embed": False,
+    "enable_zero_t_embed": True,
+}
+
+# Frequency-aware RoPE modulation parameters for the RoPE checkpoints.
+ROPE_FA_INFERENCE_PARAMS: dict[str, Any] = {
+    "enabled": True,
+    "shf_min": 0.9,
+    "slf_min": 1.2,
+    "shf_max": 0.9,
+    "slf_max": 1.2,
+    "beta": 2.0,
+    "spatial_axes_only": True,
+}
+
+# Shared text-encoder / pipe settings used by vgo.inference.load_models.
+LLM_INFERENCE_PARAMS: dict[str, Any] = {
+    "llm_encoder_type": "naive",
+    "llm_image_min_token": 188,
+    "llm_image_max_token": 188,
+    "max_length": 2048,
+    # ae_path / llm_model_path come from CLI (--ae_path / --qwenvl_path); keep
+    # them null here so no internal training paths are embedded.
+    "ae_path": None,
+    "llm_model_path": None,
+    "lora": None,
+}
+
+TASK_SREF = "sref"
+TASK_CREF_SREF = "cref_sref"
+
+
+def build_inference_config(use_rope: bool):
+    """Build the minimal in-memory config consumed by vgo.inference.load_models.
+
+    This replaces the training YAML: only the inference-relevant
+    ``engine_config.pipe`` block is constructed, with RoPE toggled in code.
+    """
+    if OmegaConf is None:
+        raise RuntimeError("omegaconf is required to build the inference config")
+    dit = dict(DIT_INFERENCE_PARAMS)
+    if use_rope:
+        dit["rope_fa"] = dict(ROPE_FA_INFERENCE_PARAMS)
+    pipe = {"dit": dit, **LLM_INFERENCE_PARAMS}
+    return OmegaConf.create({"engine_config": {"pipe": pipe}})
+
+
 WEIGHT_PRESETS = {
     "sref_14000": {
         "dit_path": CHECKPOINT_SREF_14000,
-        "config_path": DEFAULT_SREF_CONFIG_PATH,
+        "use_rope": False,
+        "task": TASK_SREF,
         "data_root": DEFAULT_SREF_DATA_ROOT,
         "recaption_task_type": "sref",
     },
     "sref_12000": {
         "dit_path": CHECKPOINT_SREF_12000,
-        "config_path": DEFAULT_SREF_CONFIG_PATH,
+        "use_rope": False,
+        "task": TASK_SREF,
         "data_root": DEFAULT_SREF_DATA_ROOT,
         "recaption_task_type": "sref",
     },
     "cref_sref_40000": {
         "dit_path": CHECKPOINT_CREF_SREF_40K,
-        "config_path": DEFAULT_CONFIG_PATH,
+        "use_rope": False,
+        "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",
     },
     "cref_sref_36000_no_rope": {
         "dit_path": CHECKPOINT_CREF_SREF_36000_NO_ROPE,
-        "config_path": DEFAULT_CONFIG_PATH,
+        "use_rope": False,
+        "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",
     },
     "cref_sref_rope_50000": {
         "dit_path": CHECKPOINT_CREF_SREF_ROPE_50000,
-        "config_path": DEFAULT_CREF_SREF_ROPE_CONFIG_PATH,
+        "use_rope": True,
+        "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",
     },
@@ -438,16 +509,13 @@ def maybe_resize_pair(cref: Image.Image, sref: Image.Image, size: tuple[int, int
     return cref, sref
 
 
-def config_uses_rope_fa(config_path: str) -> bool:
-    if OmegaConf is None or not config_path:
-        return False
-    try:
-        cfg = OmegaConf.load(config_path)
-        rope = cfg.engine_config.pipe.dit.get("rope_fa", None)
-        return bool(rope and rope.get("enabled", False))
-    except Exception as exc:
-        print(f"[WARN] failed to inspect rope_fa in config: {exc}", flush=True)
-        return False
+def resolve_use_rope(use_rope: Any, task: str = "") -> bool:
+    """Resolve the RoPE flag to a concrete bool. Defaults to no RoPE."""
+    if isinstance(use_rope, bool):
+        return use_rope
+    if isinstance(use_rope, str):
+        return use_rope.strip().lower() in ("1", "true", "yes", "on", "rope")
+    return False
 
 
 # ---------------------------------------------------------------------------
@@ -566,8 +634,12 @@ RECAPTION_TASK_TYPE_IDENTITY_STYLE = "identity_style"
 RECAPTION_TASK_TYPE_CREF_SREF = "cref_sref"
 RECAPTION_TASK_TYPE_SREF = "sref"
 
-REC_TEMPLATE_CONST_STYLE_TRANSFER = "PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER"
-REC_TEMPLATE_CONST_CREF_SREF = "PROMPT_WITH_INSTUCTION_CREF_SREF"
+# Recaption prompts live locally so each weight family has one explicit source of
+# truth (no hidden dependency on recaption.py constants):
+#   - style transfer / pure SRef  -> SREF_RECAPTION_TEMPLATE_MINIMAL
+#   - CRef+SRef (identity_style)   -> QWEN3_CREF_SREF_USER_PROMPT
+RECAPTION_PROMPT_NAME_STYLE = "SREF_RECAPTION_TEMPLATE_MINIMAL"
+RECAPTION_PROMPT_NAME_CREF_SREF = "QWEN3_CREF_SREF_USER_PROMPT"
 
 
 def normalize_recaption_task_type(task_type: str) -> str:
@@ -583,44 +655,47 @@ def normalize_recaption_task_type(task_type: str) -> str:
     )
 
 
-def read_recaption_prompt_constant(const_name: str) -> str:
-    """Read prompt template constants from recaption.py without importing it.
-
-    recaption.py also contains API-client helpers and imports optional packages.
-    For this offline/local inference entrypoint we only need the prompt strings,
-    so AST parsing avoids adding an unnecessary runtime dependency on those helpers.
-    """
-    recaption_py = WORKDIR / "recaption.py"
-    if not recaption_py.exists():
-        raise FileNotFoundError(f"missing recaption.py next to core infer script: {recaption_py}")
-    tree = ast.parse(recaption_py.read_text(encoding="utf-8"), filename=str(recaption_py))
-    for node in tree.body:
-        if not isinstance(node, ast.Assign):
-            continue
-        for target in node.targets:
-            if isinstance(target, ast.Name) and target.id == const_name:
-                value = ast.literal_eval(node.value)
-                if not isinstance(value, str):
-                    raise TypeError(f"{const_name} in {recaption_py} is not a string")
-                return value
-    raise KeyError(f"{const_name} not found in {recaption_py}")
+def recaption_uses_style_template(recaption_task_type: str) -> bool:
+    """SRef and style-transfer both use the style-only minimal template."""
+    return normalize_recaption_task_type(recaption_task_type) in (
+        RECAPTION_TASK_TYPE_SREF,
+        RECAPTION_TASK_TYPE_STYLE_TRANSFER,
+    )
 
 
-_RECAPTION_TEMPLATE_CACHE: dict[str, str] = {}
+def get_recaption_prompt_template_name(recaption_task_type: str) -> str:
+    if recaption_uses_style_template(recaption_task_type):
+        return RECAPTION_PROMPT_NAME_STYLE
+    return RECAPTION_PROMPT_NAME_CREF_SREF
 
 
 def get_recaption_prompt_template(recaption_task_type: str) -> str:
-    task_type = normalize_recaption_task_type(recaption_task_type)
-    if task_type == RECAPTION_TASK_TYPE_SREF:
+    if recaption_uses_style_template(recaption_task_type):
         return SREF_RECAPTION_TEMPLATE_MINIMAL
-    const_name = (
-        REC_TEMPLATE_CONST_STYLE_TRANSFER
-        if task_type == RECAPTION_TASK_TYPE_STYLE_TRANSFER
-        else REC_TEMPLATE_CONST_CREF_SREF
-    )
-    if const_name not in _RECAPTION_TEMPLATE_CACHE:
-        _RECAPTION_TEMPLATE_CACHE[const_name] = read_recaption_prompt_constant(const_name)
-    return _RECAPTION_TEMPLATE_CACHE[const_name]
+    return QWEN3_CREF_SREF_USER_PROMPT
+
+
+def validate_recaption_task_type_for_task(
+    task: str, recaption_task_type: str, weight_preset: str = ""
+) -> None:
+    """Refuse prompt/weight combinations that would mix the two families.
+
+    A pure SRef weight must not run the CRef+SRef recaption prompt, and a
+    CRef+SRef weight must not run the pure-SRef recaption prompt. style_transfer
+    is allowed on either family.
+    """
+    rtt = normalize_recaption_task_type(recaption_task_type)
+    where = f" (weight_preset={weight_preset})" if weight_preset else ""
+    if task == TASK_SREF and rtt == RECAPTION_TASK_TYPE_IDENTITY_STYLE:
+        raise ValueError(
+            f"recaption_task_type={rtt!r} is a CRef+SRef prompt and cannot run on an "
+            f"SRef weight{where}; use 'sref' or 'style_transfer'."
+        )
+    if task == TASK_CREF_SREF and rtt == RECAPTION_TASK_TYPE_SREF:
+        raise ValueError(
+            f"recaption_task_type={rtt!r} is a pure-SRef prompt and cannot run on a "
+            f"CRef+SRef weight{where}; use 'identity_style'/'cref_sref' or 'style_transfer'."
+        )
 
 
 def render_recaption_request(
@@ -908,22 +983,25 @@ def run_recaption_subprocess(args: argparse.Namespace, recaption_json: Path, str
 # ---------------------------------------------------------------------------
 
 
-def load_generator(dit_path: str, config_path: str, ae_path: str, qwenvl_path: str, device: str):
+def load_generator(dit_path: str, use_rope: bool, ae_path: str, qwenvl_path: str, device: str):
     from vgo.inference import ImageGenerator
 
     qwenvl_path = str(setup_qwenvl_combined(qwenvl_path))
-    rope_enabled = config_uses_rope_fa(config_path)
-    generator_cls = ImageGeneratorRopeFA if rope_enabled and ImageGeneratorRopeFA is not None else ImageGenerator
+    use_rope = bool(use_rope)
+    config_obj = build_inference_config(use_rope)
+    generator_cls = ImageGeneratorRopeFA if use_rope and ImageGeneratorRopeFA is not None else ImageGenerator
+    if use_rope and ImageGeneratorRopeFA is None:
+        raise RuntimeError("--use_rope requested but ImageGeneratorRopeFA failed to import")
     print(
-        f"[GENERATOR] loading {generator_cls.__name__} ckpt={dit_path} config={config_path} "
-        f"rope_fa={rope_enabled} device={device}",
+        f"[GENERATOR] loading {generator_cls.__name__} ckpt={dit_path} "
+        f"rope_fa={use_rope} device={device}",
         flush=True,
     )
     set_cuda_device(device)
     gen = generator_cls(
         world_mesh=None,
         dit_path=dit_path,
-        config_path=config_path,
+        config_obj=config_obj,
         ae_path=ae_path or None,
         qwenvl_model_path=qwenvl_path or None,
         device=device,
@@ -939,7 +1017,7 @@ def generate_many(
     sref_dir: str | Path,
     out_dir: str | Path,
     dit_path: str,
-    config_path: str,
+    use_rope: bool,
     ae_path: str,
     qwenvl_path: str,
     device: str,
@@ -954,7 +1032,7 @@ def generate_many(
 ) -> None:
     out_dir = Path(out_dir)
     out_dir.mkdir(parents=True, exist_ok=True)
-    gen = load_generator(dit_path, config_path, ae_path, qwenvl_path, device=device)
+    gen = load_generator(dit_path, use_rope, ae_path, qwenvl_path, device=device)
     try:
         for key in tqdm(keys, desc="vgo generate", dynamic_ncols=True):
             out_path = out_dir / f"{key}.png"
@@ -1029,7 +1107,7 @@ def generate_one(
     prompt: str,
     output_path: str | Path,
     dit_path: str,
-    config_path: str,
+    use_rope: bool,
     ae_path: str,
     qwenvl_path: str,
     device: str,
@@ -1048,7 +1126,7 @@ def generate_one(
         print(f"[SKIP] exists {output_path}", flush=True)
         return
 
-    gen = load_generator(dit_path, config_path, ae_path, qwenvl_path, device=device)
+    gen = load_generator(dit_path, use_rope, ae_path, qwenvl_path, device=device)
     try:
         cref = load_rgb(cref_path)
         sref = load_rgb(sref_path)
@@ -1164,8 +1242,10 @@ def run_single_demo(args: argparse.Namespace) -> None:
     print(f"structured_json : {structured_json}", flush=True)
     print(f"weight_preset   : {args.weight_preset or '<custom>'}", flush=True)
     print(f"recaption_task  : {normalize_recaption_task_type(args.recaption_task_type)}", flush=True)
+    print(f"recaption_prompt: {get_recaption_prompt_template_name(args.recaption_task_type)}", flush=True)
     print(f"dit_path        : {args.dit_path}", flush=True)
-    print(f"config_path     : {args.config_path}", flush=True)
+    print(f"task            : {args.task}", flush=True)
+    print(f"use_rope        : {bool(args.use_rope)}", flush=True)
     print("=" * 80, flush=True)
 
     if args.skip_recaption:
@@ -1238,7 +1318,7 @@ def run_single_demo(args: argparse.Namespace) -> None:
         prompt=final_prompt,
         output_path=output_path,
         dit_path=args.dit_path,
-        config_path=args.config_path,
+        use_rope=bool(args.use_rope),
         ae_path=args.ae_path,
         qwenvl_path=args.qwenvl_path,
         device=args.generator_device,
@@ -1262,7 +1342,8 @@ def run_single_demo(args: argparse.Namespace) -> None:
             "structured_json": str(structured_json),
             "weight_preset": str(args.weight_preset or "<custom>"),
             "dit_path": str(args.dit_path),
-            "config_path": str(args.config_path),
+            "task": str(args.task),
+            "use_rope": bool(args.use_rope),
             "recaption_task_type": normalize_recaption_task_type(args.recaption_task_type),
         },
         summary_json,
@@ -1300,7 +1381,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--recaption_max_new_tokens", type=int, default=1024)
     parser.add_argument("--recaption_image_long_edge", type=int, default=512)
     parser.add_argument("--recaption_image_tokens", type=int, default=188)
-    parser.add_argument("--recaption_task_type", default=RECAPTION_TASK_TYPE_IDENTITY_STYLE, help="sref uses the SRef minimal prompt; identity_style/cref_sref uses PROMPT_WITH_INSTUCTION_CREF_SREF; style_transfer uses PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER")
+    parser.add_argument("--recaption_task_type", default=RECAPTION_TASK_TYPE_IDENTITY_STYLE, help="Recaption prompt family. sref/style_transfer -> SREF_RECAPTION_TEMPLATE_MINIMAL (style transfer); identity_style/cref_sref -> QWEN3_CREF_SREF_USER_PROMPT (CRef+SRef). SRef weights accept sref/style_transfer; CRef+SRef weights accept identity_style/cref_sref/style_transfer.")
     parser.add_argument("--skip_recaption", action="store_true", help="use existing --recaption_json/prompts directly")
     parser.add_argument("--recaption_only", action="store_true")
     parser.add_argument("--recaption_subprocess", dest="recaption_subprocess", action="store_true", default=True, help="run Qwen3 recaption in a short-lived child process before VGO generation (default)")
@@ -1308,8 +1389,10 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--recaption_json", default="", help="defaults to {out_dir}/recaption_prompts.json")
     parser.add_argument("--structured_json", default="", help="defaults to {out_dir}/recaption_structured.json")
 
-    parser.add_argument("--dit_path", default=CHECKPOINT_CREF_SREF_40K)
-    parser.add_argument("--config_path", default=DEFAULT_CONFIG_PATH)
+    parser.add_argument("--dit_path", default=CHECKPOINT_CREF_SREF_40K, help="DiT checkpoint (.safetensors); usually set by --weight_preset")
+    parser.add_argument("--task", default=None, choices=[TASK_SREF, TASK_CREF_SREF], help="sref or cref_sref; usually set by --weight_preset. Controls the default recaption prompt/data root")
+    parser.add_argument("--use_rope", dest="use_rope", action="store_true", default=None, help="enable frequency-aware RoPE modulation (for RoPE-trained weights); usually set by --weight_preset")
+    parser.add_argument("--no_rope", "--no-rope", dest="use_rope", action="store_false", help="disable frequency-aware RoPE modulation")
     parser.add_argument("--ae_path", default=DEFAULT_AE_PATH)
     parser.add_argument("--qwenvl_path", default=DEFAULT_QWENVL_PATH)
     parser.add_argument("--generator_device", default="cuda:0")
@@ -1325,27 +1408,45 @@ def parse_args() -> argparse.Namespace:
 
 def apply_weight_preset(args: argparse.Namespace) -> None:
     preset_name = str(getattr(args, "weight_preset", "") or "").strip()
-    if not preset_name:
-        return
-    preset = WEIGHT_PRESETS[preset_name]
-    args.dit_path = preset["dit_path"]
-    if preset_name == "cref_sref_36000_no_rope" and not Path(args.dit_path).exists():
-        if Path(CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK).exists():
-            print(
-                f"[weight_preset] primary 36000 ckpt not found: {args.dit_path}; "
-                f"using fallback: {CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK}",
-                flush=True,
-            )
-            args.dit_path = CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK
-    args.config_path = preset["config_path"]
-    # If the caller did not explicitly move away from the default CRef+SRef
-    # root, switch sref presets to the sref benchmark root.
-    if getattr(args, "data_root", DEFAULT_DATA_ROOT) == DEFAULT_DATA_ROOT:
-        args.data_root = preset["data_root"]
-    # Use the task's recaption prompt unless the caller explicitly supplied a
-    # different task type on the CLI.
-    if "--recaption_task_type" not in sys.argv and "--recaption-task-type" not in sys.argv:
-        args.recaption_task_type = preset["recaption_task_type"]
+    if preset_name:
+        preset = WEIGHT_PRESETS[preset_name]
+        args.dit_path = preset["dit_path"]
+        if preset_name == "cref_sref_36000_no_rope" and not Path(args.dit_path).exists():
+            if Path(CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK).exists():
+                print(
+                    f"[weight_preset] primary 36000 ckpt not found: {args.dit_path}; "
+                    f"using fallback: {CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK}",
+                    flush=True,
+                )
+                args.dit_path = CHECKPOINT_CREF_SREF_36000_NO_ROPE_FALLBACK
+        # Only fall back to preset values when the caller did not set them on the CLI.
+        if getattr(args, "use_rope", None) is None:
+            args.use_rope = preset["use_rope"]
+        if getattr(args, "task", None) is None:
+            args.task = preset["task"]
+        # If the caller did not explicitly move away from the default CRef+SRef
+        # root, switch sref presets to the sref benchmark root.
+        if getattr(args, "data_root", DEFAULT_DATA_ROOT) == DEFAULT_DATA_ROOT:
+            args.data_root = preset["data_root"]
+        # Use the task's recaption prompt unless the caller explicitly supplied a
+        # different task type on the CLI.
+        if "--recaption_task_type" not in sys.argv and "--recaption-task-type" not in sys.argv:
+            args.recaption_task_type = preset["recaption_task_type"]
+
+    # Resolve final defaults so a custom run (no preset) is still well-defined.
+    if getattr(args, "task", None) is None:
+        args.task = (
+            TASK_SREF
+            if normalize_recaption_task_type(args.recaption_task_type) == RECAPTION_TASK_TYPE_SREF
+            else TASK_CREF_SREF
+        )
+    args.use_rope = resolve_use_rope(getattr(args, "use_rope", None), args.task)
+    # Guard against running the wrong recaption prompt family on a weight.
+    validate_recaption_task_type_for_task(
+        args.task,
+        args.recaption_task_type,
+        str(getattr(args, "weight_preset", "") or ""),
+    )
 
 
 def run_batch(args: argparse.Namespace) -> None:
@@ -1382,9 +1483,11 @@ def run_batch(args: argparse.Namespace) -> None:
     print(f"recaption_json  : {recaption_json}", flush=True)
     print(f"structured_json : {structured_json}", flush=True)
     print(f"recaption_task  : {normalize_recaption_task_type(args.recaption_task_type)}", flush=True)
+    print(f"recaption_prompt: {get_recaption_prompt_template_name(args.recaption_task_type)}", flush=True)
     print(f"basename_txt    : {basename_txt}", flush=True)
     print(f"dit_path        : {args.dit_path}", flush=True)
-    print(f"config_path     : {args.config_path}", flush=True)
+    print(f"task            : {args.task}", flush=True)
+    print(f"use_rope        : {bool(args.use_rope)}", flush=True)
     print("=" * 80, flush=True)
 
     if args.skip_recaption:
@@ -1436,7 +1539,7 @@ def run_batch(args: argparse.Namespace) -> None:
         sref_dir=sref_dir,
         out_dir=out_dir,
         dit_path=args.dit_path,
-        config_path=args.config_path,
+        use_rope=bool(args.use_rope),
         ae_path=args.ae_path,
         qwenvl_path=args.qwenvl_path,
         device=args.generator_device,

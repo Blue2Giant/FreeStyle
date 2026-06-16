@@ -21,7 +21,7 @@
 脚本路径：
 
 ```bash
-/data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO/cref_sref_core_infer.py
+cref_sref_core_infer.py
 ```
 
 这个脚本是从 Gradio 服务中抽出的 **CRef + SRef 核心推理流程**，主要用于：
@@ -53,7 +53,16 @@ SREF_DIR=$DATA_ROOT/sref
 
 ---
 
-## 2. 默认模型与配置
+## 2. 模型与任务 / RoPE 控制（不需要训练 config）
+
+推理用的模型 config 已经**硬编码在 `cref_sref_core_infer.py` 里**，仓库不再附带训练 YAML。两个 flag 控制行为：
+
+| Flag | 取值 | 含义 |
+|---|---|---|
+| `--task` | `sref`, `cref_sref` | 选择任务（默认 recaption prompt 和 benchmark 数据根目录） |
+| `--use_rope` / `--no_rope` | — | 启用 / 关闭 frequency-aware RoPE 调制 |
+
+当 `--use_rope` 时，脚本会用硬编码在 `ROPE_FA_INFERENCE_PARAMS` 里的 RoPE-FA 调制参数构建 DiT，并走 `ImageGeneratorRopeFA` 推理路径；否则走普通 `ImageGenerator`。
 
 默认 40000 base 权重为：
 
@@ -61,35 +70,29 @@ SREF_DIR=$DATA_ROOT/sref
 /mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors
 ```
 
-默认 config 为：
+如果要跑 RoPE 加权版本，显式传 `--use_rope` 和对应权重：
 
 ```bash
-/data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO/configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml
-```
-
-如果要跑 RoPE 加权版本，需要显式传：
-
-```bash
---config_path /data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO/configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml \
+--use_rope \
 --dit_path /mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors
 ```
-
-脚本会检测 config 中的 `rope_fa.enabled: true`，并自动切到 `ImageGeneratorRopeFA` 推理路径。
 
 
 ### 推荐：用 `--weight_preset` 切换常用权重
 
-脚本里已经内置了常用权重 preset，推荐直接传 `--weight_preset`，这样权重路径、config 路径、默认数据根目录和默认 recaption 类型会一起切换：
+脚本里已经内置了常用权重 preset，推荐直接传 `--weight_preset`，这样权重路径、`--task`、`--use_rope`/`--no_rope`、默认数据根目录和默认 recaption 类型会一起切换：
 
-| Preset | 任务 | RoPE? | 权重路径 | Config |
-|---|---|---:|---|---|
-| `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` | `configs/train/0415_qwen_image_sref_noise_query.yaml` |
-| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` | `configs/train/0415_qwen_image_sref_noise_query.yaml` |
-| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` | `configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml` |
-| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` | `configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml` |
-| `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` | `configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml` |
+| Preset | 任务 | RoPE? | 权重路径 |
+|---|---|---:|---|
+| `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` |
+| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` |
+| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` |
+| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` |
+| `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` |
 
-`cref_sref_36000_no_rope` 是 CRef+SRef 的 **无 RoPE 调制** 36000 权重。它不需要传 RoPE 训练 config，直接使用 `0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml`。如果 `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` 在某个 worker 上不可见，脚本会尝试 fallback 到 `/mnt/jfs/model_zoo/checkpoint-36000.safetensors`。
+每个 preset 帮你设置三件事：权重路径（`--dit_path`）、任务（`--task`）、以及是否启用 RoPE（`--use_rope` / `--no_rope`）。命令行上显式传的 `--task` / `--use_rope` / `--no_rope` 会覆盖 preset 的默认值。
+
+`cref_sref_36000_no_rope` 是 CRef+SRef 的 **无 RoPE 调制** 36000 权重，preset 会自动设置 `--no_rope`。如果 `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` 在某个 worker 上不可见，脚本会尝试 fallback 到 `/mnt/jfs/model_zoo/checkpoint-36000.safetensors`。
 
 ---
 
@@ -169,7 +172,9 @@ $OUT_DIR/recaption_structured_shard1.json
 
 ```bash
 --dit_path PATH
---config_path PATH
+--task {sref,cref_sref}    # 选择任务；preset 会自动设置
+--use_rope                 # 启用 frequency-aware RoPE 调制
+--no_rope                  # 关闭 RoPE 调制
 --ae_path PATH
 --qwenvl_path PATH
 --generator_device cuda:0
@@ -186,17 +191,17 @@ $OUT_DIR/recaption_structured_shard1.json
 ## 5. 单 key / 少量 key 示例
 
 ```bash
-cd /data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO
+cd /data/vgo/opensource_cref_sref_core_infer_0615
 
 export VGO_DISABLE_TORCH_COMPILE=1
 export VGO_DISABLE_VARLEN_OPS_COMPILE=1
 export PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32'
 
 python3 cref_sref_core_infer.py \
+  --batch_mode \
   --keys '272737929__low_poly,bear__Statue' \
   --out_dir /mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content/debug_rope50000 \
-  --config_path /data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO/configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml \
-  --dit_path /mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors \
+  --weight_preset cref_sref_rope_50000 \
   --recaption_device cuda:0 \
   --generator_device cuda:0 \
   --width 1024 --height 1024 \
@@ -229,12 +234,12 @@ $OUT_DIR/recaption_structured.json
 
 ```bash
 python3 cref_sref_core_infer.py \
+  --batch_mode \
   --key_txt /path/to/keys.txt \
   --out_dir $OUT_DIR \
   --skip_recaption \
   --recaption_json $OUT_DIR/recaption_prompts.json \
-  --config_path $ROPE_CONFIG \
-  --dit_path $ROPE_50000_CKPT \
+  --weight_preset cref_sref_rope_50000 \
   --generator_device cuda:0 \
   --width 1024 --height 1024 \
   --steps 28 --cfg 8 \
@@ -259,10 +264,8 @@ python3 cref_sref_core_infer.py \
 
 ```bash
 DATA_ROOT=/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content
-WORKDIR=/data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO
+WORKDIR=/data/vgo/opensource_cref_sref_core_infer_0615
 OUT_DIR=$DATA_ROOT/qwen3_style_guard_rope50000_full_4proc_0611
-ROPE_CONFIG=$WORKDIR/configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml
-ROPE_50000_CKPT=/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors
 
 mkdir -p $OUT_DIR/_keys $OUT_DIR/logs
 
@@ -289,12 +292,12 @@ for i in 0 1 2 3; do
   PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32' \
   PYTHONPATH=$WORKDIR \
   nohup python3 $WORKDIR/cref_sref_core_infer.py \
+    --batch_mode \
     --key_txt $OUT_DIR/_keys/shard_${i}.txt \
     --out_dir $OUT_DIR \
     --recaption_json $OUT_DIR/recaption_prompts_shard${i}.json \
     --structured_json $OUT_DIR/recaption_structured_shard${i}.json \
-    --config_path $ROPE_CONFIG \
-    --dit_path $ROPE_50000_CKPT \
+    --weight_preset cref_sref_rope_50000 \
     --recaption_device cuda:0 \
     --generator_device cuda:0 \
     --width 1024 --height 1024 \

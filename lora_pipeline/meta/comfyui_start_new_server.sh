@@ -22,12 +22,12 @@ echo "本次 ComfyUI 输出目录: ${RUN_OUTPUT_DIR}"
 cd /workspace/ComfyUI
 
 # 拷贝所有的custom nodes
-rm -rf /workspace/ComfyUI/custom_nodes
-cp -r /mnt/jfs/comfyui_nodes/custom_nodes /workspace/ComfyUI/
+# rm -rf /workspace/ComfyUI/custom_nodes
+# cp -r /mnt/jfs/comfyui_nodes/custom_nodes /workspace/ComfyUI/
 
 # 创建超分模型的软链接
-rm -rf /workspace/ComfyUI/models/upscale_models
-ln -s  /mnt/jfs/model_zoo/comfyui/ /workspace/ComfyUI/models/upscale_models
+# rm -rf /workspace/ComfyUI/models/upscale_models
+# ln -s  /mnt/jfs/model_zoo/comfyui/ /workspace/ComfyUI/models/upscale_models
 
 # 拷贝我们最新的配置文件
 rm -rf /workspace/ComfyUI/extra_model_paths.yaml

@@ -83,11 +83,7 @@ comfyui:
     diffusion_models: /mnt/jfs/model_zoo/comfyui/
     controlnet: models/controlnet/
     loras: |
-        /mnt/jfs/model_zoo/style_lora/
-        /mnt/jfs/all_loras/civitai/'Flux.1 D'
-        /mnt/jfs/all_loras/civitai/Qwen
-        /mnt/jfs/all_loras/civitai/Illustrious
-        /mnt/jfs/all_loras/civitai/SDXL_1.0
+        /mnt/jfs/model_zoo/style_lora/  #downloaded community lora place in it
     vae: /mnt/jfs/model_zoo/comfyui/
     audio_encoders: models/audio_encoders/
     LLM: /mnt/jfs/model_zoo/comfyui/LLM/
@@ -164,17 +160,11 @@ https://civitai.com/models/1041877
 
 文件位置：`meta/gemini_trigger.txt`
 
-该文件是经过**人工核验**的稳定风格触发词列表，供 Gemini 模型使用。列表中每行一个触发词，格式为：
-
-```
-风格名称
-风格名称_子类别
-前缀-风格描述_分类标签
-```
+该文件是经过**人工核验**的稳定风格触发词列表，供 Gemini 模型使用。列表中每行一个触发词
 
 **用途：** 在使用 Gemini 进行风格判断/分类时，以此列表作为标准风格词汇表。这些触发词已经验证能被 Gemini 稳定识别和区分，避免使用未经验证的触发词导致判断结果不稳定。
 
-**数量：** 共 497 个风格触发词，涵盖传统绘画（油画、水彩、版画）、现代艺术流派（超现实主义、波普、极简）、数字艺术、摄影风格、游戏美术、动画风格、民族/地域艺术等大类。
+**数量：** 共 622 个风格触发词，涵盖传统绘画（油画、水彩、版画）、现代艺术流派（超现实主义、波普、极简）、数字艺术、摄影风格、游戏美术、动画风格、民族/地域艺术等大类。
 
 ### 4.2 Model ID 列表（meta/model_ids/）
 
@@ -217,7 +207,7 @@ https://civitai.com/models/1041877
 
 ---
 
-## 五、批量推理
+## 五、批量生成lora数据
 
 ### 5.1 推理脚本（Python）
 
@@ -227,15 +217,26 @@ https://civitai.com/models/1041877
 - `one_lora_flux.py` / `one_lora_qwen.py` — 单 LoRA 推理，继承基类并注入对应 workflow
 - `dual_lora_flux.py` / `dual_lora_illustrious.py` / `dual_lora_qwen.py` — 双 LoRA 推理
 
-### 5.2 启动脚本（scripts/）
+### 5.2 启动脚本（`scripts/`）
 
-Shell 脚本定义多机 IP 列表和参数，调用 Python 推理脚本进行分布式出图：
+Shell 脚本是**批量跑数据**的入口，每个脚本通过 `while true` 无限循环持续调用 Python 推理脚本，遍历 meta/model_ids/ 下的 model ID 列表和 meta/prompts/ 下的 prompt 模板，在多台 ComfyUI 服务器上并发出图。
+
+脚本内定义了本次任务的关键参数（目标服务器 IP、LoRA 根目录、prompt 文件、model ID 文件、workflow 模板等），只需修改对应变量即可启动不同类型的批量推理任务。
+
+| 脚本 | 任务类型 |
+|------|---------|
+| `scripts/one_lora_flux.sh` | Flux 单 LoRA 批量出图（style / character / other 三组循环） |
+| `scripts/one_lora_qwen.sh` | Qwen 单 LoRA 批量出图（style / character / other 三组循环） |
+| `scripts/illustrious_one_lora_diverse.sh` | Illustrious 单 LoRA 批量出图（style / character / other 三组循环） |
+| `scripts/dual_lora_flux.sh` | Flux 双 LoRA 批量出图 |
+| `scripts/dual_lora_illustrious.sh` | Illustrious 双 LoRA 批量出图 |
+| `scripts/dual_lora_qwen.sh` | Qwen 双 LoRA 批量出图 |
 
 ```bash
-# 示例：启动 Flux 单 LoRA 推理
+# 示例：启动 Flux 单 LoRA 批量推理（将持续运行直到手动中断）
 bash scripts/one_lora_flux.sh
 
-# 示例：启动 Illustrious 双 LoRA 推理
+# 示例：启动 Illustrious 双 LoRA 批量推理
 bash scripts/dual_lora_illustrious.sh
 ```
 
@@ -291,3 +292,30 @@ bash scripts/one_lora_flux.sh
 ```
 
 启动后通过 `http://<host>:8188` 访问第一个实例的 Web UI。
+
+---
+
+## 八、生成图片的相似性判别
+
+LoRA 批量生成的图片需要通过相似性判别来筛选，我们使用 VLM（Qwen3-VL）进行内容与画风的双重判别。
+
+### 判别脚本
+
+位置：`/data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh`
+
+该脚本对每张生成图片同时做两路判别：
+
+- **内容判别**：与 content 参考图比较主体内容和主题是否一致
+- **风格判别**：与 style 参考图比较画风/视觉风格是否一致
+
+### 判别方式：Logits 拒绝采样
+
+与传统的离散打分（如 1-5 分制）不同，我们采用 **logits 拒绝采样**方式：
+
+1. VLM 以 `temperature=0.0` 生成，请求 `top_logprobs` 获取输出 token 的 logit 分布
+2. 从 logit 分布中提取 "0" 和 "1" 两个 token 的 log probability（logp0、logp1）
+3. 通过 `sigmoid(logp1 - logp0)` 计算连续相似度分数（0~1）
+
+这样即使 VLM 的离散输出是 "1"，如果 logp1 和 logp0 很接近（置信度低），分数也会偏低，相当于一种**软拒绝采样**——对置信度不足的样本自动降低权重或丢弃。
+
+实测效果准确率要好于离散的打分判别方式。

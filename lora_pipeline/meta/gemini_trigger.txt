@@ -1,28 +1,57 @@
-
 2D Game Art
+3D Animation
 Abstract Painting
+Aerial Photography
 African Beadwork
 Ai Weiwei_1
+Airbrushing
+Album Cover Art
+American Traditional_Retro_Tattoo Art
+Analytical Cubism
+Andy Warhol
 Animated Films
+Animation
+Anish Kapoor
+Ankama_Animation
 Anselm Kiefer
 Architectural Design
+Architectural Photography
+Argentinian Art
+Art Deco
 Art Nouveau
+Assemblage Art
+Astrophotography
+Augmented Reality (AR) Art
 Australian Aboriginal Art
+Avant-Garde Fashion
 Banksy_1
 Barbara Kruger
 Baroque
 Bas-Relief Sculpture_Sculpture
 Basket Weaving
 Bauhaus
+Bio Art
+Black and White Photography
 Blacklight Poster_Uncategorized
+Body Art
+Bohemian Fashion
 Botanical Illustration
+Boudoir Photography_Photography
+Brazilian Art
 Brazilian Graffiti Art
+Bridal Fashion
+British Art
 Bronze Sculpture
 Bruce Nauman
 Brutalism
+Cabinet of Curiosities_Occult
+Cake Decorating
+Candid Portrait Photography
 Caravaggio
 Caribbean Carnival Art
+Caricature
 Carnival Freakshow_Retro
+Caspar David Friedrich
 Cecily Brown
 Celtic Knotwork Art
 Celtic Mythology Art
@@ -33,6 +62,9 @@ Ceramic Design
 Ceramic Sculpture
 Chalk Art
 Charcoal Drawing
+Charles Ray
+Children's Fashion
+Children's Theater
 Chilean Art
 Chinese Art
 Chinese Ink Painting
@@ -40,20 +72,37 @@ Chinese Jade Carving
 Chinese Paper Cutting
 Chris Ofili
 Cindy Sherman_1
+Cinematography
 Circus Arts
 Classic Western
+Classical Art
+Classical Realism
 Claude Monet
 Collage
 Collage Art
 Colombian Art
 Commercial Photography
+Computer art
+Concept Art for Movies
+Concept Art for Video Games
 Conceptual Art
 Concert Poster Design
 Constructivism Art
 Creepy Children_Portraiture
+Creepy Porcelain Doll_Fashion_Portraiture
 Crime Films
+Critical Realism_Uncategorized
+Cuban Art
 Cubism
+Cubism Art
+ads-advertising_Uncategorized
+ads-automotive_Uncategorized
+ads-corporate_Uncategorized
+ads-fashion editorial_Fashion
 ads-food photography_Photography
+ads-luxury_Uncategorized
+ads-real estate_Photography
+ads-retail_Uncategorized
 artstyle-abstract expressionism_Uncategorized
 artstyle-abstract_Uncategorized
 artstyle-art deco_Uncategorized
@@ -62,6 +111,8 @@ artstyle-constructivist_Uncategorized
 artstyle-cubist_Uncategorized
 artstyle-expressionist_Uncategorized
 artstyle-graffiti_Architecture_Graffiti
+artstyle-hyperrealism_Photography
+artstyle-impressionist_Uncategorized
 artstyle-pointillism_Uncategorized
 artstyle-pop art_Culture
 artstyle-psychedelic_Surrealism
@@ -74,21 +125,35 @@ carpint_Gothic
 coolio_Portraiture
 Cyberpunk Fantasy Art
 Dadaism
+Damien Hirst_1
 Dan Flavin
+Dance Performance Art
 Dark Fantasy Art
 Die Brucke_Graffiti
+Diego Velazquez
 Dieselpunk_Retro
 Digital Animation
 Digital Art
 Digital Illustration
+Digital Painting
+Digital Sculpture
+Diorama_Uncategorized
 Disney Animation_Animation
+Documentary Films
+Documentary Photography
+Drama Films
+Dutch Art
+Earth Art
 East African Art
 Eco Art
 Eco-Art
 Ed Ruscha
+Edgar Degas
 Edvard Munch
+Edward Hopper
 Egyptian Mythology Art
 El Anatsui
+Elegant_Erotic_Photography
 Embroidery
 Environmental Art
 Ephemeral Art
@@ -103,24 +168,33 @@ Fantasy
 Fashion Illustration
 Fashion Photography
 Fauvism
+Filipino Art
 Fine Art Photography
 Fine_Art_Black_and_White_Photography
 Folk Art Variant_Folk Art
 Folk Art_Folk Art
 Folk Music Art
 Food Art
+Food Photography
 Francisco Goya
 French Art
 French Impressionism
 Fresco Painting Technique
+Frida Kahlo
 Futurism
+Gabriel Orozco
 Galactic_Sci-Fi
+Game Design
+Generative Art
 Geometric Abstraction
 Geometric abstract painting
 Georg Baselitz
 Georgia O'Keeffe
 Gerhard Richter_1
+German Art
 Ghibli_Surrealism
+Glamorous_Erotic_Photography
+Glass Sculpture
 Glenn Ligon
 Glitch Art_Uncategorized
 Graffiti Art
@@ -158,6 +232,8 @@ futuristic-sci-fi_Sci-Fi
 futuristic-vaporwave_Sci-Fi_Retro
 game-bubble bobble_Fantasy
 game-cyberpunk game_Sci-Fi_Dystopia_Games_Digital Media
+game-fighting game_Games
+game-gta_Uncategorized
 game-mario_Fantasy_Comics
 game-minecraft_Still Life
 game-pokemon_Fantasy
@@ -218,16 +294,22 @@ Landscape Photography
 Leonardo da Vinci
 Lettrist artwork
 Light Art
+Lithography
 Lovecraftian Horror_Horror
+Luxury Fashion
 Macabre Memento Mori_Horror_Horror & Dark_Still Life
 Machinima Variant_Uncategorized
+Macro Photography
 Madhubani Painting
 Magic Realist painting
 Mall Goth_Portraiture_Gothic
 Mannerism
 Maori Wood Carving
+Marina Abramovic
 Mark Bradford
 Mark Grotjahn
+Martin Puryear
+Maurizio Cattelan
 Maximalism
 Media Art
 Medical Oddities_Uncategorized
@@ -240,10 +322,12 @@ Metalwork
 Mexican Art
 Mexican Muralism
 Mexican Skull Art_Uncategorized
+Michelangelo
 Minimalism
 Mixed Media Art
 Mixer_Animation
 Mona Hatoum
+Monoprinting Technique
 Mosaic
 Movie Storyboard_Uncategorized
 Mughal Miniature Painting
@@ -252,12 +336,16 @@ Native American Art
 Native American Basketry
 Native American Mythology Art
 Native American Pottery
+Nature Landscape Photography
+Nature Photography
 Nautical_Retro
 Neo Rauch
 Neo-Dada_Uncategorized
 Neo-Expressionism_Uncategorized
+Neo-Gothic Architecture
 Neo-Noir
 Neo-Pop (1)_Pop Culture_Culture
+Neo-primitivism (1)_Still Life
 Neoclassicism
 Neon Lighting_Uncategorized
 Neoplasticism
@@ -268,17 +356,21 @@ misc-disco_Retro
 misc-dreamscape_Fantasy_Surrealism
 misc-dystopian_Dystopia
 misc-fairy tale_Fantasy
+misc-gothic_Gothic
 misc-grunge_Retro
 misc-horror_Horror
 misc-horror_Horror_Horror & Dark
 misc-kawaii_Uncategorized
 misc-lovecraftian_Surrealism_Horror
 misc-macabre_Gothic
+misc-manga_Uncategorized
 misc-metropolis_Sci-Fi_Architecture
 misc-minimalist_Uncategorized
 misc-monochrome_Uncategorized
+misc-nautical_Uncategorized
 misc-space_Sci-Fi
 misc-stained glass_Uncategorized
+misc-tribal_Uncategorized
 misc-zentangle_Uncategorized
 mkkk_Portraiture_Digital Media_Animation
 Nicole Eisenman
@@ -292,6 +384,7 @@ Olafur Eliasson
 Op Art
 Op Art_Uncategorized
 Opera Music Illustration
+Outsider Art_Uncategorized
 Pablo Picasso
 Pandora
 Paper Cutting
@@ -299,9 +392,15 @@ Paper Mache Art
 Parametric Architecture
 Participatory Art
 Paul Cezanne
+Performance Art
+Performance Sculpture
 Peruvian Art
 Petra
+Photography
+Photojournalism
 Photorealism
+Photorealistic painting
+Pinup_Retro
 Pixel Art
 Plein Air Painting
 Plotter Art Variant_Uncategorized
@@ -313,6 +412,7 @@ Polynesian Tattoo Art
 Pop Art
 Pop art style
 Porcelain Art
+Portrait Photography
 Portuguese Art
 Post-Impressionism
 Pottery
@@ -322,18 +422,23 @@ Projection Mapping Art
 Propaganda Art_Retro
 Propaganda Poster_Uncategorized
 Provocative_Surreal_Photography
+Pseudorealism_Uncategorized
 Psychedelic Concert Posters
 Psychedelic Pop Art_Surrealism
 Public Art Installations
 Public Sculptures
+Punk Fashion
 Puppetry
 Quilting
 Quilting Art
 Rachel Whiteread
+Radical Realism (1)_Still Life
 Rangoli (Indian Floor Art)
 Raphael
 Rashid Johnson
+Realism Art
 Recycled Art
+Rembrandt
 Remodernism Variant_Uncategorized
 Renaissance
 Renaissance Art
@@ -348,11 +453,14 @@ Rococo Art
 Roman Mosaic Art
 Roman Mythology Art
 Romance
+Romanticism
 Romanticism Art
+Rural Photography
 Russian Art
 Russian Icon Painting
 Salvador Dali
 Sand Sculpture
+Sandro Botticelli
 Sarah Sze
 Satire
 Scandinavian Art
@@ -369,10 +477,15 @@ papercraft-stacked papercut_Uncategorized
 papercraft-thick layered papercut_Uncategorized
 photo-alien_Sci-Fi_Photography
 photo-film noir_Photography
+photo-hdr_Photography
 photo-long exposure_Photography_Surrealism
 photo-neon noir_Photography
+photo-silhouette_Photography
+photo-tilt-shift_Photography
 sai-3d-model_Uncategorized
+sai-analog film_Retro_Photography
 sai-anime_Uncategorized
+sai-cinematic_Uncategorized
 sai-comic book_Uncategorized
 sai-craft clay_Sculpture
 sai-digital art_Digital Media
@@ -382,7 +495,9 @@ sai-line art_Uncategorized
 sai-lowpoly_Uncategorized
 sai-neonpunk_Uncategorized
 sai-origami_Uncategorized
+sai-photographic_Photography
 sai-pixel art_Uncategorized
+sai-texture_Uncategorized
 Sci-Fi Films
 Screen Printing
 Sculpture
@@ -395,12 +510,16 @@ Skateboarding Fashion
 Slavic Mythology Art
 Smothering Earth_Fantasy
 Social Realism painting
+Sonnet
 Sound Art
 Sound Sculpture
 South African Art
 South American Textile Art
+Southwest Kachina Dolls
+Spaghetti Western
 Spanish Art
 Sports Card_Photography_Portraiture
+Sports Photography
 Spring Art
 Stained Glass Art
 Stained Glass_Uncategorized
@@ -470,6 +589,7 @@ Vietnamese Art
 Vija Celmins
 Vincent Van Gogh
 Vintage Baseball_Retro_Photography
+Vintage Halloween Costume_Retro
 Vintage Halloween Mask_Retro
 Vintage Halloween_Retro
 Vintage Robot Toy_Sci-Fi_Retro
@@ -486,9 +606,12 @@ Wassily Kandinsky
 Water Art
 Watercolor Painting
 Weaving
+Wedding Photography
 West African Art
+Wildlife Photography
 William Kentridge
 Winter Art
+Wolfgang Tillmans
 Wood Carving
 Woodblock Art_Nature
 Woodblock Print_Uncategorized
@@ -496,3 +619,4 @@ Woodblock Printing
 Woodcut
 Xilam_Comics_Animation
 Yayoi Kusama
+stfhgff_Photography

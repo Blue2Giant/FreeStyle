@@ -172,6 +172,7 @@ def load_models(
     ae_path: str | None = None,
     qwenvl_model_path: str | None = None,
     config_path="",
+    config_obj=None,
     device="cuda",
     max_length=2048,
     dtype=torch.bfloat16,
@@ -181,11 +182,11 @@ def load_models(
     if qwenvl_model_path is None:
         qwenvl_model_path = "/data/midjourney/model_zoo/ckpts/Qwen2.5-VL-7B-Instruct"
 
-    if config_path:
+    if config_obj is not None or config_path:
         from omegaconf import OmegaConf
 
         default_config = OmegaConf.structured(DiTParams)
-        config = OmegaConf.load(config_path)
+        config = config_obj if config_obj is not None else OmegaConf.load(config_path)
         pipe_config = config.engine_config.pipe
         if (not qwenvl_model_path) and pipe_config.llm_model_path is not None:
             qwenvl_model_path = pipe_config.llm_model_path
@@ -267,6 +268,7 @@ class ImageGenerator:
         max_length=2048,
         dtype=torch.bfloat16,
         config_path="",
+        config_obj=None,
     ) -> None:
         self.device = torch.device(device) if world_mesh is None else torch.cuda.current_device()
         self.ae, self.dit, self.llm_encoder = load_models(
@@ -277,6 +279,7 @@ class ImageGenerator:
             dtype=dtype,
             device=self.device,
             config_path=config_path,
+            config_obj=config_obj,
         )
 
         if world_mesh is not None:

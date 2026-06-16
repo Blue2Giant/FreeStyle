@@ -1,16 +1,10 @@
 # Export Manifest
 
-Source: /data/vgo/xingpeng/new_vgo/Sref_Cref_MiniVGO
-Destination: /data/vgo/opensource_cref_sref_core_infer_0615
 Updated: 2026-06-16 00:13:44 HKT
 
 ## Files
 - assets/00-cref.jpg
 - assets/00-sref.jpg
-- configs/data/0426_cref_sref_full_diffusion_no_illutrious.yaml
-- configs/train/0415_qwen_image_sref_noise_query.yaml
-- configs/train/0426_qwen_cref_sref_full_diffusion_no_illustrious.yaml
-- configs/train/0506_qwen_cref_sref_from40000_no_illutrious_rope.yaml
 - cref_sref_core_infer.py
 - CREF_SREF_CORE_INFER_USAGE.md
 - .gitignore

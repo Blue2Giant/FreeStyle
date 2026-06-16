@@ -10,8 +10,10 @@ It contains only project code/configs needed to run the core CRef+SRef inference
 - RoPE-FA inference wrapper: `multi_cref_eval_rope_fa.py`
 - Core VGO package: `vgo/`
 - Local lightweight `torchvision/` compatibility shim used by this project
-- Base and RoPE configs under `configs/train/`
-- Referenced data config under `configs/data/`
+
+The inference model config is hard-coded in `cref_sref_core_infer.py`; no training
+YAMLs are shipped. RoPE and task selection are controlled by `--use_rope`/`--no_rope`
+and `--task` (or via `--weight_preset`).
 
 The final generator prompt is parsed from the Qwen3-VL JSON as:
 
@@ -43,8 +45,8 @@ Two minimal launcher scripts are included. They intentionally use hard-coded Pyt
 
 - `run_sref_infer.sh`: SRef example, choose `sref_14000` or `sref_12000`; uses `--recaption_task_type sref`.
 - `run_cref_sref_infer.sh`: CRef+SRef example, choose one of:
-  - `cref_sref_rope_50000`: RoPE weight + RoPE config.
-  - `cref_sref_40000`: no-RoPE 40000 weight + normal config.
-  - `cref_sref_36000_no_rope`: no-RoPE 36000 weight at `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` + normal config.
+  - `cref_sref_rope_50000`: RoPE weight (preset sets `--use_rope`).
+  - `cref_sref_40000`: no-RoPE 40000 weight (preset sets `--no_rope`).
+  - `cref_sref_36000_no_rope`: no-RoPE 36000 weight at `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` (preset sets `--no_rope`).
 
 The Python entrypoint supports the same presets via `--weight_preset`; full examples are in `WEIGHT_PRESETS_USAGE.md`.

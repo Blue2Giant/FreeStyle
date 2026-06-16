@@ -39,58 +39,73 @@
 
       <div class="hero-grid">
         <section class="hero-copy reveal">
-          <p class="eyebrow">Project Page</p>
+          <p class="eyebrow">CVPR 2026 · Project Page</p>
           <h1>FreeStyle</h1>
-          <p class="hero-tagline">
-            Community LoRA Mining for style-reference stylization and dual-reference generation.
+          <p class="paper-title">
+            Free Control of Style Content Generation from Community LoRA Mining
           </p>
-          <p class="hero-description">
-            Style- and content-dual-reference generation aims to synthesize an image that preserves
-            the structure and semantics of a content reference while adopting the visual style of a
-            separate style reference. Despite recent progress in reference-based generation, this
-            setting remains challenging because models must balance content fidelity, style
-            alignment, and instruction following without leaking semantic content from the style
-            reference. A key bottleneck is the lack of large-scale triplet data with clean
-            content-style separation and broad long-tail style coverage. Existing data construction
-            pipelines struggle to meet this need, as they either cover only a narrow set of styles,
-            require costly manual curation, or produce triplets with imperfect content-style
-            separation. In this work, we propose FreeStyle, a scalable dual-reference generation
-            framework based on community LoRA mining. We treat community LoRAs as compositional
-            anchors for style and content, and design a rigorous generation and filtering pipeline
-            to construct large-scale Style-Reference (SRef) and Content-Reference (CRef) triplets
-            across multiple base models.
-            We also introduce a benchmark covering style-reference and content-style dual-reference generation, with evaluations on style similarity, content preservation, aesthetics, instruction following, and leakage rejection.
-            To improve content-style disentanglement beyond data construction, FreeStyle further
-            introduces an attention-level constraint that suppresses style-reference leakage while
-            preserving style richness, along with a RoPE weighting method, leading to a better
-            balance among style alignment, content fidelity, and leakage control.
+
+          <ol class="author-list" aria-label="Authors">
+            <li>Jinghong Lan<sup>1,2,*</sup></li>
+            <li>Wei Cheng<sup>2,*</sup></li>
+            <li>Yunuo Chen<sup>2</sup></li>
+            <li>Ziqi Ye<sup>1</sup></li>
+            <li>Peng Xing<sup>2</sup></li>
+            <li>Yixiao Fang<sup>2</sup></li>
+            <li>Yufeng Yang<sup>2</sup></li>
+            <li>Xuanyang Zhang<sup>2</sup></li>
+            <li>Rui Wang<sup>2</sup></li>
+            <li>Xianfang Zeng<sup>2</sup></li>
+            <li>Gang Yu<sup>2,&#8225;</sup></li>
+            <li>Chi Zhang<sup>3,&#8225;</sup></li>
+          </ol>
+
+          <ul class="affiliation-list" aria-label="Affiliations">
+            <li><sup>1</sup> Fudan University</li>
+            <li><sup>2</sup> StepFun</li>
+            <li><sup>3</sup> Westlake University</li>
+          </ul>
+          <p class="author-note">
+            <span>* Equal contribution.</span>
+            <span>&#8225; Corresponding authors.</span>
+          </p>
+
+          <p class="hero-abstract">
+            We propose <strong>FreeStyle</strong>, a scalable dual-reference generation framework
+            based on community LoRA mining. Treating community LoRAs as compositional anchors for
+            style and content, we design a rigorous generation and filtering pipeline to build
+            large-scale Style-Reference (SRef) and Content-Reference (CRef) triplets across multiple
+            base models, together with a benchmark for style-reference and dual-reference
+            generation. An attention-level constraint and a RoPE weighting method further suppress
+            style-reference leakage while preserving style richness.
           </p>
 
           <div class="hero-actions hero-links">
             <a class="button button-primary" href="#" aria-label="Paper link placeholder">Paper</a>
-            <a class="button button-secondary" href="#" aria-label="Dataset link placeholder">Dataset</a>
-            <a class="button button-secondary" href="#" aria-label="Model weights link placeholder">Model Weights</a>
-            <a class="button button-secondary" href="#" aria-label="Benchmark link placeholder">Benchmark</a>
-            <a class="button button-secondary" href="#" aria-label="GitHub link placeholder">GitHub</a>
-          </div>
-
-          <div class="stat-grid">
-            <article class="stat-card">
-              <span class="stat-value">1,500+</span>
-              <span class="stat-label">CRef + SRef style types</span>
-            </article>
-            <article class="stat-card">
-              <span class="stat-value">800M</span>
-              <span class="stat-label">CRef + SRef pairs</span>
-            </article>
-            <article class="stat-card">
-              <span class="stat-value">600+</span>
-              <span class="stat-label">SRef style types</span>
-            </article>
-            <article class="stat-card">
-              <span class="stat-value">150k</span>
-              <span class="stat-label">SRef pairs</span>
-            </article>
+            <a
+              class="button button-secondary"
+              href="https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Dataset</a>
+            <a
+              class="button button-secondary"
+              href="https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Model Weights</a>
+            <a
+              class="button button-secondary"
+              href="https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Benchmark</a>
+            <a
+              class="button button-secondary"
+              href="https://github.com/Blue2Giant/FreeStyle"
+              target="_blank"
+              rel="noopener noreferrer"
+            >GitHub</a>
           </div>
         </section>
       </div>
@@ -100,11 +115,17 @@
       <section class="section" id="dataset">
         <div class="section-head reveal">
           <p class="eyebrow">Dataset</p>
-          <h2>A dataset split into SRef and CRef + SRef evaluation</h2>
+          <h2>A dataset covering both reference settings</h2>
           <p>
-            The benchmark covers style-only stylization and the harder dual-reference setting. Both
-            sections below use the same triplet grammar so the relationship between references,
-            prompt, and target remains legible.
+            FreeStyle covers <strong>both</strong> reference settings. The <strong>CRef+SRef</strong>
+            dataset provides triplets
+            for content-and-style <strong>dual-reference generation</strong> &mdash;
+            <span class="hl"> with 480K</span> sequences (Flux <span class="hl">273,682</span> +
+            Illustrious <span class="hl">172,589</span> + Qwen <span class="hl">33,582</span>)
+            spanning <span class="hl">1,704 styles</span> &mdash; while the traditional
+            <strong>SRef</strong> dataset targets <strong>pure style-reference generation</strong> with
+            <span class="hl hl-alt">619,302</span> sequences across
+            <span class="hl hl-alt">622 styles</span>.
           </p>
         </div>
 
@@ -126,7 +147,7 @@
             <p class="panel-kicker">CRef + SRef dataset</p>
             <h3>Content and Style Reference Pair Generated By Community LoRA</h3>
             <p>
-              We mine the community LoRAs to find the effective style and content LoRAs, and then combine them to generate the dual-reference dataset. The dual-reference dataset covers a wide range of styles and content, which is more challenging for the model to learn the disentanglement of style and content.
+              We mine the community LoRAs to find the effective style and content LoRAs, and then combine them to generate the dual-reference dataset. The dual-reference dataset covers a wide range of styles and content, which has a positive impact on learning the disentanglement of style and content.
             </p>
           </header>
           <div class="scroll-box scroll-box-list">
@@ -153,11 +174,9 @@
       <section class="section" id="dual">
         <div class="section-head reveal">
           <p class="eyebrow">CRef + SRef result</p>
-          <h2>CRef + SRef composition: content and style stay disentangled</h2>
+          <h2>CRef + SRef generation: follow instructions</h2>
           <p>
-            The dual-reference gallery keeps all three images at equal prominence so the benchmark
-            logic remains transparent. Each card also exposes the original prompt sampled for that
-            pair.
+            Under the various style setting and the disentanglement feature of style and content of our dataset, our model tackles the dual-reference generation task better.
           </p>
         </div>
         <div class="scroll-box scroll-box-grid">

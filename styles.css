@@ -204,6 +204,85 @@ a {
   max-width: none;
 }
 
+.paper-title {
+  margin: 16px 0 22px;
+  font-family: "Fraunces", serif;
+  font-size: clamp(1.25rem, 2.1vw, 1.85rem);
+  line-height: 1.28;
+  color: var(--ink);
+}
+
+.author-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  margin: 0 0 14px;
+  padding: 0;
+  font-size: 1.04rem;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.author-list li {
+  white-space: nowrap;
+}
+
+.author-list sup,
+.affiliation-list sup {
+  color: var(--accent-deep);
+  font-weight: 600;
+}
+
+.affiliation-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+  margin: 0 0 10px;
+  padding: 0;
+  font-size: 0.98rem;
+  color: var(--ink-soft);
+}
+
+.author-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin: 0 0 4px;
+  font-size: 0.86rem;
+  color: var(--ink-soft);
+}
+
+.hero-abstract {
+  margin: 20px 0 4px;
+  font-size: 1.02rem;
+  line-height: 1.72;
+  color: var(--ink-soft);
+}
+
+.hero-abstract strong {
+  color: var(--ink);
+}
+
+.section-head code {
+  font-family: "SFMono-Regular", ui-monospace, Menlo, Consolas, monospace;
+  font-size: 0.88em;
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: rgba(215, 109, 46, 0.12);
+  color: var(--accent-deep);
+}
+
+.hl {
+  font-weight: 700;
+  color: var(--accent-deep);
+}
+
+.hl-alt {
+  color: var(--accent-alt);
+}
+
 .hero-description,
 .section-head p,
 .copy-panel p,

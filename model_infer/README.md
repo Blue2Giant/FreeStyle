@@ -163,7 +163,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
+  '一只猫趴在壁炉前面，迁移图2的风格到图1上' \
   --weight_preset cref_sref_40000 \
   --out_dir outputs/cref_sref_40000_demo \
   --recaption_task_type identity_style \
@@ -193,7 +193,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  '一只猫趴在壁炉前，迁移图2的风格到图1上' \
+  '这只猫趴在壁炉前，迁移图2的风格到图1上' \
   --weight_preset cref_sref_36000_no_rope \
   --out_dir outputs/cref_sref_36000_no_rope_demo \
   --recaption_task_type identity_style \

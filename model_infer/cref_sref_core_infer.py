@@ -273,9 +273,13 @@ QWEN3_CREF_SREF_USER_PROMPT = """
 
 [Recaption task]
 Write a clean generation prompt for the final target image.
-The final image must depict the Original user prompt. It should have the abstract
+The Original user prompt is the single source of truth for content: every subject,
+object, attribute, count, action, and spatial relation it states must appear in the
+final image, and nothing that contradicts it may be added or dropped. The final
+image must faithfully depict the Original user prompt. It should have the abstract
 visual style of Image 2, but it must not contain Image 2's concrete subjects,
-objects, scene layout, props, actions, or story.
+objects, scene layout, props, actions, or story. Whenever the user prompt and the
+reference images disagree about content, always follow the user prompt.
 
 [Style extraction rules]
 Allowed style words: art medium, brushwork/line quality, edge treatment, color
@@ -306,7 +310,7 @@ it into neutral visual traits instead of naming or inserting that content.
     "sample_instruction_cn_123": "一句自然中文生成指令：目标内容 + 抽象画风，不出现参考图/场景编号/风格图内容"
   },
   "independent_captions": {
-    "scene_3": "最终图像的独立中文描述：严格遵循用户提示词的内容，并带有抽象画风；不得包含风格图里的具体内容"
+    "scene_3": "最终图像的独立中文描述：必须完整、严格地复现用户提示词中的所有内容要素（主体、数量、属性、动作、空间关系），不得遗漏、改写或添加与之矛盾的内容；在此基础上叠加抽象画风；不得包含风格图里的具体内容"
   }
 }
 """.strip()
@@ -1418,7 +1422,7 @@ def parse_args() -> argparse.Namespace:
 
     parser.add_argument("--recaption_model_path", default=DEFAULT_QWEN3_MODEL_PATH)
     parser.add_argument("--recaption_device", default="cuda:0")
-    parser.add_argument("--recaption_max_new_tokens", type=int, default=1024)
+    parser.add_argument("--recaption_max_new_tokens", type=int, default=2048)
     parser.add_argument("--recaption_image_long_edge", type=int, default=512)
     parser.add_argument("--recaption_image_tokens", type=int, default=188)
     parser.add_argument("--recaption_task_type", default=RECAPTION_TASK_TYPE_IDENTITY_STYLE, help="Recaption prompt family. sref/style_transfer -> recaption.py:PROMPT_WITH_INSTUCTION_CREF_SREF_STYLE_TRANSFER (full style-transfer template); identity_style/cref_sref -> QWEN3_CREF_SREF_USER_PROMPT (CRef+SRef). SRef weights accept sref/style_transfer; CRef+SRef weights accept identity_style/cref_sref/style_transfer.")

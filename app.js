@@ -90,7 +90,7 @@ function syncTripletAspectFromOutput(card) {
   }
 }
 
-function renderTripletCard(sample) {
+function renderTripletCard(sample, { withCopy = true } = {}) {
   const card = document.createElement("article");
   card.className = "triplet-card";
 
@@ -98,7 +98,7 @@ function renderTripletCard(sample) {
   card.append(triptych);
   syncTripletAspectFromOutput(card);
 
-  if (sample.prompt) {
+  if (withCopy && sample.prompt) {
     const copy = document.createElement("div");
     copy.className = "triplet-copy";
 
@@ -426,20 +426,52 @@ async function main() {
   const data = await response.json();
   const sampleMap = new Map(data.samples.map((sample) => [sample.id, sample]));
 
-  const renderInto = (container, ids, renderer) => {
-    ids.forEach((id) => {
-      const sample = sampleMap.get(id);
-      if (!sample) return;
-      const card = renderer(sample);
-      container.appendChild(card);
-      observeCardForLazyMount(card);
+  // Build a section as one or more horizontal auto-scrolling marquee rows.
+  // Samples are spread round-robin across rows for visual variety; each row
+  // is duplicated once so the CSS translateX(-50%) loop is seamless. Rows
+  // alternate scroll direction, and the duration scales with card count to
+  // keep the linear speed constant regardless of how full a row is.
+  const buildMarquee = (container, ids, rowCount) => {
+    const samples = ids.map((id) => sampleMap.get(id)).filter(Boolean);
+    if (!samples.length) return;
+
+    const rows = Array.from({ length: rowCount }, () => []);
+    samples.forEach((sample, index) => rows[index % rowCount].push(sample));
+
+    rows.forEach((rowSamples, rowIndex) => {
+      if (!rowSamples.length) return;
+
+      const marquee = document.createElement("div");
+      marquee.className = "marquee";
+
+      const track = document.createElement("div");
+      track.className = `marquee-track ${rowIndex % 2 === 0 ? "to-left" : "to-right"}`;
+      // ~8s per card, never faster than a 30s loop.
+      track.style.setProperty("--marquee-dur", `${Math.max(30, rowSamples.length * 8)}s`);
+
+      // Originals: mount thumbnails now so the cloned half ships with src set.
+      rowSamples.forEach((sample) => {
+        const card = renderTripletCard(sample, { withCopy: false });
+        mountCardImages(card);
+        track.appendChild(card);
+      });
+
+      // Duplicate the set for the seamless -50% loop.
+      Array.from(track.children).forEach((card) => {
+        const clone = card.cloneNode(true);
+        clone.setAttribute("aria-hidden", "true");
+        track.appendChild(clone);
+      });
+
+      marquee.appendChild(track);
+      container.appendChild(marquee);
     });
   };
 
-  renderInto(sectionContainers.datasetSref, data.sections.datasetSref, renderTripletCard);
-  renderInto(sectionContainers.datasetDual, data.sections.datasetDual, renderTripletCard);
-  renderInto(sectionContainers.resultsSref, data.sections.resultsSref, renderTripletCard);
-  renderInto(sectionContainers.resultsDual, data.sections.resultsDual, renderTripletCard);
+  buildMarquee(sectionContainers.resultsSref, data.sections.resultsSref, 2);
+  buildMarquee(sectionContainers.resultsDual, data.sections.resultsDual, 2);
+  buildMarquee(sectionContainers.datasetSref, data.sections.datasetSref, 2);
+  buildMarquee(sectionContainers.datasetDual, data.sections.datasetDual, 3);
 
   setupReveal();
   setupPlaceholderLinks();

@@ -13,7 +13,7 @@
 <a href="https://github.com/yfyang007/"><b>Yufeng Yang</b></a><sup>2</sup> &nbsp;
 <a href="https://scholar.google.com/citations?user=oPV20eMAAAAJ&hl=zh-CN"><b>Xuanyang Zhang</b></a><sup>2</sup> &nbsp;
 <a href="https://scholar.google.com/citations?user=tgDc0fsAAAAJ&hl=en"><b>Xianfang Zeng</b></a><sup>2</sup> &nbsp;
-<a href="https://scholar.google.com/citations?user=Cp4fcTQAAAAJ&hl=zh-CN"><b>Difan Zou</b></a><sup>4</sup> &nbsp;
+<a href="https://difanzou.github.io/"><b>Difan Zou</b></a><sup>4</sup> &nbsp;
 <a href="https://www.skicyyu.org/"><b>Gang Yu</b></a><sup>2‡</sup> &nbsp;
 <a href="https://icoz69.github.io/"><b>Chi Zhang</b></a><sup>3‡</sup>
 </p>

@@ -15,8 +15,6 @@ import torch
 from loguru import logger
 from pydantic import BaseModel
 from torch.utils.data.dataset import IterableDataset
-from vault.backend.lance import LanceTaker
-from vault.schema import ID
 
 from vgo.data.processor.image_shape_mapping import create_router_and_targetsizer
 from vgo.data.sampler import AttrToLenIndexSampler, IndexSampler, SampleInstance
@@ -142,6 +140,9 @@ class PackSequence(BaseModel):
 
     def convert_to_train_sequence(self, sequence_choice_idx) -> TrainingSequence:
         import os
+
+        # vault (step-vault) is only needed for training-time data loading, not inference.
+        from vault.schema import ID
 
         keep_text_idx = os.environ.get("VGO_KEEP_TEXT_INDEX", "").strip() or None
 
@@ -413,6 +414,10 @@ class VaultSequenceLoader:
         return self._random
 
     def get_pack_sequence_from_ids(self, sequence_ids: list[tuple[UUID, int]]) -> list[TrainingSequence]:
+        # vault (step-vault) is only needed for training-time data loading, not inference.
+        from vault.backend.lance import LanceTaker
+        from vault.schema import ID
+
         with duckdb.connect(megfile.smart_path_join(self.vault_train_folder, "train.db"), read_only=True) as conn:
             samples = conn.execute(
                 """

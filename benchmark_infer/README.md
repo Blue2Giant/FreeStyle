@@ -218,6 +218,7 @@ Or run a single category:
 ```bash
 bash scripts/metrics/encoder_batch.sh           # CSD/OneIG/DINOv2/CAS/CLIP-T/aesthetic
 bash scripts/metrics/style_similarity_batch.sh  # VLM style consistency
+bash scripts/metrics/content_leakage_batch.sh    # VLM content leakage
 bash scripts/metrics/content_similarity_batch.sh
 bash scripts/metrics/instruction_score.sh
 bash scripts/metrics/triplet_qwen_dual_judge.sh
@@ -228,6 +229,7 @@ Metric overview:
 | Dimension | Implementation | Metrics |
 |---|---|---|
 | Style consistency | encoder | CSD, OneIG |
+| Content leakage | VLM | Qwen3-VL content leakage score (0-10) |
 | Content consistency | encoder | DINOv2, CAS |
 | Instruction following | encoder / VLM | CLIP-T, VLM scoring |
 | Aesthetic quality | encoder | LAION, Aesthetic v2.5, OneAlign |

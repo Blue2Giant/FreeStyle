@@ -99,7 +99,7 @@ We release the full stack behind FreeStyle:
 |---|---|---|
 | 🤗 **Dataset** | Large-scale style–content dual-reference triplets across multiple base models. | [FreeStyle Dataset](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset) |
 | 🤗 **Benchmark** | SRef & CRef+SRef evaluation sets (`sref` / `cref_sref` tasks). | [FreeStyle Bench](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench) |
-| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). | Coming Soon ... |
+| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). |[FreeStyle Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint) |
 | 🤗 **LoRA Mining Metadata** | Curated community LoRA IDs, verified trigger words, prompt pools, and ComfyUI workflows. | [FreeStyle Lora Meta](https://huggingface.co/datasets/Blue2Giant/free_style_lora_meta) |
 | 🌐 **Project Page** | Interactive results, comparisons, and qualitative galleries. | [Project Page](https://blue2giant.github.io/FreeStyle/) |
 

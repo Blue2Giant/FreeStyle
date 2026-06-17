@@ -73,7 +73,7 @@ dmypy.json
 .pytype/
 .ruff_cache/
 cython_debug/
-
+sref_upload/
 # ===== Jupyter / IPython =====
 .ipynb_checkpoints
 profile_default/

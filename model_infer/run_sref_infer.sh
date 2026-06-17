@@ -47,7 +47,7 @@ python3 cref_sref_core_infer.py \
   --recaption_task_type style_transfer \
   --width 1024 \
   --height 1024 \
-  --steps 8 \
+  --steps 28 \
   --cfg 8 \
   --seed 42 \
   --overwrite

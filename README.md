@@ -128,7 +128,7 @@ python3 cref_sref_core_infer.py \
   --weight_preset sref_12000 \
   --recaption_task_type style_transfer \
   --out_dir outputs/demo \
-  --steps 8 --cfg 8 --seed 42 --overwrite
+  --steps 28 --cfg 8 --seed 42 --overwrite
 ```
 
 

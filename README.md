@@ -49,7 +49,7 @@
 
 <br>
 
-<img src="assets/teaser.png" width="95%" alt="FreeStyle teaser">
+<img src="assets/teaser.jpg" width="95%" alt="FreeStyle teaser">
 
 </div>
 
@@ -73,7 +73,7 @@ On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+
 
 
 <div align="center">
-<img src="assets/pipeline.png" width="92%" alt="FreeStyle data construction pipeline">
+<img src="assets/pipeline.jpg" width="92%" alt="FreeStyle data construction pipeline">
 <br><sub><b>Overview of the FreeStyle data-construction pipeline:</b> mine community LoRAs → screen & categorize → generate and verify reference images → compose style×content into SRef / CRef triplets.</sub>
 </div>
 
@@ -166,9 +166,7 @@ If you find FreeStyle useful for your research, please consider citing:
 ```bibtex
 @inproceedings{lan2026freestyle,
   title     = {FreeStyle: Free Control of Style Content Generation from Community LoRA Mining},
-  author    = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and
-               Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang and
-               Yu, Gang and Zhang, Chi},
+  author    = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang andYu, Gang and Zhang, Chi},
   booktitle = {arXiv Pre-print},
   year      = {2026}
 }

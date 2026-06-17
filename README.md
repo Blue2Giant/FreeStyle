@@ -31,7 +31,7 @@
 <a href="https://blue2giant.github.io/FreeStyle/"><img alt="Project Page" src="https://img.shields.io/badge/Project-Page-1F4EA8?style=flat-square&logo=googlechrome&logoColor=white"></a>
 <a href="https://github.com/Blue2Giant/FreeStyle"><img alt="GitHub" src="https://img.shields.io/badge/Code-GitHub-181717?style=flat-square&logo=github&logoColor=white"></a>
 <a href="#"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat-square&logo=arxiv&logoColor=white"></a>
-<a href="#"><img alt="Demo" src="https://img.shields.io/badge/Demo-Space-FF9D00?style=flat-square&logo=huggingface&logoColor=white"></a>
+
 </p>
 
 <p>
@@ -55,11 +55,11 @@
 
 ---
 
-## TL;DR
+## Motivation
 
-**FreeStyle** is a scalable framework for **style-reference (SRef)** and **content + style dual-reference (CRef+SRef)** image generation. Its key insight is that the open-source community has already produced a vast, naturally curated library of **LoRA** weights — each centered on a coherent style, subject, or theme. FreeStyle **mines these community LoRAs as compositional anchors** for style and content, and through a rigorous generation-and-filtering pipeline builds large-scale, cleanly disentangled `(content reference, style reference, text, target)` triplets across multiple base models.
+**FreeStyle** is a scalable, multi-reference image-generation data pipeline for both **style reference** and **content reference**. Its key insight is that the open-source community already hosts a vast collection of **LoRA** weights covering a rich and diverse range of content and style themes. Each LoRA can naturally be viewed as a clustering center for a style or a content concept, and because LoRAs are inherently **composable** — and can be further steered with prompts to inject rich visual semantics — they can be leveraged to obtain abundant **dual-reference** data. However, due to the inherent instability of LoRAs, a reliable data pipeline is needed to develop and exploit them. We implement this intricate pipeline and use it to train our own model.
 
-On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+SRef generation with a multi-dimensional evaluation protocol, and (2) a **DiT-based model** with an **attention-level constraint** that suppresses style-reference content leakage while preserving style richness.
+On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+SRef generation with a multi-dimensional evaluation protocol, and (2) a **DiT-based model** with an **attention-level constraint** and **RoPE low-frequency modulation** that suppresses style-reference content leakage while preserving style richness.
 
 ---
 
@@ -67,7 +67,9 @@ On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+
 
 - **📦 Two Datasets, Two Tasks.** We open-source a large-scale dataset covering **both** reference settings. The **CRef+SRef** dataset provides `(content reference, style reference, text, target)` triplets for content-and-style **dual-reference generation** — **~480K** sequences (Flux `273,682` + Illustrious `172,589` + Qwen `33,582`) spanning **1,704 styles** — while the **traditional SRef** dataset targets **pure style-reference generation** with **619,302** sequences across **622 styles**. 
 - **🧬 Community LoRA Mining Pipeline.** Treats community LoRAs (Civitai / TensorArt / Liblib) as clustering centers for style and content, turning a fragmented ecosystem into structured dual-reference supervision. Generate Cref+Sref triplet by comfyui workflow and validated lora, all lora meta information and workflow included in this repo. This pipeline generate the content-and-style dual-reference generation dataset.
+- **🎨 A Trained Model.** Leveraging this data, we train our own model that achieves strong results on **both** the **style-reference (SRef)** and the **content + style dual-reference (CRef+SRef)** tasks, faithfully preserving reference style while suppressing content leakage.
 - **📊 A Dedicated Benchmark.** Evaluates **style similarity, content preservation, aesthetics, instruction following, and leakage rejection**, combining encoder metrics (CSD, OneIG, DINOv2, CAS, CLIP-T, aesthetic predictors) with VLM-as-judge protocols.
+
 
 
 <div align="center">
@@ -79,7 +81,7 @@ On top of the data, FreeStyle contributes (1) a **benchmark** for SRef and CRef+
 
 ## What's in this Repository
 
-This repo is organized into four self-contained components. **Each subfolder has its own detailed README** — click through for full instructions.
+This repo is organized into three self-contained components. **Each subfolder has its own detailed README** — click through for full instructions.
 
 | Component | Folder | What it provides | Docs |
 |---|---|---|---|
@@ -95,13 +97,13 @@ We release the full stack behind FreeStyle:
 
 | Resource | Description | Link |
 |---|---|---|
-| 🤗 **Dataset** | Large-scale style–content dual-reference triplets across multiple base models. | [FreeStyle_Dataset](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset) |
-| 🤗 **Benchmark** | SRef & CRef+SRef evaluation sets (`sref` / `cref_sref` tasks). | [FreeStyle_Bench](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench) |
-| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). | [FreeStyle_Checkpoint](https://huggingface.co/Blue2Giant/FreeStyle_Checkpoint) |
-| 🤗 **LoRA Mining Metadata** | Curated community LoRA IDs, verified trigger words, prompt pools, and ComfyUI workflows. | [free_style_lora_meta](https://huggingface.co/datasets/Blue2Giant/free_style_lora_meta) |
-| 🌐 **Project Page** | Interactive results, comparisons, and qualitative galleries. | [blue2giant.github.io/FreeStyle](https://blue2giant.github.io/FreeStyle/) |
+| 🤗 **Dataset** | Large-scale style–content dual-reference triplets across multiple base models. | [FreeStyle Dataset](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Dataset) |
+| 🤗 **Benchmark** | SRef & CRef+SRef evaluation sets (`sref` / `cref_sref` tasks). | [FreeStyle Bench](https://huggingface.co/datasets/Blue2Giant/FreeStyle_Bench) |
+| 🤗 **Model Weights** | SRef and CRef+SRef checkpoints (with and without RoPE modulation). | Coming Soon ... |
+| 🤗 **LoRA Mining Metadata** | Curated community LoRA IDs, verified trigger words, prompt pools, and ComfyUI workflows. | [FreeStyle Lora Meta](https://huggingface.co/datasets/Blue2Giant/free_style_lora_meta) |
+| 🌐 **Project Page** | Interactive results, comparisons, and qualitative galleries. | [Project Page](https://blue2giant.github.io/FreeStyle/) |
 
-> The benchmark inference scripts already reference a HuggingFace benchmark layout (`cref/`, `sref/`, `prompts.json`, per-model outputs); see [`benchmark_infer/README.en.md`](benchmark_infer/README.en.md) for the exact structure.
+> The benchmark inference scripts already reference a HuggingFace benchmark layout (`cref/`, `sref/`, `prompts.json`, per-model outputs); see [`benchmark_infer/README.md`](benchmark_infer/README.md) for the exact structure.
 
 > **📩 Style-transfer data — available on request.** The **style-transfer** subset of the dataset is **not** hosted publicly. To obtain it, please email **ljh_sjtu@163.com** to request access.
 
@@ -129,8 +131,6 @@ python3 cref_sref_core_infer.py \
   --steps 8 --cfg 8 --seed 42 --overwrite
 ```
 
-Available presets: `sref_14000`, `sref_12000`, `cref_sref_rope_50000`, `cref_sref_36000_no_rope`.
-→ See [`model_infer/README.md`](model_infer/README.md) for all presets, task types, and parameters.
 
 ### 2 · Produce triplet data (`lora_pipeline/`)
 
@@ -151,11 +151,11 @@ conda create -n sref python=3.10 -y && conda activate sref
 pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 pip install -r requirements.txt
 
-bash scripts/inference/Qwen_2511_demo.sh     # generate
+bash scripts/inference/uso_batch_run.sh     # generate
 bash scripts/metrics/uso_metric_batch.sh     # one-stop evaluation
 ```
 
-→ See [`benchmark_infer/README.en.md`](benchmark_infer/README.en.md) for model paths, the Qwen3-VL judge service, and metric details.
+→ See [`benchmark_infer/README.md`](benchmark_infer/README.md) for model paths, the Qwen3-VL judge service, and metric details.
 
 ---
 
@@ -178,7 +178,21 @@ If you find FreeStyle useful for your research, please consider citing:
 
 ## Acknowledgements
 
-FreeStyle builds on the open-source community's LoRA ecosystem ([Civitai](https://civitai.com), TensorArt, Liblib) and on excellent prior work including [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [ComfyKit](https://github.com/puke3615/ComfyKit), Qwen-Image / Qwen3-VL, FLUX, and the many style-transfer baselines compared in our benchmark (CSGO, USO, OmniStyle, TeleStyle, and others). We thank the creators of every mined LoRA whose contributions made this dataset possible.
+FreeStyle builds on the open-source community's LoRA ecosystem ([Civitai](https://civitai.com), TensorArt, Liblib) and on excellent prior work including [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [ComfyKit](https://github.com/puke3615/ComfyKit), Qwen-Image / Qwen3-VL, FLUX, and the many style-transfer baselines compared in our benchmark (CSGO, USO, OmniStyle, TeleStyle, and others). In particular, we are grateful to the [Qwen-Image-Edit](https://qwen.ai/blog?id=qwen-image-edit) team for open-sourcing such a powerful base model. We thank the creators of every mined LoRA whose contributions made this dataset possible.
+
+---
+
+## Disclaimer
+
+This project, including all associated datasets, benchmarks, model weights, and code, is released **strictly for academic research and non-commercial use only**.
+
+- **Style-reference (SRef) data.** Portions of the SRef data may incorporate publicly available images collected from the web. Such material is used **solely for the purpose of scientific research** — namely studying style representation and reference-based image generation — under a good-faith understanding of fair use for non-commercial academic research. We do **not** claim ownership of any third-party content, and all rights, including copyright and trademarks, remain with their respective owners.
+- **Community LoRAs.** LoRA weights mined from community platforms (Civitai, TensorArt, Liblib, etc.) are referenced via their original metadata and remain subject to the licenses and terms set by their original authors and host platforms. We redistribute only metadata and derived data, not the original LoRA weights themselves where their licenses prohibit redistribution.
+- **No warranty.** All resources are provided on an **"AS IS" basis, without warranties or conditions of any kind**, express or implied. The authors and their affiliated institutions assume **no liability** for any direct or indirect damages, legal claims, or losses arising from the use, misuse, or inability to use these resources.
+- **User responsibility.** Users are solely responsible for ensuring that their use of this project — including any generated content — complies with all applicable laws, regulations, and third-party terms of service in their jurisdiction. Any use for commercial purposes, redistribution of third-party content, or generation of unlawful, infringing, or harmful material is **expressly prohibited**.
+- **Takedown requests.** If you are a rights holder and believe that any content in this project infringes your rights, please contact us by opening a GitHub issue. We are committed to promptly reviewing and, where appropriate, **removing** the relevant content.
+
+By accessing or using any part of this project, you acknowledge that you have read, understood, and agreed to this disclaimer.
 
 ---
 

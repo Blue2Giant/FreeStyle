@@ -98,3 +98,5 @@ extra-info/
 kernel_meta/
 artifacts/
 debug_vaults/
+
+upload_*.py

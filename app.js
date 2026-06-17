@@ -25,7 +25,7 @@ function thumbUrlFor(src) {
     .replace(/\.(png|jpe?g)$/i, ".webp");
 }
 
-function createMediaButton({ src, alt, kind }) {
+function createMediaButton({ src, alt, kind, prompt }) {
   const button = document.createElement("button");
   button.type = "button";
   button.className = "media-button";
@@ -44,6 +44,15 @@ function createMediaButton({ src, alt, kind }) {
   image.decoding = "async";
 
   button.appendChild(image);
+
+  // Output images carry the generation prompt; reveal it on hover.
+  if (prompt) {
+    const tip = document.createElement("span");
+    tip.className = "prompt-tip";
+    tip.textContent = prompt;
+    button.appendChild(tip);
+  }
+
   return button;
 }
 
@@ -59,6 +68,7 @@ function createTriptych(sample) {
       src: sample.images[kind],
       alt: labels[kind],
       kind,
+      prompt: kind === "ours" ? sample.prompt : undefined,
     });
     panel.appendChild(imageButton);
 

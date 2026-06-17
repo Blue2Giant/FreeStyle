@@ -29,11 +29,11 @@
       <nav class="topbar">
         <a class="brand" href="#top">FreeStyle</a>
         <div class="nav-links" aria-label="Quick jump tags">
+          <a class="tag-pill" href="#sref">SRef result</a>
+          <a class="tag-pill" href="#dual">CRef + SRef result</a>
           <a class="tag-pill" href="#dataset">Dataset</a>
           <a class="tag-pill" href="#dataset-sref-block">SRef dataset</a>
           <a class="tag-pill" href="#dataset-dual-block">CRef + SRef dataset</a>
-          <a class="tag-pill" href="#sref">SRef result</a>
-          <a class="tag-pill" href="#dual">CRef + SRef result</a>
         </div>
       </nav>
 
@@ -114,6 +114,34 @@
     </header>
 
     <main>
+      <section class="section" id="sref">
+        <div class="section-head reveal">
+          <p class="eyebrow">SRef result</p>
+          <h2>SRef transfer: style strength stays explicit</h2>
+          <p>
+            These samples emphasize the style-transfer behavior itself. The thumbnails show the
+            two references followed by the model output, and clicking any image opens the full
+            preview.
+          </p>
+        </div>
+        <div class="scroll-box scroll-box-grid">
+          <div class="scroll-track" id="results-sref"></div>
+        </div>
+      </section>
+
+      <section class="section" id="dual">
+        <div class="section-head reveal">
+          <p class="eyebrow">CRef + SRef result</p>
+          <h2>CRef + SRef generation: follow instructions</h2>
+          <p>
+            Under the various style setting and the disentanglement feature of style and content of our dataset, our model tackles the dual-reference generation task better.
+          </p>
+        </div>
+        <div class="scroll-box scroll-box-grid">
+          <div class="scroll-track" id="results-dual"></div>
+        </div>
+      </section>
+
       <section class="section" id="dataset">
         <div class="section-head reveal">
           <p class="eyebrow">Dataset</p>
@@ -155,34 +183,6 @@
           <div class="scroll-box scroll-box-list">
             <div class="scroll-track" id="dataset-dual"></div>
           </div>
-        </div>
-      </section>
-
-      <section class="section" id="sref">
-        <div class="section-head reveal">
-          <p class="eyebrow">SRef result</p>
-          <h2>SRef transfer: style strength stays explicit</h2>
-          <p>
-            These samples emphasize the style-transfer behavior itself. The thumbnails show the
-            two references followed by the model output, and clicking any image opens the full
-            preview.
-          </p>
-        </div>
-        <div class="scroll-box scroll-box-grid">
-          <div class="scroll-track" id="results-sref"></div>
-        </div>
-      </section>
-
-      <section class="section" id="dual">
-        <div class="section-head reveal">
-          <p class="eyebrow">CRef + SRef result</p>
-          <h2>CRef + SRef generation: follow instructions</h2>
-          <p>
-            Under the various style setting and the disentanglement feature of style and content of our dataset, our model tackles the dual-reference generation task better.
-          </p>
-        </div>
-        <div class="scroll-box scroll-box-grid">
-          <div class="scroll-track" id="results-dual"></div>
         </div>
       </section>
     </main>

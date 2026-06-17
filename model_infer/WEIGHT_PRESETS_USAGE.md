@@ -22,9 +22,7 @@ The easiest way to switch weights is to change `--weight_preset`.
 | Preset | Task | RoPE? | Weight path |
 |---|---|---:|---|
 | `sref_14000` | SRef | No | `/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors` |
-| `sref_12000` | SRef | No | `/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors` |
-| `cref_sref_rope_50000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors` |
-| `cref_sref_40000` | CRef+SRef | No | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` |
+| `cref_sref_40000` | CRef+SRef | Yes | `/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors` |
 | `cref_sref_36000_no_rope` | CRef+SRef | No | `/mnt/jfs/model_zoo/checkpoint-36000_converted/checkpoint-36000.safetensors` |
 
 Each preset sets three things for you: the weight path (`--dit_path`), the task (`--task sref` or `--task cref_sref`), and whether frequency-aware RoPE is enabled (`--use_rope` / `--no_rope`).
@@ -124,33 +122,6 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-### 4.2 SRef checkpoint 12000
-
-Only change `--weight_preset` and `--out_dir`:
-
-```bash
-cd /data/vgo/opensource_cref_sref_core_infer_0615
-conda activate Sref
-
-VGO_DISABLE_TORCH_COMPILE=1 \
-VGO_DISABLE_VARLEN_OPS_COMPILE=1 \
-PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32' \
-TRANSFORMERS_VERBOSITY=error \
-CUDA_VISIBLE_DEVICES=0 \
-python3 cref_sref_core_infer.py \
-  --weight_preset sref_12000 \
-  --data_root /mnt/jfs/bench-bucket/sref_bench/sample_800_sref_200_content \
-  --out_dir /data/benchmark_metrics/sref_infer_sref_12000 \
-  --keys 'football__sticker_figure' \
-  --recaption_task_type sref \
-  --width 1024 \
-  --height 1024 \
-  --steps 28 \
-  --cfg 8 \
-  --seed 42 \
-  --overwrite
-```
-
 You can also edit and run:
 
 ```bash
@@ -161,36 +132,9 @@ bash run_sref_infer.sh
 
 ## 5. CRef+SRef inference examples
 
-### 5.1 CRef+SRef RoPE checkpoint 50000
+### 5.1 CRef+SRef RoPE checkpoint 40000
 
-Use this when the weight was trained with RoPE-FA:
-
-```bash
-cd /data/vgo/opensource_cref_sref_core_infer_0615
-conda activate Sref
-
-VGO_DISABLE_TORCH_COMPILE=1 \
-VGO_DISABLE_VARLEN_OPS_COMPILE=1 \
-PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32' \
-TRANSFORMERS_VERBOSITY=error \
-CUDA_VISIBLE_DEVICES=0 \
-python3 cref_sref_core_infer.py \
-  --weight_preset cref_sref_rope_50000 \
-  --data_root /mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content \
-  --out_dir /data/benchmark_metrics/cref_sref_infer_rope_50000 \
-  --keys 'football__sticker_figure' \
-  --recaption_task_type identity_style \
-  --width 1024 \
-  --height 1024 \
-  --steps 28 \
-  --cfg 8 \
-  --seed 42 \
-  --overwrite
-```
-
-### 5.2 CRef+SRef no-RoPE checkpoint 40000
-
-This is the normal no-RoPE 40000 CRef+SRef checkpoint. It uses the same normal config as the 36000 no-RoPE checkpoint:
+This is the CRef+SRef **RoPE** 40000 checkpoint. It uses RoPE-FA frequency-aware modulation:
 
 ```bash
 cd /data/vgo/opensource_cref_sref_core_infer_0615
@@ -215,7 +159,7 @@ python3 cref_sref_core_infer.py \
   --overwrite
 ```
 
-### 5.3 CRef+SRef no-RoPE checkpoint 36000
+### 5.2 CRef+SRef no-RoPE checkpoint 36000
 
 Use this when the weight was **not** trained with RoPE-FA:
 

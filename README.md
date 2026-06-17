@@ -125,7 +125,7 @@ python3 cref_sref_core_infer.py \
   assets/00-cref.jpg \
   assets/00-sref.jpg \
   'Transfer the style of image 2 onto image 1, keeping image 1's layout.' \
-  --weight_preset sref_12000 \
+  --weight_preset sref_14000 \
   --recaption_task_type style_transfer \
   --out_dir outputs/demo \
   --steps 28 --cfg 8 --seed 42 --overwrite

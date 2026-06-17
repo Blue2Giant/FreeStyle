@@ -106,13 +106,6 @@ LEGACY_CKPT_PATHS: dict[str, list[str]] = {
         "/mnt/jfs/debug_sre_enrichment_new_0415_h100_from_12000-new"
         "/0415_qwen_image_sref_noise_query/converted/checkpoint-14000/model.safetensors",
     ],
-    "sref_12000": [
-        "/mnt/jfs/model_zoo/checkpoint-12000_converted/model.safetensors",
-    ],
-    "cref_sref_rope_50000": [
-        "/mnt/jfs/debug_sref_entropy_0429_cref_sref_full_diffusion_from36000_rope_fa_8gpu_from_no_illutrious_base"
-        "/0505_qwen_cref_sref_full_diffusion_from40000_rope_fa/converted/checkpoint-50000/model.safetensors",
-    ],
     "cref_sref_40000": [
         "/mnt/jfs/debug_sref_entropy_0426_cref_sref_full_diffusion_no_illustrious"
         "/0426_qwen_cref_sref_full_diffusion/converted/checkpoint-40000/model.safetensors",
@@ -230,7 +223,7 @@ WEIGHT_PRESETS = {
         "recaption_task_type": "sref",
     },
     "cref_sref_40000": {
-        "use_rope": False,
+        "use_rope": True,
         "task": TASK_CREF_SREF,
         "data_root": DEFAULT_DATA_ROOT,
         "recaption_task_type": "identity_style",

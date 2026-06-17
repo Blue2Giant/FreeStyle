@@ -10,8 +10,8 @@ python3 cref_sref_core_infer.py \
   assets/00-cref.jpg \
   assets/00-sref.jpg \
   'Transfer the style of image 2 onto image 1' \
-  --weight_preset sref_12000 \
-  --out_dir outputs/sref_12000_style_transfer_demo \
+  --weight_preset sref_14000 \
+  --out_dir outputs/sref_14000_demo \
   --recaption_task_type style_transfer \
   --steps 28 \
   --cfg 8 \
@@ -57,8 +57,6 @@ After downloading, the directory layout is as follows — **each preset maps to 
 ```text
 checkpoints/
   freestyle-sref-14000-no-rope/model.safetensors          # preset: sref_14000
-  freestyle-sref-12000-no-rope/model.safetensors          # preset: sref_12000
-  freestyle-cref-sref-50000-rope/model.safetensors         # preset: cref_sref_rope_50000
   freestyle-cref-sref-40000-no-rope/model.safetensors      # preset: cref_sref_40000
   freestyle-cref-sref-36000-no-rope/model.safetensors      # preset: cref_sref_36000_no_rope
 ```
@@ -74,15 +72,13 @@ Then at inference time you only pass `--weight_preset`; the script automatically
 | Preset | Task | RoPE? | Subdirectory (under `$FREESTYLE_CKPT_ROOT/`) |
 |---|---|---:|---|
 | `sref_14000` | SRef | No | `freestyle-sref-14000-no-rope/model.safetensors` |
-| `sref_12000` | SRef | No | `freestyle-sref-12000-no-rope/model.safetensors` |
-| `cref_sref_rope_50000` | CRef+SRef | Yes | `freestyle-cref-sref-50000-rope/model.safetensors` |
-| `cref_sref_40000` | CRef+SRef | No | `freestyle-cref-sref-40000-no-rope/model.safetensors` |
+| `cref_sref_40000` | CRef+SRef | Yes | `freestyle-cref-sref-40000-no-rope/model.safetensors` |
 | `cref_sref_36000_no_rope` | CRef+SRef | No | `freestyle-cref-sref-36000-no-rope/model.safetensors` |
 
 Notes:
 
 - Whether RoPE is used is controlled by `--use_rope` / `--no_rope` (the preset sets this automatically).
-- `cref_sref_rope_50000` enables RoPE automatically and runs `ImageGeneratorRopeFA`; the other presets run the plain `ImageGenerator`.
+- `sref_14000` and `cref_sref_36000_no_rope` run the plain `ImageGenerator` (no RoPE); `cref_sref_40000` uses `ImageGeneratorRopeFA`.
 - To use your own weight (without a preset), specify `--dit_path`, `--task`, and `--use_rope` / `--no_rope` manually.
 
 ---
@@ -97,7 +93,7 @@ Notes:
 
 The pairing between weight and recaption prompt is **strictly validated**: a mismatch raises an error immediately, preventing different weights from getting their inference mixed up:
 
-- SRef weights (`sref_14000` / `sref_12000`) only accept `sref` or `style_transfer`; passing `identity_style` / `cref_sref` raises an error.
+- SRef weights (`sref_14000`) only accept `sref` or `style_transfer`; passing `identity_style` / `cref_sref` raises an error.
 - CRef+SRef weights (`cref_sref_*`) only accept `identity_style` / `cref_sref` or `style_transfer`; passing `sref` raises an error.
 
 Both recaption prompt templates are **hard-coded in `cref_sref_core_infer.py`** (`SREF_RECAPTION_TEMPLATE_MINIMAL` and `QWEN3_CREF_SREF_USER_PROMPT`); they are no longer read as constants from `recaption.py`. The runtime log prints `recaption_prompt: <template name>` so you can confirm which one this run used.
@@ -110,7 +106,7 @@ independent_captions.scene_3 + training_output.sample_instruction_cn_123
 
 ---
 
-## 4. Full invocation scripts for the five weights
+## 4. Full invocation scripts for the three weights
 
 Below, each preset comes with a **complete, copy-paste-runnable command**, already prefixed with the recommended environment variables. Before running:
 
@@ -151,69 +147,9 @@ python3 cref_sref_core_infer.py \
 
 To run a style-transfer demo with this SRef weight, replace `--recaption_task_type sref` with `--recaption_task_type style_transfer`.
 
-### 4.2 SRef 12000 (no RoPE)
+### 4.2 CRef+SRef 40000
 
-This is the weight `run_sref_infer.sh` currently uses, configured as a style-transfer demo:
-
-```bash
-VGO_DISABLE_TORCH_COMPILE=1 \
-VGO_DISABLE_VARLEN_OPS_COMPILE=1 \
-VGO_STREAM_LOAD_SAFETENSORS=1 \
-VGO_STREAM_LOAD_DTYPE=bfloat16 \
-VGO_STREAM_LOAD_DEVICE=cuda:0 \
-PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32' \
-TRANSFORMERS_VERBOSITY=error \
-CUDA_VISIBLE_DEVICES=0 \
-python3 cref_sref_core_infer.py \
-  assets/00-cref.jpg \
-  assets/00-sref.jpg \
-  'Transfer the style of image 2 onto image 1, keeping image 1 overall layout unchanged.' \
-  --weight_preset sref_12000 \
-  --out_dir outputs/sref_12000_style_transfer_demo \
-  --recaption_task_type style_transfer \
-  --width 1024 \
-  --height 1024 \
-  --steps 28 \
-  --cfg 8 \
-  --seed 42 \
-  --overwrite
-```
-
-Note: even though `--width 1024 --height 1024` is set here, because `recaption_task_type=style_transfer` the saved `result.png` is automatically resized back to the CRef image resolution.
-
-### 4.3 CRef+SRef RoPE 50000 (RoPE enabled)
-
-This weight uses RoPE modulation; the preset automatically enables `--use_rope` and runs `ImageGeneratorRopeFA`:
-
-```bash
-VGO_DISABLE_TORCH_COMPILE=1 \
-VGO_DISABLE_VARLEN_OPS_COMPILE=1 \
-VGO_STREAM_LOAD_SAFETENSORS=1 \
-VGO_STREAM_LOAD_DTYPE=bfloat16 \
-VGO_STREAM_LOAD_DEVICE=cuda:0 \
-PYTORCH_CUDA_ALLOC_CONF='expandable_segments:True,max_split_size_mb:32' \
-TRANSFORMERS_VERBOSITY=error \
-CUDA_VISIBLE_DEVICES=0 \
-python3 cref_sref_core_infer.py \
-  assets/02-cref.png \
-  assets/02-sref.png \
-  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
-  --weight_preset cref_sref_rope_50000 \
-  --out_dir outputs/cref_sref_rope_50000_demo \
-  --recaption_task_type identity_style \
-  --width 1024 \
-  --height 1024 \
-  --steps 28 \
-  --cfg 8 \
-  --seed 42 \
-  --overwrite
-```
-
-To use this RoPE weight for style transfer, replace `--recaption_task_type identity_style` with `--recaption_task_type style_transfer`.
-
-### 4.4 CRef+SRef 40000 (no RoPE)
-
-The normal no-RoPE 40000 CRef+SRef weight; the preset automatically sets `--no_rope`:
+The normal no-RoPE 40000 CRef+SRef weight; the preset automatically set rope modulated:
 
 ```bash
 VGO_DISABLE_TORCH_COMPILE=1 \
@@ -241,7 +177,7 @@ python3 cref_sref_core_infer.py \
 
 To use this no-RoPE weight for style transfer, replace `--recaption_task_type identity_style` with `--recaption_task_type style_transfer`.
 
-### 4.5 CRef+SRef 36000 no-RoPE (no RoPE)
+### 4.3 CRef+SRef 36000 no-RoPE (no RoPE)
 
 This weight has no RoPE modulation; the preset automatically sets `--no_rope`:
 
@@ -257,7 +193,7 @@ CUDA_VISIBLE_DEVICES=0 \
 python3 cref_sref_core_infer.py \
   assets/02-cref.png \
   assets/02-sref.png \
-  'A cat lying in front of a fireplace, transfer the style of image 2 onto image 1' \
+  '一只猫趴在壁炉前，迁移图2的风格到图1上' \
   --weight_preset cref_sref_36000_no_rope \
   --out_dir outputs/cref_sref_36000_no_rope_demo \
   --recaption_task_type identity_style \
@@ -273,9 +209,9 @@ To use this no-RoPE weight for style transfer, replace `--recaption_task_type id
 
 ---
 
-## 5. Loading large safetensors weights
+## 4. Loading large safetensors weights
 
-Weights like 12000 / 36000 are large, so the demo scripts support streaming load by default to avoid loading the full 70G+ weight into CPU memory at once:
+Weights like 14000 / 36000 are large (~40-77G), so the demo scripts support streaming load by default to avoid loading the full weight into CPU memory at once:
 
 ```bash
 VGO_STREAM_LOAD_SAFETENSORS=1
@@ -287,7 +223,7 @@ These environment variables are already set in `run_sref_infer.sh`.
 
 ---
 
-## 6. Legacy prompts.json + keys batch mode
+## 5. Legacy prompts.json + keys batch mode
 
 The default entrypoint is now the "two images + one prompt" minimal demo. The old benchmark batch mode is still available, but you need to explicitly add:
 

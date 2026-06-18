@@ -1,6 +1,6 @@
 <div align="center">
 
-# FreeStyle: Free Control of Style & Content Generation from Community LoRA Mining
+# FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining
 
 <p>
 <a href="https://fudan.edu.cn"><b>Jinghong Lan</b></a><sup>1,2*</sup> &nbsp;

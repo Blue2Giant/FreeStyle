@@ -11,7 +11,6 @@
     ],
     "datasetSref": [
       "datasetSref--04a6cc5a-d454-adb5-5d90-fc2dd9800432",
-      "datasetSref--0de1382b-34c2-cb05-dc26-e8ae35720019",
       "datasetSref--11a7834f-0f38-a1e4-01b7-7dab582a2a7f",
       "datasetSref--1503ff05-987b-eb40-544a-d5473817af25",
       "datasetSref--16aa8369-953f-5392-135e-28413979cf4d",
@@ -31,7 +30,6 @@
       "datasetSref--60f35767-cfba-7305-815c-46406ec15954",
       "datasetSref--626689cb-ef8a-1da2-7dd7-95f13cf5afbd",
       "datasetSref--6b8c174b-20c6-597d-e3cc-5939c1db7d20",
-      "datasetSref--6e99f340-4c53-1e8d-fb5c-57bc264ac698",
       "datasetSref--8c5f87c2-62e6-8f19-3e54-88eda12b1f15",
       "datasetSref--a08afb20-6810-f1ff-10cc-8311d22dfb28",
       "datasetSref--ab1b4faf-1203-56bf-3327-2da07c997cfb",
@@ -60,7 +58,6 @@
       "datasetDual--316b0afe-f915-7e63-25b8-a726377d8cd4",
       "datasetDual--3223c6d7-dc88-f7fa-75ed-3c5a607944ac",
       "datasetDual--330f1203-1f44-2070-5c48-d72e4482a933",
-      "datasetDual--33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2",
       "datasetDual--3d5e61fd-cdc5-75cd-2959-e6319ff71fbd",
       "datasetDual--3d686dbb-8077-024f-d000-d6e7076d1605",
       "datasetDual--412ff0cb-b3b7-bd96-4356-614cdece3100",
@@ -86,11 +83,9 @@
       "datasetDual--932c9b6e-190c-10f7-f0d8-d20c8e5bbd29",
       "datasetDual--94cddd57-86e5-99b8-c12d-7ff3ec1528c2",
       "datasetDual--99e00738-848e-d097-8b40-77a10b45b2a7",
-      "datasetDual--9d56db32-840c-7eed-62bc-9342ea71eff7",
       "datasetDual--9dd81128-6209-cb30-63b9-b2a389d2bc0c",
       "datasetDual--a4cd888b-55bf-84d5-086e-0a76bd0fdbd8",
       "datasetDual--a4d97cbd-a7d0-0f42-fd10-4e786301912f",
-      "datasetDual--a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22",
       "datasetDual--a8c5bf31-5e51-95c0-da85-0924f6fe74cf",
       "datasetDual--b0449aad-7266-f10b-c3ee-5aa5aacb0c95",
       "datasetDual--b3c78517-68ff-0b04-02ba-0d231679a1c7",
@@ -154,14 +149,6 @@
         "cref": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-cref.jpg",
         "sref": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-sref.jpg",
         "ours": "assets/cref_sref_oneig_filter_part2/04a6cc5a-d454-adb5-5d90-fc2dd9800432-target.jpg"
-      }
-    },
-    {
-      "id": "datasetSref--0de1382b-34c2-cb05-dc26-e8ae35720019",
-      "images": {
-        "cref": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-cref.jpg",
-        "sref": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-sref.jpg",
-        "ours": "assets/cref_sref_oneig_filter_part2/0de1382b-34c2-cb05-dc26-e8ae35720019-target.jpg"
       }
     },
     {
@@ -314,14 +301,6 @@
         "cref": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-cref.jpg",
         "sref": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-sref.jpg",
         "ours": "assets/cref_sref_oneig_filter_part2/6b8c174b-20c6-597d-e3cc-5939c1db7d20-target.jpg"
-      }
-    },
-    {
-      "id": "datasetSref--6e99f340-4c53-1e8d-fb5c-57bc264ac698",
-      "images": {
-        "cref": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-cref.jpg",
-        "sref": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-sref.jpg",
-        "ours": "assets/cref_sref_oneig_filter_part2/6e99f340-4c53-1e8d-fb5c-57bc264ac698-target.jpg"
       }
     },
     {
@@ -542,15 +521,6 @@
         "ours": "assets/cref_sref_flux_lora_part1/330f1203-1f44-2070-5c48-d72e4482a933-target.jpg"
       },
       "prompt": "The blue-skinned figure with antennae kneels in shallow water, gazing sideways as a large shark swims behind it and a smaller fish glides near its chest, with smooth stones visible nearby."
-    },
-    {
-      "id": "datasetDual--33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2",
-      "images": {
-        "cref": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-cref.jpg",
-        "sref": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-sref.jpg",
-        "ours": "assets/cref_sref_flux_lora_part1/33ceeb5a-f3b0-1b9a-62e0-d49c891f73b2-target.jpg"
-      },
-      "prompt": "The robot stands upright with glowing red eyes and a chest panel displaying lights and a red heart. A woman in a red beret sits beside it near colorful flowers, against a plain yellow background."
     },
     {
       "id": "datasetDual--3d5e61fd-cdc5-75cd-2959-e6319ff71fbd",
@@ -778,15 +748,6 @@
       "prompt": "The robot stands in a vibrant forest at night, surrounded by colorful flowers and trees under a starry sky. Its chest screen displays glowing patterns, and its red eyes shine brightly as it faces forward."
     },
     {
-      "id": "datasetDual--9d56db32-840c-7eed-62bc-9342ea71eff7",
-      "images": {
-        "cref": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-cref.jpg",
-        "sref": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-sref.jpg",
-        "ours": "assets/cref_sref_flux_lora_part1/9d56db32-840c-7eed-62bc-9342ea71eff7-target.jpg"
-      },
-      "prompt": "The person lies with feet raised, soles facing forward, wearing sheer dark hosiery. The background features a dark, textured surface with colorful paint splatters and graffiti marks."
-    },
-    {
       "id": "datasetDual--9dd81128-6209-cb30-63b9-b2a389d2bc0c",
       "images": {
         "cref": "assets/cref_sref_flux_lora_part1/9dd81128-6209-cb30-63b9-b2a389d2bc0c-cref.jpg",
@@ -812,15 +773,6 @@
         "ours": "assets/cref_sref_flux_lora_part1/a4d97cbd-a7d0-0f42-fd10-4e786301912f-target.jpg"
       },
       "prompt": "The figure stands upright in a barren landscape, wearing a purple hooded outfit with a red cape and rope bindings around neck and waist. Its eyes are visible through the hood, gazing forward."
-    },
-    {
-      "id": "datasetDual--a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22",
-      "images": {
-        "cref": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-cref.jpg",
-        "sref": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-sref.jpg",
-        "ours": "assets/cref_sref_flux_lora_part1/a85e4edb-4b2c-4cc1-3cd6-f97cd7f73c22-target.jpg"
-      },
-      "prompt": "The reptilian creature stands beside a candlelit ice cream temple under a full moon, holding a knife, with scoops and a cherry-topped sundae nearby, surrounded by scattered sweets on rocky ground."
     },
     {
       "id": "datasetDual--a8c5bf31-5e51-95c0-da85-0924f6fe74cf",

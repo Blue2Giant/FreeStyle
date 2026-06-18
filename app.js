@@ -432,7 +432,7 @@ function setupPlaceholderLinks() {
 }
 
 async function main() {
-  const response = await fetch("./data/gallery.json");
+  const response = await fetch("./data/gallery.json", { cache: "no-store" });
   const data = await response.json();
   const sampleMap = new Map(data.samples.map((sample) => [sample.id, sample]));
 

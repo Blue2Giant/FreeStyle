@@ -235,6 +235,41 @@ Metric overview:
 | Aesthetic quality | encoder | LAION, Aesthetic v2.5, OneAlign |
 | Holistic judge | VLM | Qwen3-VL / GPT-4o triplet dual judge |
 
+### Triplet Qwen Dual Judge
+
+`triplet_qwen_dual_judge.sh` now launches the multi-reference dual judge implemented in `src/metrics/vlm/triplet_qwen_dual_judge.py`. It no longer writes separate `qwen_reject_cref.json` / `qwen_reject_sref.json` score files. Instead it writes dual-pass maps:
+
+- `all.json`: every processed sample, `basename -> 1/0` according to `dual_pass`
+- `pos.json`: accepted samples only, `basename -> 1`
+- `neg.json`: rejected samples only, `basename -> 0`
+- `detail.json`: optional details with content/style ratios and per-reference VLM trials
+
+Native input layouts:
+
+```text
+# --root mode
+<TRIPLET_ROOT>/style_and_content/
+<TRIPLET_ROOT>/content_1/, content_2/, ...
+<TRIPLET_ROOT>/style_1/, style_2/, ...
+
+# --input_jsonl mode, one JSON object per line
+{"style_and_content": "generated.png", "content_1": "cref.png", "style_1": "sref.png"}
+```
+
+For the standard benchmark layout used by inference scripts (`<DATA_ROOT>/cref`, `<DATA_ROOT>/sref`, `<DATA_ROOT>/<RESULT_NAME>`), the shell wrapper auto-generates `$OUT_DIR/input_pairs.jsonl` with `content_1/style_1` and then calls the Python judge.
+
+Example after USO inference writes results to `$DATA_ROOT/uso`:
+
+```bash
+DATA_ROOT=/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content \
+RESULT_NAME=uso \
+QWEN_BASE_URL=http://YOUR_QWEN_VLM_HOST:22002/v1 \
+PROCS_PER_ENDPOINT=32 \
+bash scripts/metrics/triplet_qwen_dual_judge.sh
+```
+
+The judge uses Qwen3-VL to emit only `0/1`, extracts `0/1` logprobs, filters calls by confidence, votes multiple times per image pair, then accepts a sample only when both the content-reference pass ratio and style-reference pass ratio reach their thresholds. See `src/metrics/vlm/triplet_qwen_dual_judge_summary.md` for the full algorithm.
+
 ---
 
 ## Notes

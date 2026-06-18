@@ -176,20 +176,19 @@ for MODEL in "${MODELS[@]}"; do
     --overwrite
 
   echo "=== triplet qwen dual judge ($MODEL) ==="
-  content_dir="$SREF_ROOT/cref"
-  style_dir="$SREF_ROOT/sref"
-  result_dir="$SREF_ROOT/$MODEL"
-  output_json_content="$SREF_ROOT/$MODEL/qwen_reject_cref.json"
-  output_json_style="$SREF_ROOT/$MODEL/qwen_reject_sref.json"
-  python3 $REPO_ROOT/src/metrics/vlm/triplet_qwen_dual_judge.py \
-      --content_dir "$content_dir" \
-      --style_dir "$style_dir" \
-      --result_dir "$result_dir" \
-      --output_content_json $output_json_content \
-      --output_style_json $output_json_style \
-# Qwen3-VL VLM service you deploy yourself (vLLM, see README): "<served-model-name>@<base_url>"
-      --endpoint "Qwen3-VL-30B-A3B-Instruct@http://YOUR_QWEN_VLM_HOST:22002/v1" \
-      --procs_per_endpoint $num_procs \
-      --overwrite
+  # Qwen3-VL VLM service you deploy yourself (vLLM, see README): base_url + served-model-name.
+  # The wrapper adapts the standard benchmark layout
+  #   $SREF_ROOT/cref, $SREF_ROOT/sref, $SREF_ROOT/$MODEL
+  # into the new triplet judge JSONL format and writes outputs under
+  #   $SREF_ROOT/$MODEL/qwen_dual_judge/{all,pos,neg,detail}.json
+  xingpeng_ip=http://YOUR_QWEN_VLM_HOST:22002/v1
+  xingpeng_model=Qwen3-VL-30B-A3B-Instruct
+  DATA_ROOT="$SREF_ROOT" \
+  RESULT_NAME="$MODEL" \
+  QWEN_BASE_URL="$xingpeng_ip" \
+  QWEN_MODEL="$xingpeng_model" \
+  PROCS_PER_ENDPOINT="$num_procs" \
+  OVERWRITE="$overwrite" \
+  bash "$REPO_ROOT/scripts/metrics/triplet_qwen_dual_judge.sh"
 done
     

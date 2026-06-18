@@ -299,25 +299,145 @@ After starting, access the first instance's Web UI at `http://<host>:8188`.
 
 ## 8. Similarity Judgment for Generated Images
 
-LoRA batch-generated images need to be filtered through similarity judgment. We use a VLM (Qwen3-VL) for dual-axis content and style discrimination.
+LoRA batch-generated images are filtered with a **Qwen3-VL dual judge**. The current judge is the multi-reference version used by `/data/FreeStyle/benchmark_infer/src/metrics/vlm/triplet_qwen_dual_judge.py`; see the detailed logic note at `/data/FreeStyle/benchmark_infer/src/metrics/vlm/triplet_qwen_dual_judge_summary.md`.
 
 ### Judgment Script
 
-Location: `/data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh`
+Main launcher:
 
-The script performs two parallel judgments on each generated image:
+```text
+/data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh
+```
 
-- **Content judgment**: Compares the subject and theme against a content reference image
-- **Style judgment**: Compares the painting style / visual style against a style reference image
+Python implementation:
 
-### Judgment Method: Logits-based Rejection Sampling
+```text
+/data/FreeStyle/benchmark_infer/src/metrics/vlm/triplet_qwen_dual_judge.py
+```
 
-Unlike traditional discrete scoring (e.g., 1-5 scale), we use **logits-based rejection sampling**:
+The judge performs two independent checks for every candidate image:
 
-1. The VLM generates with `temperature=0.0`, requesting `top_logprobs` to obtain the output token logit distribution
-2. Extract the log probabilities (logp0, logp1) of the "0" and "1" tokens from the logit distribution
-3. Compute a continuous similarity score (0~1) via `sigmoid(logp1 - logp0)`
+- **Content judgment**: compare the candidate image with one or more `content_*` reference images, focusing only on subject/content/theme.
+- **Style judgment**: compare the candidate image with one or more `style_*` reference images, focusing only on visual style/medium/line/texture/color/light.
 
-This means that even if the VLM's discrete output is "1", if logp1 and logp0 are close (low confidence), the score will still be low — functioning as a **soft rejection sampling** that automatically down-weights or discards samples with insufficient confidence.
+A sample is accepted only when both axes pass:
 
-Empirically, this approach achieves higher accuracy than discrete scoring methods.
+```text
+content_pass AND style_pass => dual_pass
+```
+
+### Supported Input Layouts
+
+The Python script supports two native input modes.
+
+#### 1) Directory mode: `--root`
+
+```text
+<TRIPLET_ROOT>/
+  style_and_content/   # candidate/generated main images
+  content_1/
+  content_2/
+  ...
+  style_1/
+  style_2/
+  ...
+```
+
+Images are matched by the same file name under `style_and_content/`, `content_*`, and `style_*`.
+
+#### 2) JSONL mode: `--input_jsonl`
+
+Each line is one JSON object:
+
+```json
+{
+  "style_and_content": "/path/to/generated.png",
+  "content_1": "/path/to/content_ref_1.png",
+  "content_2": "/path/to/content_ref_2.png",
+  "style_1": "/path/to/style_ref_1.png",
+  "style_2": "/path/to/style_ref_2.png"
+}
+```
+
+The shell wrapper also supports the open benchmark's simple layout:
+
+```text
+<DATA_ROOT>/cref
+<DATA_ROOT>/sref
+<DATA_ROOT>/<RESULT_NAME>
+```
+
+If neither `INPUT_JSONL` nor `TRIPLET_ROOT` is provided, the wrapper auto-generates a temporary JSONL at `$OUT_DIR/input_pairs.jsonl` using `cref -> content_1`, `sref -> style_1`, and `<RESULT_NAME> -> style_and_content`.
+
+### Judgment Method: 0/1 Logprob + Voting
+
+For each image pair, Qwen3-VL is called with:
+
+```text
+temperature = 0.0
+max_tokens = 1
+logprobs = true
+top_logprobs = 8
+```
+
+The model must output only:
+
+```text
+1 = consistent / pass
+0 = inconsistent / fail
+```
+
+The script extracts `logprob("0")` and `logprob("1")`, computes a binary softmax, and uses the confidence of the actually emitted token:
+
+```text
+p0, p1 = softmax(logp0, logp1)
+conf = p1 if output == 1 else p0
+```
+
+A single call is valid only if `conf > *_conf_thr`. By default each pair is judged three times, and at least two high-confidence `1` outputs are required:
+
+```text
+content_judge_times = 3, content_min_true = 2, content_conf_thr = 0.5
+style_judge_times   = 3, style_min_true   = 2, style_conf_thr   = 0.5
+```
+
+At the sample level, the script counts how many content/style references passed and applies ratio thresholds:
+
+```text
+content_pass = passed_content / total_content >= content_ratio   # default 0.66
+style_pass   = passed_style   / total_style   >= style_ratio     # default 0.66
+dual_pass    = content_pass and style_pass
+```
+
+### Outputs
+
+The new judge writes dual-pass maps instead of two independent score JSON files:
+
+| Output | Meaning |
+|---|---|
+| `--out_all` | all processed samples, `basename -> 1/0` according to `dual_pass` |
+| `--out_pos` | only accepted samples, `basename -> 1` |
+| `--out_neg` | only rejected samples, `basename -> 0` |
+| `--out_detail` | optional detailed JSON with content/style ratios and per-reference trials |
+
+### Example
+
+Simple benchmark layout, e.g. after `uso_batch_run.sh` writes images to `$DATA_ROOT/uso`:
+
+```bash
+DATA_ROOT=/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content \
+RESULT_NAME=uso \
+QWEN_BASE_URL=http://YOUR_QWEN_VLM_HOST:22002/v1 \
+PROCS_PER_ENDPOINT=32 \
+bash /data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh
+```
+
+Native multi-reference layout:
+
+```bash
+TRIPLET_ROOT=/path/to/triplet_root \
+OUT_DIR=/path/to/judge_outputs \
+QWEN_BASE_URL=http://YOUR_QWEN_VLM_HOST:22002/v1 \
+bash /data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh
+```
+

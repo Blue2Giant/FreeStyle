@@ -12,6 +12,10 @@ set -euo pipefail
 sref_root=/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content
 out_dir=$sref_root/uso
 
+# After this finishes, the Qwen dual judge wrapper can evaluate the result with:
+#   DATA_ROOT=/mnt/jfs/bench-bucket/sref_bench/sample_800_cref_sref_200_content RESULT_NAME=uso bash /data/FreeStyle/benchmark_infer/scripts/metrics/triplet_qwen_dual_judge.sh
+# The metrics wrapper will adapt the standard cref/sref/uso layout to the new JSONL judge input.
+
 export CUDA_DEVICE_ORDER=PCI_BUS_ID
 export CUDA_VISIBLE_DEVICES=0
 export PYTHONUNBUFFERED=1

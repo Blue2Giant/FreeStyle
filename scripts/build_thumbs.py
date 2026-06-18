@@ -25,8 +25,8 @@ from PIL import Image
 REPO_ROOT = Path(__file__).resolve().parent.parent
 GALLERY_JSON = REPO_ROOT / "data" / "gallery.json"
 THUMB_ROOT = REPO_ROOT / "assets" / "thumbs"
-MAX_EDGE = 800
-QUALITY = 80
+MAX_EDGE = 360
+QUALITY = 78
 
 
 def collect_sources() -> list[Path]:

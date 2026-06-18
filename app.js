@@ -441,8 +441,17 @@ async function main() {
   // is duplicated once so the CSS translateX(-50%) loop is seamless. Rows
   // alternate scroll direction, and the duration scales with card count to
   // keep the linear speed constant regardless of how full a row is.
-  const buildMarquee = (container, ids, rowCount) => {
-    const samples = ids.map((id) => sampleMap.get(id)).filter(Boolean);
+  //
+  // `limit` caps how many distinct samples a section renders. A looping
+  // marquee only needs a couple of screen-widths of content to read as
+  // infinite, so capping keeps the DOM, the decoded-image memory, and the
+  // size of the animated compositor layers bounded — without this, mobile
+  // tabs run out of memory and crash when scrolling through the big sections.
+  const buildMarquee = (container, ids, rowCount, limit) => {
+    let samples = ids.map((id) => sampleMap.get(id)).filter(Boolean);
+    if (limit && samples.length > limit) {
+      samples = samples.slice(0, limit);
+    }
     if (!samples.length) return;
 
     const rows = Array.from({ length: rowCount }, () => []);
@@ -478,10 +487,10 @@ async function main() {
     });
   };
 
-  buildMarquee(sectionContainers.resultsSref, data.sections.resultsSref, 2);
-  buildMarquee(sectionContainers.resultsDual, data.sections.resultsDual, 2);
-  buildMarquee(sectionContainers.datasetSref, data.sections.datasetSref, 2);
-  buildMarquee(sectionContainers.datasetDual, data.sections.datasetDual, 3);
+  buildMarquee(sectionContainers.resultsSref, data.sections.resultsSref, 2, 18);
+  buildMarquee(sectionContainers.resultsDual, data.sections.resultsDual, 2, 18);
+  buildMarquee(sectionContainers.datasetSref, data.sections.datasetSref, 2, 16);
+  buildMarquee(sectionContainers.datasetDual, data.sections.datasetDual, 3, 18);
 
   setupReveal();
   setupPlaceholderLinks();

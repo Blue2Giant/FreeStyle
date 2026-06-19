@@ -188,10 +188,7 @@ If you find FreeStyle useful for your research, please consider citing:
   title         = {FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining},
   author        = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang and Yu, Gang and Zhang, Chi},
   journal       = {arXiv preprint arXiv:2606.20506},
-  year          = {2026},
-  eprint        = {2606.20506},
-  archivePrefix = {arXiv},
-  primaryClass  = {cs.CV}
+  year          = {2026}
 }
 ```
 

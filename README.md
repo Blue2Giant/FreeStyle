@@ -30,7 +30,7 @@
 <p>
 <a href="https://blue2giant.github.io/FreeStyle/"><img alt="Project Page" src="https://img.shields.io/badge/Project-Page-1F4EA8?style=flat-square&logo=googlechrome&logoColor=white"></a>
 <a href="https://github.com/Blue2Giant/FreeStyle"><img alt="GitHub" src="https://img.shields.io/badge/Code-GitHub-181717?style=flat-square&logo=github&logoColor=white"></a>
-<a href="#"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat-square&logo=arxiv&logoColor=white"></a>
+<a href="https://arxiv.org/pdf/2606.20506"><img alt="Paper" src="https://img.shields.io/badge/Paper-arXiv-B31B1B?style=flat-square&logo=arxiv&logoColor=white"></a>
 
 </p>
 

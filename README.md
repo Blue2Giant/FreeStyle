@@ -159,21 +159,6 @@ bash scripts/metrics/uso_metric_batch.sh     # one-stop evaluation
 
 ---
 
-## Citation
-
-If you find FreeStyle useful for your research, please consider citing:
-
-```bibtex
-@inproceedings{lan2026freestyle,
-  title     = {FreeStyle: Free Control of Style Content Generation from Community LoRA Mining},
-  author    = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang andYu, Gang and Zhang, Chi},
-  booktitle = {arXiv Pre-print},
-  year      = {2026}
-}
-```
-
----
-
 ## Acknowledgements
 
 FreeStyle builds on the open-source community's LoRA ecosystem ([Civitai](https://civitai.com), TensorArt, Liblib) and on excellent prior work including [ComfyUI](https://github.com/comfyanonymous/ComfyUI), [ComfyKit](https://github.com/puke3615/ComfyKit), Qwen-Image / Qwen3-VL, FLUX, and the many style-transfer baselines compared in our benchmark (CSGO, USO, OmniStyle, TeleStyle, and others). In particular, we are grateful to the [Qwen-Image-Edit](https://qwen.ai/blog?id=qwen-image-edit) team for open-sourcing such a powerful base model. We thank the creators of every mined LoRA whose contributions made this dataset possible.
@@ -191,6 +176,24 @@ This project, including all associated datasets, benchmarks, model weights, and 
 - **Takedown requests.** If you are a rights holder and believe that any content in this project infringes your rights, please contact us by opening a GitHub issue. We are committed to promptly reviewing and, where appropriate, **removing** the relevant content.
 
 By accessing or using any part of this project, you acknowledge that you have read, understood, and agreed to this disclaimer.
+
+---
+
+## Citation
+
+If you find FreeStyle useful for your research, please consider citing:
+
+```bibtex
+@article{lan2026freestyle,
+  title         = {FreeStyle: Free Control of Style-Content Dual-Reference Generation from Community LoRA Mining},
+  author        = {Lan, Jinghong and Cheng, Wei and Chen, Yunuo and Ye, Ziqi and Xing, Peng and Fang, Yixiao and Wang, Rui and Yang, Yufeng and Zhang, Xuanyang and Zou, Difan and Zeng, Xianfang and Yu, Gang and Zhang, Chi},
+  journal       = {arXiv preprint arXiv:2606.20506},
+  year          = {2026},
+  eprint        = {2606.20506},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV}
+}
+```
 
 ---
 

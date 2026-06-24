@@ -19,7 +19,7 @@
 </p>
 
 <p>
-<sup>1</sup> Fudan University &nbsp;&nbsp; <sup>2</sup> StepFun &nbsp;&nbsp; <sup>3</sup> Westlake University &nbsp;&nbsp; <sup>3</sup> University of Hong Kong <br>
+<sup>1</sup> Fudan University &nbsp;&nbsp; <sup>2</sup> StepFun &nbsp;&nbsp; <sup>3</sup> Westlake University &nbsp;&nbsp; <sup>4</sup> University of Hong Kong <br>
 <sub><sup>*</sup> Equal contribution &nbsp;&nbsp; <sup>‡</sup> Corresponding authors</sub>
 </p>
 
